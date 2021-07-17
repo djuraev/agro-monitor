@@ -1,4 +1,4 @@
-package com.example.agromonitor;
+package uz.agromon;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
