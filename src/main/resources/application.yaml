@@ -1,0 +1,7 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/agromon?characterEncoding=UTF-8&serverTimezone=UTC
+    username: agromon
+    password: agromon12!@
+    driver-class-name: com.mysql.jdbc.Driver

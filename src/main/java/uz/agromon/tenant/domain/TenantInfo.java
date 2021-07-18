@@ -4,8 +4,8 @@ public class TenantInfo {
     Integer tenantId;
     String capital;
     String land;
-    String userCount;
-    String fieldCount;
-    String villageCount;
+    Integer userCount;
+    Integer fieldCount;
+    Integer villageCount;
 
 }
