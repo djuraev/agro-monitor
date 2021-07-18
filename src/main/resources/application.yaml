@@ -1,7 +1,18 @@
-
 spring:
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/agromon?characterEncoding=UTF-8&serverTimezone=UTC
-    username: agromon
-    password: agromon12!@
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/agromon?characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: Zippo125*
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: AGROMON-SERVICE
+
+server:
+  port: 8090
+
