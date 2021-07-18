@@ -38,3 +38,6 @@ out/
 .nara
 gradlew
 gradlew.bat
+.gradle
+gradle
+build
