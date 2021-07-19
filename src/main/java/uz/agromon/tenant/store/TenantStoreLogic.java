@@ -6,7 +6,7 @@ import uz.agromon.tenant.domain.Tenant;
 import uz.agromon.tenant.store.jpo.TenantJpo;
 import uz.agromon.tenant.store.repo.TenantRepository;
 
-import java.lang.reflect.InvocationTargetException;
+
 import java.util.List;
 
 @Repository

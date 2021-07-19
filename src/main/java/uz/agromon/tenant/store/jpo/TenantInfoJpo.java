@@ -16,7 +16,7 @@ public class TenantInfoJpo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer sequence;
     Integer tenantId;
-    String capital;
+    String name;
     String land;
     Integer userCount;
     Integer fieldCount;
