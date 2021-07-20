@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 import uz.agromon.tenant.domain.District;
-import uz.agromon.tenant.domain.Tenant;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.List;

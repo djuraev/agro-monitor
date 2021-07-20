@@ -1,8 +1,13 @@
-#Sat Jul 17 18:11:30 KST 2021
+#Mon Jul 19 21:36:56 KST 2021
 storeType=MongoDB
 groupId=io.naradrama
+dbName=
+projectTemplate=CQRS
+dbHost=localhost
+dbPort=9999
+dbUsername=
 skipEvent=false
 technologyStack=Backend
-projectTemplate=CQRS
 projectBuild=Gradle
 createEmbed=false
+dbPassword=
