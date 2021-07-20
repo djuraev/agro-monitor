@@ -12,7 +12,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: AGROMON-SERVICE
-
+  jpa:
+    hibernate:
+      ddl-auto: update
 server:
   port: 8090
 

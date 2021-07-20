@@ -10,6 +10,7 @@ public abstract class AgroMonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer sequence;
+    
     Integer tenantId;
 
     protected void copy(final AgroMonEntity source)
