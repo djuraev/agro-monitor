@@ -1,7 +1,11 @@
 package uz.agromon.tenant.domain;
 
 
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class District  {
     Integer sequence;
     Integer tenantId;

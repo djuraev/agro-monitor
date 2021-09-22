@@ -16,16 +16,16 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name="FIELD")
 public class FieldJpo extends AgroMonEntity {
-    Integer userSequence;
-    Integer villageSequence;
-    String villageName;
-    String name;
-    String polygon;
-    String apiKey;
-    String center;
-    String cropType;
-    String area;
-    String comment;
+    private Integer userSequence;
+    private Integer villageSequence;
+    private String villageName;
+    private String name;
+    private String polygon;
+    private String apiKey;
+    private String center;
+    private String cropType;
+    private String area;
+    private String comment;
 
     public FieldJpo() {
     }

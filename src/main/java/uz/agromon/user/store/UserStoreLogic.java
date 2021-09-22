@@ -1,5 +1,6 @@
 package uz.agromon.user.store;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import uz.agromon.user.domain.User;
@@ -29,5 +30,13 @@ public class UserStoreLogic implements UserStore{
     public List<User> retrieve() {
         List<UserJpo> jpos = repository.findAll();
         return UserJpo.toDomains(jpos);
+    }
+
+    @Override
+    public User update(User user) {
+        UserJpo jpo = repository.findByEmail(user.getEmail());
+        BeanUtils.copyProperties(user, jpo);
+        jpo = repository.save(jpo);
+        return jpo.toDomain();
     }
 }

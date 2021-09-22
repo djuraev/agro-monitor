@@ -1,18 +1,18 @@
 package uz.agromon.field.domain;
 
 public class Field {
-    Integer sequence;
-    Integer tenantId;
-    Integer userSequence;
-    Integer villageSequence;
-    String villageName;
-    String name;
-    String polygon;
-    String apiKey;
-    String center;
-    String cropType;
-    String area;
-    String comment;
+    private Integer sequence;
+    private Integer tenantId;
+    private Integer userSequence;
+    private Integer villageSequence;
+    private String villageName;
+    private String name;
+    private String polygon;
+    private String apiKey;
+    private String center;
+    private String cropType;
+    private String area;
+    private String comment;
 
     public Field() {
     }

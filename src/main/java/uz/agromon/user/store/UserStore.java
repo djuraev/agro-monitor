@@ -8,4 +8,5 @@ public interface UserStore {
     User create(User user);
     User retrieve(Integer sequence);
     List<User> retrieve();
+    User update(User user);
 }

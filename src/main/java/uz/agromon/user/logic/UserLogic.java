@@ -20,4 +20,9 @@ public class UserLogic implements UserService {
     public User retrieve(Integer sequence) {
         return userStore.retrieve(sequence);
     }
+
+    @Override
+    public User update(User user) {
+        return userStore.update(user);
+    }
 }
