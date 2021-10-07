@@ -31,4 +31,10 @@ public class DistrictStoreLogic implements DistrictStore {
         List<DistrictJpo> jpos = repository.findAll();
         return DistrictJpo.toDomains(jpos);
     }
+
+    @Override
+    public List<District> retrieveByTenantAndRegion(Integer tenantId, Integer regionId) {
+        List<DistrictJpo> jpos = repository.getAllByTenantIdAndRegionSequence(tenantId, regionId);
+        return DistrictJpo.toDomains(jpos);
+    }
 }

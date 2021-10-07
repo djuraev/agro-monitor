@@ -1,18 +1,24 @@
 package uz.agromon.user.domain;
 
-public class User {
-    Integer sequence;
-    Integer tenantId;
-    String name;
-    String surname;
-    String email;
-    String password;
-    Integer regionSequence;
-    Integer districtSequence;
-    Integer villageSequence;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-    public User() {
-    }
+
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+    private Integer sequence;
+    private Integer tenantId;
+    private String name;
+    private String surname;
+    private String insuranceNumber;
+    private String email;
+    private String password;
+    private Integer regionSequence;
+    private Integer districtSequence;
+    private Integer villageSequence;
 
     public Integer getSequence() {
         return sequence;
@@ -44,6 +50,14 @@ public class User {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getInsuranceNumber() {
+        return insuranceNumber;
+    }
+
+    public void setInsuranceNumber(String insuranceNumber) {
+        this.insuranceNumber = insuranceNumber;
     }
 
     public String getEmail() {

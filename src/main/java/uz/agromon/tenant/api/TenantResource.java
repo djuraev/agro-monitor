@@ -1,9 +1,7 @@
 package uz.agromon.tenant.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uz.agromon.tenant.domain.Tenant;
 import uz.agromon.tenant.service.TenantService;
 
@@ -18,5 +16,10 @@ public class TenantResource {
     @GetMapping(value = "/tenants")
     List<Tenant> getAllTenants(){
         return tenantService.getAllTenants();
+    }
+
+    @PostMapping(value = "/tenants")
+    Tenant create(@RequestBody Tenant tenant) {
+        return tenantService.create(tenant);
     }
 }

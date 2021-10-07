@@ -30,4 +30,10 @@ public class RegionStoreLogic implements RegionStore{
         List<RegionJpo> jpos = repository.findAll();
         return RegionJpo.toDomains(jpos);
     }
+
+    @Override
+    public List<Region> retrieveByTenantId(Integer tenantId) {
+        List<RegionJpo> jpos = repository.getAllByTenantId(tenantId);
+        return RegionJpo.toDomains(jpos);
+    }
 }

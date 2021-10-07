@@ -17,7 +17,9 @@ public class TenantJpo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
+    @Column(unique = true)
     String country;
+    @Column(unique = true)
     String shortName;
 
     public TenantJpo(){}

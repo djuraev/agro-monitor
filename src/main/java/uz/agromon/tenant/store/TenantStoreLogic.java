@@ -13,6 +13,7 @@ import java.util.List;
 public class TenantStoreLogic implements TenantStore{
     @Autowired
     TenantRepository repository;
+
     @Override
     public Tenant create(Tenant tenant) {
         TenantJpo jpo = new TenantJpo(tenant);

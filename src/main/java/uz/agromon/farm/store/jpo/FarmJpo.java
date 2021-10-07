@@ -1,16 +1,21 @@
-package uz.agromon.farm.domain;
+package uz.agromon.farm.store.jpo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Farm {
+@Entity
+@Table(name = "FARM")
+public class FarmJpo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer tenantId;
     private Integer userId;
     private String polygon;
@@ -20,4 +25,5 @@ public class Farm {
     private String center;
     private String comment;
     private String area;
+
 }

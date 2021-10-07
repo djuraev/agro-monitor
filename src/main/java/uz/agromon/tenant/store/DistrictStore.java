@@ -7,4 +7,5 @@ public interface DistrictStore {
     District create(District district);
     District retrieve(Integer sequence);
     List<District> retrieve();
+    List<District> retrieveByTenantAndRegion(Integer tenantId, Integer regionId);
 }

@@ -22,6 +22,7 @@ public class UserJpo extends AgroMonEntity {
     String surname;
     String email;
     String password;
+    String insuranceNumber;
     Integer regionSequence;
     Integer districtSequence;
     Integer villageSequence;

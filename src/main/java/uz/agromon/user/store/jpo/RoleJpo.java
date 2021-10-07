@@ -22,5 +22,4 @@ public class RoleJpo {
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private ERole name;
-
 }

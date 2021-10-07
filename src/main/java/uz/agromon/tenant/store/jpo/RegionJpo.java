@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 @Table(name="REGION")
 public class RegionJpo extends AgroMonEntity{
     String name;
-
     public RegionJpo() {
     }
     public RegionJpo(Integer sequence, Integer tenantId, String name){

@@ -8,4 +8,5 @@ public interface RegionStore {
     Region create(Region region);
     Region retrieve(Integer sequence);
     List<Region> retrieve();
+    List<Region> retrieveByTenantId(Integer tenantId);
 }
