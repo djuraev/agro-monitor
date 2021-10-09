@@ -1,6 +1,8 @@
 package uz.agromon.tenant.store;
 
 import uz.agromon.tenant.domain.Tenant;
+import uz.agromon.tenant.domain.TenantName;
+
 import java.util.List;
 
 public interface TenantStore {
@@ -11,4 +13,5 @@ public interface TenantStore {
     boolean exists(String country);
     Tenant update(Tenant tenant);
     void delete(Tenant tenant);
+    Tenant addName(String tenantCode, TenantName name);
 }

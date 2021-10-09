@@ -2,12 +2,13 @@ package uz.agromon.tenant.store.jpo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.beans.BeanUtils;
 import uz.agromon.tenant.domain.Tenant;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Getter
@@ -26,13 +27,15 @@ public class TenantJpo {
     String code;
 
     @JoinColumn(name = "tenant_id")
-    @OneToMany(cascade = {CascadeType.ALL}, orphanRemoval = true)
-    List<TenantNameJpo> names;
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
+    Set<TenantNameJpo> names;
 
-    public TenantJpo(){}
+    public TenantJpo(){
+        names = new HashSet<>();
+    }
 
     public TenantJpo(Tenant tenant) {
-        names = new ArrayList<>();
+        names = new HashSet<>();
         BeanUtils.copyProperties(tenant, this);
         this.names = TenantNameJpo.fromDomains(tenant.getNames());
         this.names.forEach(name -> name.setTenantCode(this.getCode()));
@@ -41,15 +44,15 @@ public class TenantJpo {
     public Tenant toDomain(){
         Tenant tenant = new Tenant();
         BeanUtils.copyProperties(this, tenant);
-        tenant.setNames(this.names.stream().map(TenantNameJpo::toDomain).collect(Collectors.toList()));
+        tenant.setNames(this.names.stream().filter(Objects::nonNull).map(TenantNameJpo::toDomain).collect(Collectors.toSet()));
         return tenant;
     }
 
-    public List<TenantNameJpo> getNames() {
+    public Set<TenantNameJpo> getNames() {
         return names;
     }
 
-    public void setNames(List<TenantNameJpo> names) {
+    public void setNames(Set<TenantNameJpo> names) {
         this.names = names;
     }
 

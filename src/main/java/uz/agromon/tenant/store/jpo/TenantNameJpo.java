@@ -2,11 +2,15 @@ package uz.agromon.tenant.store.jpo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.beans.BeanUtils;
 import uz.agromon.tenant.domain.TenantName;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
@@ -22,6 +26,7 @@ public class TenantNameJpo {
     String tenantCode;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private TenantJpo tenant;
 
     public TenantNameJpo() {
@@ -33,8 +38,8 @@ public class TenantNameJpo {
         return jpo;
     }
 
-    public static List<TenantNameJpo> fromDomains(List<TenantName> tenantNames) {
-        return tenantNames.stream().map(TenantNameJpo::fromDomain).collect(Collectors.toList());
+    public static Set<TenantNameJpo> fromDomains(Set<TenantName> tenantNames) {
+        return tenantNames.stream().map(TenantNameJpo::fromDomain).collect(Collectors.toSet());
     }
 
     public TenantName toDomain() {

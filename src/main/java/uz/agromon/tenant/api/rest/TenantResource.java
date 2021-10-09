@@ -1,4 +1,4 @@
-package uz.agromon.tenant.api;
+package uz.agromon.tenant.api.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +31,6 @@ public class TenantResource {
 
     @GetMapping(value = "tenant/{tenantCode}")
     Tenant getTenant(@PathVariable String tenantCode) {
-        return tenantService.retrive(tenantCode);
+        return tenantService.retrieve(tenantCode);
     }
 }

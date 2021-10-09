@@ -1,4 +1,4 @@
-package uz.agromon.tenant.api;
+package uz.agromon.tenant.api.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

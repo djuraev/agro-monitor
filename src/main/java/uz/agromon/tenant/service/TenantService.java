@@ -11,5 +11,5 @@ public interface TenantService {
     Tenant update(Tenant tenant);
     Tenant update(String tenantCode, TenantName tenantName);
     void delete(Tenant tenant);
-    Tenant retrive(String tenantCode);
+    Tenant retrieve(String tenantCode);
 }

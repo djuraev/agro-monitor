@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import uz.agromon.tenant.domain.Tenant;
 import uz.agromon.tenant.domain.TenantName;
 import uz.agromon.tenant.service.TenantService;
+import uz.agromon.tenant.store.TenantNameStore;
 import uz.agromon.tenant.store.TenantStore;
 import uz.agromon.tenant.store.jpo.TenantJpo;
 
@@ -14,35 +15,37 @@ import java.util.List;
 @Service
 public class TenantLogic implements TenantService {
     @Autowired
-    TenantStore store;
+    TenantStore tenantStore;
 
+    @Autowired
+    TenantNameStore tenantNameStore;
     @Override
     public Tenant create(Tenant tenant) {
-        return store.create(tenant);
+        return tenantStore.create(tenant);
     }
 
     @Override
     public List<Tenant> getAllTenants() {
-        return store.retrieveAll();
+        return tenantStore.retrieveAll();
     }
 
     @Override
     public Tenant update(Tenant tenant) {
-        return store.update(tenant);
+        return tenantStore.update(tenant);
     }
 
     @Override
     public Tenant update(String tenantCode, TenantName tenantName) {
-        return null;
+        return tenantStore.addName(tenantCode, tenantName);
     }
 
     @Override
     public void delete(Tenant tenant) {
-        store.delete(tenant);
+        tenantStore.delete(tenant);
     }
 
     @Override
-    public Tenant retrive(String tenantCode) {
-        return store.retrieve(tenantCode);
+    public Tenant retrieve(String tenantCode) {
+        return tenantStore.retrieve(tenantCode);
     }
 }

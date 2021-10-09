@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -13,9 +15,9 @@ public class Tenant {
     Integer id;
     String country;
     String code;
-    List<TenantName> names;
+    Set<TenantName> names;
 
-    public Tenant(Integer id, String country, String code, List<TenantName> names) {
+    public Tenant(Integer id, String country, String code, Set<TenantName> names) {
         this.id = id;
         this.country = country;
         this.code = code;
@@ -23,14 +25,14 @@ public class Tenant {
     }
 
     public Tenant() {
-        names = new ArrayList<>();
+        names = new HashSet<>();
     }
 
-    public List<TenantName> getNames() {
+    public Set<TenantName> getNames() {
         return names;
     }
 
-    public void setNames(List<TenantName> names) {
+    public void setNames(Set<TenantName> names) {
         this.names = names;
     }
 
