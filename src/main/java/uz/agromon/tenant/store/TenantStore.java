@@ -6,7 +6,9 @@ import java.util.List;
 public interface TenantStore {
     Tenant create(Tenant tenant) ;
     Tenant retrieve(Integer id);
-    Tenant retrieve(String country);
+    Tenant retrieve(String code);
     List<Tenant> retrieveAll();
     boolean exists(String country);
+    Tenant update(Tenant tenant);
+    void delete(Tenant tenant);
 }

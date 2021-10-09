@@ -1,18 +1,38 @@
 package uz.agromon.tenant.domain;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Tenant {
     Integer id;
     String country;
-    String shortName;
+    String code;
+    List<TenantName> names;
+
+    public Tenant(Integer id, String country, String code, List<TenantName> names) {
+        this.id = id;
+        this.country = country;
+        this.code = code;
+        this.names = names;
+    }
+
+    public Tenant() {
+        names = new ArrayList<>();
+    }
+
+    public List<TenantName> getNames() {
+        return names;
+    }
+
+    public void setNames(List<TenantName> names) {
+        this.names = names;
+    }
 
     public Integer getId() {
         return id;
@@ -30,11 +50,11 @@ public class Tenant {
         this.country = country;
     }
 
-    public String getShortName() {
-        return shortName;
+    public String getCode() {
+        return code;
     }
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
+    public void setCode(String code) {
+        this.code = code;
     }
 }
