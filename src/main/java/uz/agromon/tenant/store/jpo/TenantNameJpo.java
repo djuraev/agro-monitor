@@ -17,9 +17,10 @@ public class TenantNameJpo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer sequence;
-    String lanCode;
+    String langCode;
     String name;
     String tenantCode;
+
     @ManyToOne(cascade = CascadeType.ALL)
     private TenantJpo tenant;
 
@@ -38,7 +39,7 @@ public class TenantNameJpo {
 
     public TenantName toDomain() {
         TenantName tenantName = new TenantName();
-        tenantName.setLanCode(lanCode);
+        tenantName.setLangCode(langCode);
         tenantName.setName(name);
         return tenantName;
     }
@@ -71,12 +72,12 @@ public class TenantNameJpo {
         this.tenant = tenant;
     }
 
-    public String getLanCode() {
-        return lanCode;
+    public String getLangCode() {
+        return langCode;
     }
 
-    public void setLanCode(String lanCode) {
-        this.lanCode = lanCode;
+    public void setLangCode(String lanCode) {
+        this.langCode = lanCode;
     }
 
     public String getTenantCode() {

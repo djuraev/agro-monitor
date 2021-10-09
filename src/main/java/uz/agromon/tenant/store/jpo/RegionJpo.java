@@ -7,6 +7,7 @@ import uz.agromon.tenant.domain.Region;
 import uz.agromon.tenant.domain.Tenant;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,8 +17,15 @@ import java.util.stream.Collectors;
 @Table(name="REGION")
 public class RegionJpo extends AgroMonEntity{
     String name;
+
+    @JoinColumn(name = "region_sequence")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    List<RegionNameJpo> names;
+
     public RegionJpo() {
+        names = new ArrayList<>();
     }
+
     public RegionJpo(Integer sequence, Integer tenantId, String name){
         super.sequence =sequence;
         super.tenantId = tenantId;
@@ -25,12 +33,15 @@ public class RegionJpo extends AgroMonEntity{
     }
 
     public RegionJpo(Region region) {
+        names = new ArrayList<>();
         BeanUtils.copyProperties(region, this);
+        this.names = RegionNameJpo.fromDomains(region.getNames());
     }
 
     public Region toDomain(){
         Region region = new Region();
         BeanUtils.copyProperties(this, region);
+        region.setNames(this.names.stream().map(RegionNameJpo::toDomain).collect(Collectors.toList()));
         return region;
     }
 

@@ -41,7 +41,7 @@ public class TenantJpo {
     public Tenant toDomain(){
         Tenant tenant = new Tenant();
         BeanUtils.copyProperties(this, tenant);
-        tenant.getNames().addAll(this.names.stream().map(TenantNameJpo::toDomain).collect(Collectors.toList()));
+        tenant.setNames(this.names.stream().map(TenantNameJpo::toDomain).collect(Collectors.toList()));
         return tenant;
     }
 

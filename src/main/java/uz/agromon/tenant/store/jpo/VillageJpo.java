@@ -6,8 +6,8 @@ import org.springframework.beans.BeanUtils;
 import uz.agromon.tenant.domain.Tenant;
 import uz.agromon.tenant.domain.Village;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,14 +19,21 @@ public class VillageJpo extends AgroMonEntity {
     Integer districtSequence;
     String name;
 
+    @JoinColumn(name = "village_sequence")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    List<VillageNameJpo> names;
+
     public VillageJpo(){}
     public VillageJpo(Village village) {
+        names = new ArrayList<>();
         BeanUtils.copyProperties(village, this);
+        names = VillageNameJpo.fromDomains(village.getNames());
     }
 
     public Village toDomain(){
         Village village = new Village();
         BeanUtils.copyProperties(this, village);
+        village.setNames(this.names.stream().map(VillageNameJpo::toDomain).collect(Collectors.toList()));
         return village;
     }
     public static List<Village> toDomains(List<VillageJpo> jpos) {

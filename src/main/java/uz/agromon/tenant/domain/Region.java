@@ -1,10 +1,21 @@
 package uz.agromon.tenant.domain;
 
 
+import java.util.List;
+
 public class Region {
     Integer sequence;
     Integer tenantId;
     String name;
+    List<RegionName> names;
+
+    public List<RegionName> getNames() {
+        return names;
+    }
+
+    public void setNames(List<RegionName> names) {
+        this.names = names;
+    }
 
     public Region() {
     }

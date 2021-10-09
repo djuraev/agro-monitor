@@ -27,12 +27,12 @@ public class TenantNameStoreLogic implements TenantNameStore{
         if (tenantJpo == null) {
             throw new Exception("Tenant does not exist");
         }
-        LanguageJpo languageJpo = languageRepository.existsByCode(tenantName.getLanCode());
+        LanguageJpo languageJpo = languageRepository.existsByCode(tenantName.getLangCode());
         if (languageJpo == null){
             throw new Exception("Language does not exist");
         }
         TenantNameJpo jpo = new TenantNameJpo();
-        jpo.setLanCode(languageJpo.getCode());
+        jpo.setLangCode(languageJpo.getCode());
         jpo.setTenant(tenantJpo);
         return repository.save(jpo).toDomain();
     }

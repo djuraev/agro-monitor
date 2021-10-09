@@ -1,6 +1,5 @@
 package uz.agromon.tenant.store;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import uz.agromon.tenant.domain.Tenant;

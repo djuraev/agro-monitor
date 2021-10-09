@@ -1,11 +1,14 @@
 package uz.agromon.tenant.domain;
 
 
+import java.util.List;
+
 public class Village {
     Integer sequence;
     Integer tenantId;
     Integer districtSequence;
     String name;
+    List<VillageName> names;
 
     public Village() {
     }
@@ -40,5 +43,13 @@ public class Village {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<VillageName> getNames() {
+        return names;
+    }
+
+    public void setNames(List<VillageName> names) {
+        this.names = names;
     }
 }

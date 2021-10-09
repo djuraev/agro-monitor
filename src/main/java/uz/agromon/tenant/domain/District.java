@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,8 +16,10 @@ public class District  {
     Integer tenantId;
     Integer regionSequence;
     String name;
+    List<DistrictName> names;
 
     public District() {
+        names = new ArrayList<>();
     }
 
     public Integer getSequence() {
@@ -47,5 +52,13 @@ public class District  {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<DistrictName> getNames() {
+        return names;
+    }
+
+    public void setNames(List<DistrictName> names) {
+        this.names = names;
     }
 }
