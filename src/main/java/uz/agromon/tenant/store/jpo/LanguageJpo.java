@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Table(name="LANGUAGE")
 public class LanguageJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer sequence;
 
     @Column(unique = true)

@@ -1,7 +1,9 @@
 package uz.agromon.tenant.domain;
 
 
-import java.util.List;
+import uz.agromon.tenant.domain.cdo.RegionCdo;
+
+import java.util.*;
 
 public class Region {
     Integer sequence;
@@ -18,6 +20,17 @@ public class Region {
     }
 
     public Region() {
+    }
+
+    public RegionCdo toCdo(String langCode) {
+        RegionCdo cdo = new RegionCdo(this.tenantId, this.name);
+
+        Map<String, RegionName> langCodes = new HashMap<>();
+        names.forEach(name -> langCodes.put(name.getLangCode(), name));
+        if (langCodes.containsKey(langCode)) {
+            cdo.setName(langCodes.get(langCode).getLocalName());
+        }
+        return cdo;
     }
 
     public Integer getSequence() {

@@ -3,8 +3,10 @@ package uz.agromon.tenant.store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import uz.agromon.tenant.domain.Region;
+import uz.agromon.tenant.domain.RegionName;
 import uz.agromon.tenant.store.jpo.RegionJpo;
 import uz.agromon.tenant.store.repo.RegionRepository;
+import uz.agromon.tenant.store.repo.TenantRepository;
 
 import java.util.List;
 
@@ -12,6 +14,9 @@ import java.util.List;
 public class RegionStoreLogic implements RegionStore{
     @Autowired
     RegionRepository repository;
+
+    @Autowired
+    TenantRepository tenantRepository;
 
     @Override
     public Region create(Region region) {
@@ -36,4 +41,10 @@ public class RegionStoreLogic implements RegionStore{
         List<RegionJpo> jpos = repository.getAllByTenantId(tenantId);
         return RegionJpo.toDomains(jpos);
     }
+
+    @Override
+    public Region addName(Integer regionSequence, RegionName regionName) {
+        return null;
+    }
+
 }

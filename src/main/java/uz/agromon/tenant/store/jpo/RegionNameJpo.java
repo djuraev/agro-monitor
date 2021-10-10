@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Table(name = "REGION_NAME")
 public class RegionNameJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     Integer sequence;
     String langCode;
     String localName;

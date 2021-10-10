@@ -27,7 +27,7 @@ public class RegionJpo extends AgroMonEntity{
     }
 
     public RegionJpo(Integer sequence, Integer tenantId, String name){
-        super.sequence =sequence;
+        super.sequence = sequence;
         super.tenantId = tenantId;
         this.name = name;
     }
@@ -41,6 +41,7 @@ public class RegionJpo extends AgroMonEntity{
     public Region toDomain(){
         Region region = new Region();
         BeanUtils.copyProperties(this, region);
+        region.setSequence(super.sequence);
         region.setNames(this.names.stream().map(RegionNameJpo::toDomain).collect(Collectors.toList()));
         return region;
     }

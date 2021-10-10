@@ -10,7 +10,9 @@ import uz.agromon.tenant.store.repo.TenantNameRepository;
 import uz.agromon.tenant.store.repo.TenantRepository;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class TenantStoreLogic implements TenantStore{
@@ -66,11 +68,20 @@ public class TenantStoreLogic implements TenantStore{
 
     @Override
     public Tenant addName(String tenantCode, TenantName name) {
-        TenantJpo jpo = tenantRepository.getByCode(tenantCode);
-        TenantNameJpo nameJpo = TenantNameJpo.fromDomain(name);
-        nameJpo.setTenantCode(jpo.getCode());
-        jpo.getNames().add(nameJpo);
-        jpo = tenantRepository.save(jpo);
-        return jpo.toDomain();
+        TenantJpo tenantJpo = tenantRepository.getByCode(tenantCode);
+        TenantNameJpo newNameJpo = TenantNameJpo.fromDomain(name);
+        newNameJpo.setTenantCode(tenantJpo.getCode());
+
+        Set<String> langCodes = new HashSet<>();
+        for (TenantNameJpo nameJpo: tenantJpo.getNames()) {
+            langCodes.add(nameJpo.getLangCode());
+        }
+
+        if (!langCodes.contains(name.getLangCode())) {
+            newNameJpo.setTenant(tenantJpo);
+            tenantNameRepository.save(newNameJpo);
+        }
+        //jpo = tenantRepository.save(jpo);
+        return tenantJpo.toDomain();
     }
 }
