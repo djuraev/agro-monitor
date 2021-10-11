@@ -9,7 +9,6 @@ import uz.agromon.util.JsonUtil;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 public class RegionCdo implements JsonSerializable {
     private Integer tenantId;
@@ -20,8 +19,29 @@ public class RegionCdo implements JsonSerializable {
         return toJson();
     }
 
+    public RegionCdo(Integer tenantId, String name) {
+        this.tenantId = tenantId;
+        this.name = name;
+    }
+
     public static RegionCdo fromJson(String json) {
         //
         return JsonUtil.fromJson(json, RegionCdo.class);
+    }
+
+    public Integer getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(Integer tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

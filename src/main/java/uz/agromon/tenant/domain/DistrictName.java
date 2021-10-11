@@ -2,11 +2,11 @@ package uz.agromon.tenant.domain;
 
 public class DistrictName {
     private String langCode;
-    private String name;
+    private String localName;
 
-    public DistrictName(String langCode, String name) {
+    public DistrictName(String langCode, String localName) {
         this.langCode = langCode;
-        this.name = name;
+        this.localName = localName;
     }
 
     public DistrictName() {
@@ -20,11 +20,11 @@ public class DistrictName {
         this.langCode = langCode;
     }
 
-    public String getName() {
-        return name;
+    public String getLocalName() {
+        return localName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLocalName(String localName) {
+        this.localName = localName;
     }
 }

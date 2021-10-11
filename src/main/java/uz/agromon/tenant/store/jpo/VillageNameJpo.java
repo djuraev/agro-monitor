@@ -14,7 +14,7 @@ public class VillageNameJpo {
     @GeneratedValue(strategy = GenerationType.TABLE)
     Integer id;
     String langCode;
-    String name;
+    String localName;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private VillageJpo village;
@@ -54,12 +54,12 @@ public class VillageNameJpo {
         this.langCode = langCode;
     }
 
-    public String getName() {
-        return name;
+    public String getLocalName() {
+        return localName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLocalName(String name) {
+        this.localName = name;
     }
 
     public VillageJpo getVillage() {

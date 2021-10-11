@@ -54,4 +54,12 @@ public class VillageJpo extends AgroMonEntity {
     public void setDistrictSequence(Integer districtSequence) {
         this.districtSequence = districtSequence;
     }
+
+    public List<VillageNameJpo> getNames() {
+        return names;
+    }
+
+    public void setNames(List<VillageNameJpo> names) {
+        this.names = names;
+    }
 }

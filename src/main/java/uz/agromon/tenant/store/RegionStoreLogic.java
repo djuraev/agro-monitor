@@ -5,10 +5,14 @@ import org.springframework.stereotype.Repository;
 import uz.agromon.tenant.domain.Region;
 import uz.agromon.tenant.domain.RegionName;
 import uz.agromon.tenant.store.jpo.RegionJpo;
+import uz.agromon.tenant.store.jpo.RegionNameJpo;
+import uz.agromon.tenant.store.repo.RegionNameRepository;
 import uz.agromon.tenant.store.repo.RegionRepository;
 import uz.agromon.tenant.store.repo.TenantRepository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class RegionStoreLogic implements RegionStore{
@@ -17,6 +21,9 @@ public class RegionStoreLogic implements RegionStore{
 
     @Autowired
     TenantRepository tenantRepository;
+
+    @Autowired
+    RegionNameRepository regionNameRepository;
 
     @Override
     public Region create(Region region) {
@@ -44,7 +51,18 @@ public class RegionStoreLogic implements RegionStore{
 
     @Override
     public Region addName(Integer regionSequence, RegionName regionName) {
-        return null;
+        RegionJpo regionJpo = repository.getBySequence(regionSequence);
+        RegionNameJpo regionNameJpo = RegionNameJpo.fromDomain(regionName);
+
+        Set<String> langCodes = new HashSet<>();
+        for (RegionNameJpo name: regionJpo.getNames()) {
+            langCodes.add(name.getLangCode());
+        }
+        if (!langCodes.contains(regionName.getLangCode())) {
+            regionNameJpo.setRegion(regionJpo);
+            regionNameRepository.save(regionNameJpo);
+        }
+        return regionJpo.toDomain();
     }
 
 }

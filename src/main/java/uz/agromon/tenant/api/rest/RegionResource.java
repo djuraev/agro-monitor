@@ -3,6 +3,7 @@ package uz.agromon.tenant.api.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uz.agromon.tenant.domain.Region;
+import uz.agromon.tenant.domain.RegionName;
 import uz.agromon.tenant.domain.cdo.RegionCdo;
 import uz.agromon.tenant.service.RegionService;
 
@@ -20,9 +21,9 @@ public class RegionResource {
         return regionService.create(region);
     }
 
-    @PostMapping("/name/{regionId}/{tenantCode}")
-    Region addNameToRegion(@PathVariable Integer regionId, @PathVariable String tenantCode) {
-        return null;
+    @PostMapping("/name/{regionId}")
+    Region addNameToRegion(@PathVariable Integer regionId, @RequestBody RegionName regionName) {
+        return regionService.addName(regionId, regionName);
     }
 
     @GetMapping("/regions")

@@ -11,4 +11,5 @@ public interface RegionStore {
     List<Region> retrieve();
     List<Region> retrieveByTenantId(Integer tenantId);
     Region addName(Integer regionSequence, RegionName regionName);
+
 }

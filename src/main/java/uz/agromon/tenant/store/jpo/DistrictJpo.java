@@ -8,6 +8,7 @@ import uz.agromon.tenant.domain.District;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Getter
@@ -34,6 +35,7 @@ public class DistrictJpo extends AgroMonEntity{
     public District toDomain(){
         District district = new District();
         BeanUtils.copyProperties(this, district);
+        district.setNames(this.names.stream().filter(Objects::nonNull).map(DistrictNameJpo::toDomain).collect(Collectors.toList()));
         return district;
     }
 
@@ -55,5 +57,13 @@ public class DistrictJpo extends AgroMonEntity{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<DistrictNameJpo> getNames() {
+        return names;
+    }
+
+    public void setNames(List<DistrictNameJpo> names) {
+        this.names = names;
     }
 }

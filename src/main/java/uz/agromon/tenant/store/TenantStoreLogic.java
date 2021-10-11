@@ -82,6 +82,7 @@ public class TenantStoreLogic implements TenantStore{
             tenantNameRepository.save(newNameJpo);
         }
         //jpo = tenantRepository.save(jpo);
+        tenantJpo = tenantRepository.getByCode(tenantCode);
         return tenantJpo.toDomain();
     }
 }

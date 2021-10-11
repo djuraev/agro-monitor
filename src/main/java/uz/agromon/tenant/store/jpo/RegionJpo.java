@@ -57,4 +57,12 @@ public class RegionJpo extends AgroMonEntity{
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<RegionNameJpo> getNames() {
+        return names;
+    }
+
+    public void setNames(List<RegionNameJpo> names) {
+        this.names = names;
+    }
 }

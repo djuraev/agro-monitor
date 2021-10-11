@@ -45,6 +45,10 @@ public class RegionNameJpo {
         BeanUtils.copyProperties(this, regionName);
         return regionName;
     }
+
+    public static List<RegionName> toDomains(List<RegionNameJpo> names) {
+        return names.stream().map(RegionNameJpo::toDomain).collect(Collectors.toList());
+    }
     public Integer getSequence() {
         return sequence;
     }

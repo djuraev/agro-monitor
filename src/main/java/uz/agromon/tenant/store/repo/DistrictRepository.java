@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface DistrictRepository extends JpaRepository<DistrictJpo, Integer> {
     List<DistrictJpo> getAllByTenantIdAndRegionSequence(Integer tenantId, Integer regionId);
+    List<DistrictJpo> getAllByRegionSequence(Integer sequence);
 }

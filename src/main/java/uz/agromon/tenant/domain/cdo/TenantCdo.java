@@ -5,7 +5,7 @@ import uz.agromon.util.JsonUtil;
 
 public class TenantCdo implements JsonSerializable {
     String country;
-    String shortName;
+    String name;
 
     public String toString() {
         //

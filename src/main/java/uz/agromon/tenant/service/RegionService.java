@@ -13,4 +13,5 @@ public interface RegionService {
     List<RegionCdo> getRegionsOfTenant(String tenantCode, String langCode);
     List<Region> getAllRegionsByTenantCode(String tenantCode);
     Region addName(Integer regionId, RegionName name);
+    Region retrieveRegion(Integer regionId);
 }

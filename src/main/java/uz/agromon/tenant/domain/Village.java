@@ -1,7 +1,11 @@
 package uz.agromon.tenant.domain;
 
 
+import uz.agromon.tenant.domain.cdo.VillageCdo;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Village {
     Integer sequence;
@@ -13,6 +17,15 @@ public class Village {
     public Village() {
     }
 
+    public VillageCdo toCdo(String langCode) {
+        VillageCdo villageCdo = new VillageCdo(districtSequence, name);
+        Map<String, VillageName> map = new HashMap<>();
+        names.forEach(name -> map.put(name.getLangCode(), name));
+        if (map.containsKey(langCode)) {
+            villageCdo.setName(map.get(langCode).getLocalName());
+        }
+        return villageCdo;
+    }
     public Integer getSequence() {
         return sequence;
     }

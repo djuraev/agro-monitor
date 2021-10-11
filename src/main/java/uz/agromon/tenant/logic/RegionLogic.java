@@ -9,8 +9,6 @@ import uz.agromon.tenant.domain.cdo.RegionCdo;
 import uz.agromon.tenant.service.RegionService;
 import uz.agromon.tenant.store.RegionStore;
 import uz.agromon.tenant.store.TenantStore;
-import uz.agromon.tenant.store.jpo.TenantJpo;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,11 +59,11 @@ public class RegionLogic implements RegionService {
 
     @Override
     public Region addName(Integer regionSequence, RegionName name) {
-        Region region = regionStore.retrieve(regionSequence);
-        //@FIXME
-        if (region == null) {
-            return null;
-        }
-        return null;
+        return regionStore.addName(regionSequence, name);
+    }
+
+    @Override
+    public Region retrieveRegion(Integer regionId) {
+        return regionStore.retrieve(regionId);
     }
 }
