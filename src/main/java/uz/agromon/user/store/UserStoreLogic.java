@@ -39,4 +39,15 @@ public class UserStoreLogic implements UserStore{
         jpo = repository.save(jpo);
         return jpo.toDomain();
     }
+
+    @Override
+    public User retrieve(String insuranceNumber) {
+        UserJpo jpo = repository.findByInsuranceNumber(insuranceNumber);
+        return jpo.toDomain();
+    }
+
+    @Override
+    public boolean existsByInsurance(String insuranceNumber) {
+        return repository.existsByInsuranceNumber(insuranceNumber);
+    }
 }

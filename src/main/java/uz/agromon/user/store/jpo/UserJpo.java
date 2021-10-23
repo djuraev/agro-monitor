@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 import uz.agromon.tenant.store.jpo.AgroMonEntity;
 import uz.agromon.tenant.store.jpo.DistrictJpo;
+import uz.agromon.user.domain.ERole;
 import uz.agromon.user.domain.User;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class UserJpo extends AgroMonEntity {
     String surname;
     String email;
     String password;
+    @Column(unique = true)
     String insuranceNumber;
     Integer regionSequence;
     Integer districtSequence;
@@ -32,10 +34,17 @@ public class UserJpo extends AgroMonEntity {
             joinColumns = @JoinColumn(name = "user_sequence"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleJpo> roles = new HashSet<>();
+
     public UserJpo(){
+        //
     }
+
     public UserJpo(User user) {
         BeanUtils.copyProperties(user, this);
+        RoleJpo roleJpo = new RoleJpo();
+        roleJpo.setName(user.getRole());
+        this.setInsuranceNumber(user.getInsuranceNumber());
+        this.roles.add(roleJpo);
     }
 
     public User toDomain(){
@@ -100,5 +109,21 @@ public class UserJpo extends AgroMonEntity {
 
     public void setVillageSequence(Integer villageSequence) {
         this.villageSequence = villageSequence;
+    }
+
+    public String getInsuranceNumber() {
+        return insuranceNumber;
+    }
+
+    public void setInsuranceNumber(String insuranceNumber) {
+        this.insuranceNumber = insuranceNumber;
+    }
+
+    public Set<RoleJpo> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleJpo> roles) {
+        this.roles = roles;
     }
 }

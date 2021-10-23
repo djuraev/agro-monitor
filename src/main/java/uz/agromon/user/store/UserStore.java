@@ -9,4 +9,6 @@ public interface UserStore {
     User retrieve(Integer sequence);
     List<User> retrieve();
     User update(User user);
+    User retrieve(String insuranceNumber);
+    boolean existsByInsurance(String insuranceNumber);
 }

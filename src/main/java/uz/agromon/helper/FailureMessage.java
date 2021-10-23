@@ -1,17 +1,35 @@
 package uz.agromon.helper;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class FailureMessage {
     private String exceptionName;
     private String exceptionMessage;
-    private String exceptionCode;
+
+    public static FailureMessage build(String name, String exceptionMessage) {
+        return new FailureMessage(name, exceptionMessage);
+    }
+
+    public FailureMessage(String exceptionName, String exceptionMessage) {
+        this.exceptionName = exceptionName;
+        this.exceptionMessage = exceptionMessage;
+    }
+
+    public FailureMessage() {
+    }
+
+    public String getExceptionName() {
+        return exceptionName;
+    }
+
+    public void setExceptionName(String exceptionName) {
+        this.exceptionName = exceptionName;
+    }
+
+    public String getExceptionMessage() {
+        return exceptionMessage;
+    }
+
+    public void setExceptionMessage(String exceptionMessage) {
+        this.exceptionMessage = exceptionMessage;
+    }
 }

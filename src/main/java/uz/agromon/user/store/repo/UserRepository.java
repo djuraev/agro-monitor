@@ -5,4 +5,6 @@ import uz.agromon.user.store.jpo.UserJpo;
 
 public interface UserRepository extends JpaRepository<UserJpo, Integer> {
     UserJpo findByEmail(String email);
+    UserJpo findByInsuranceNumber(String insuranceNumber);
+    boolean existsByInsuranceNumber(String insuranceNumber);
 }

@@ -2,6 +2,7 @@ package uz.agromon.tenant.store;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import uz.agromon.config.exception.klass.ResourceNotFoundException;
 import uz.agromon.tenant.domain.Tenant;
 import uz.agromon.tenant.domain.TenantName;
 import uz.agromon.tenant.store.jpo.TenantJpo;
@@ -38,7 +39,7 @@ public class TenantStoreLogic implements TenantStore{
     public Tenant retrieve(String code) {
         TenantJpo jpo = tenantRepository.getByCode(code);
         if (jpo == null) {
-            return null;
+            throw new ResourceNotFoundException(Tenant.class, "Tenant not found");
         }
         return jpo.toDomain();
     }

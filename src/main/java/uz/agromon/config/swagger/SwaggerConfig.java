@@ -1,4 +1,4 @@
-package uz.agromon.config;
+package uz.agromon.config.swagger;
 
 import com.google.common.base.Predicate;
 import org.springframework.context.annotation.Bean;

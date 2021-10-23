@@ -2,17 +2,26 @@ package uz.agromon.user.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.agromon.config.exception.klass.AlreadyExistsException;
+import uz.agromon.config.exception.klass.InvalidParameterException;
+import uz.agromon.config.exception.klass.ResourceNotFoundException;
 import uz.agromon.user.domain.User;
 import uz.agromon.user.service.UserService;
 import uz.agromon.user.store.UserStore;
 
+import java.util.List;
+
 @Service
 public class UserLogic implements UserService {
+
     @Autowired
     UserStore userStore;
 
     @Override
-    public User create(User user) {
+    public User create(User user) throws AlreadyExistsException{
+        if (userStore.existsByInsurance(user.getInsuranceNumber())) {
+            throw new AlreadyExistsException("Insurance number already registered");
+        }
         return userStore.create(user);
     }
 
@@ -23,6 +32,24 @@ public class UserLogic implements UserService {
 
     @Override
     public User update(User user) {
-        return userStore.update(user);
+        User userJpo = userStore.retrieve(user.getInsuranceNumber());
+        return userStore.update(userJpo);
+    }
+
+    @Override
+    public User login(String insuranceNumber, String password) {
+        User user = userStore.retrieve(insuranceNumber);
+        if (user == null) {
+            throw new ResourceNotFoundException(User.class, "User with insurance number not found.");
+        }
+        if (!user.getPassword().equals(password)) {
+            throw new InvalidParameterException("Invalid password");
+        }
+        return user;
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userStore.retrieve();
     }
 }

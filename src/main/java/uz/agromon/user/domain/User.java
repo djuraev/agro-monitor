@@ -1,9 +1,7 @@
 package uz.agromon.user.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
 @AllArgsConstructor
@@ -19,6 +17,7 @@ public class User {
     private Integer regionSequence;
     private Integer districtSequence;
     private Integer villageSequence;
+    private ERole role;
 
     public Integer getSequence() {
         return sequence;
@@ -98,5 +97,13 @@ public class User {
 
     public void setVillageSequence(Integer villageSequence) {
         this.villageSequence = villageSequence;
+    }
+
+    public ERole getRole() {
+        return role;
+    }
+
+    public void setRole(ERole role) {
+        this.role = role;
     }
 }

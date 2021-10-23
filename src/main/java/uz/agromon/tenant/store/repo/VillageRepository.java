@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface VillageRepository extends JpaRepository<VillageJpo, Integer> {
     List<VillageJpo> getAllByDistrictSequence(Integer sequence);
-
+    boolean existsByName(String name);
 }

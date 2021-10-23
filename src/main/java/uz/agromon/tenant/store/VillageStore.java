@@ -11,4 +11,5 @@ public interface VillageStore {
     List<Village> retrieve();
     List<Village> retrieveByDistrict(Integer districtSequence);
     Village addName(Integer villageSequence, VillageName name);
+    boolean existsByName(String name);
 }

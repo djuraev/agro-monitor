@@ -59,4 +59,9 @@ public class VillageStoreLogic implements VillageStore {
         }
         return villageJpo.toDomain();
     }
+
+    @Override
+    public boolean existsByName(String name) {
+        return repository.existsByName(name);
+    }
 }

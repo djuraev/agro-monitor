@@ -2,6 +2,7 @@ package uz.agromon.tenant.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.agromon.config.exception.klass.ResourceNotFoundException;
 import uz.agromon.tenant.domain.Region;
 import uz.agromon.tenant.domain.RegionName;
 import uz.agromon.tenant.domain.Tenant;
@@ -39,9 +40,8 @@ public class RegionLogic implements RegionService {
     @Override
     public List<RegionCdo> getRegionsOfTenant(String tenantCode, String langCode) {
         Tenant tenant = tenantStore.retrieve(tenantCode);
-        //@FIXME - Null Pointer Exception
         if (tenant == null) {
-            return null;
+            throw new ResourceNotFoundException(Tenant.class, "Tenant not found");
         }
         List<Region> regions = regionStore.retrieveByTenantId(tenant.getId());
         List<RegionCdo> cdos = new ArrayList<>();
