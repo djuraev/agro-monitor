@@ -7,6 +7,7 @@ import java.util.Map;
 public class ResourceNotFoundException extends RuntimeException {
     Class klass;
     String searchParam;
+
     public ResourceNotFoundException(Class klass, String searchParam) {
         super();
         this.klass = klass;

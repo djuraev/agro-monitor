@@ -19,9 +19,9 @@ public class RoleJpo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer sequence;
 
-    @Enumerated(EnumType.STRING)
     @Column(length = 20)
-    private ERole name;
+    private String name;
+
 
     public Integer getSequence() {
         return sequence;
@@ -31,11 +31,11 @@ public class RoleJpo {
         this.sequence = sequence;
     }
 
-    public ERole getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(ERole name) {
+    public void setName(String name) {
         this.name = name;
     }
 }

@@ -40,16 +40,24 @@ public class UserJpo extends AgroMonEntity {
     }
 
     public UserJpo(User user) {
+        //
         BeanUtils.copyProperties(user, this);
-        RoleJpo roleJpo = new RoleJpo();
-        roleJpo.setName(user.getRole());
-        this.setInsuranceNumber(user.getInsuranceNumber());
-        this.roles.add(roleJpo);
+    }
+
+    public UserJpo(User user, Set<RoleJpo> roles) {
+        //
+        BeanUtils.copyProperties(user, this);
+        this.setRoles(roles);
     }
 
     public User toDomain(){
         User user = new User();
         BeanUtils.copyProperties(this, user);
+        Set<String> setOfRoles = new HashSet<>();
+        for(RoleJpo roleJpo: this.roles) {
+            setOfRoles.add(roleJpo.getName());
+        }
+        user.setRoles(setOfRoles);
         return user;
     }
     public static List<User> toDomains(List<UserJpo> jpos){

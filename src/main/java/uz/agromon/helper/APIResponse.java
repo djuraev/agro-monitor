@@ -17,7 +17,7 @@ public class APIResponse implements JsonSerializable {
     private boolean requestFailed;
     private FailureMessage failureMessage;
 
-    APIResponse() {
+    public APIResponse() {
         entities = new ArrayList<>();
     }
 

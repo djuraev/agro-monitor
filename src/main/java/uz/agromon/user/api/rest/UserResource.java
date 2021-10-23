@@ -1,4 +1,4 @@
-package uz.agromon.user.resource;
+package uz.agromon.user.api.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,5 +28,11 @@ public class UserResource {
     ResponseEntity<APIResponse> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return ResponseBuilder.buildOk(users);
+    }
+
+    @PutMapping(value = "/user")
+    ResponseEntity<APIResponse> updateUser(@RequestBody User user) {
+        User result = userService.update(user);
+        return ResponseBuilder.buildOk(result);
     }
 }

@@ -22,6 +22,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.3m'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

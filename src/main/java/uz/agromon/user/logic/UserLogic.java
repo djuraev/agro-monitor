@@ -8,6 +8,8 @@ import uz.agromon.config.exception.klass.ResourceNotFoundException;
 import uz.agromon.user.domain.User;
 import uz.agromon.user.service.UserService;
 import uz.agromon.user.store.UserStore;
+import uz.agromon.user.store.repo.RoleRepository;
+import uz.agromon.util.PasswordUtil;
 
 import java.util.List;
 
@@ -16,6 +18,9 @@ public class UserLogic implements UserService {
 
     @Autowired
     UserStore userStore;
+
+    @Autowired
+    RoleRepository repository;
 
     @Override
     public User create(User user) throws AlreadyExistsException{
@@ -32,8 +37,7 @@ public class UserLogic implements UserService {
 
     @Override
     public User update(User user) {
-        User userJpo = userStore.retrieve(user.getInsuranceNumber());
-        return userStore.update(userJpo);
+        return userStore.update(user);
     }
 
     @Override
@@ -42,7 +46,7 @@ public class UserLogic implements UserService {
         if (user == null) {
             throw new ResourceNotFoundException(User.class, "User with insurance number not found.");
         }
-        if (!user.getPassword().equals(password)) {
+        if (!PasswordUtil.isValidPassword(password, user.getPassword())) {
             throw new InvalidParameterException("Invalid password");
         }
         return user;
