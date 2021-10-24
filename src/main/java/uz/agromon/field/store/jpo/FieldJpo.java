@@ -23,23 +23,28 @@ public class FieldJpo extends AgroMonEntity {
     private String polygon;
     private String apiKey;
     private String center;
-    private String cropType;
+    private Integer cropId;
     private String area;
     private String comment;
 
     public FieldJpo() {
+        //
     }
+
     public FieldJpo(Field field) {
         BeanUtils.copyProperties(field, this);
     }
+
     public Field toDomain(){
         Field field = new Field();
         BeanUtils.copyProperties(this, field);
         return field;
     }
+
     public static List<Field> toDomains(List<FieldJpo> jpos){
         return jpos.stream().map(FieldJpo::toDomain).collect(Collectors.toList());
     }
+
     public Integer getUserSequence() {
         return userSequence;
     }
@@ -96,12 +101,12 @@ public class FieldJpo extends AgroMonEntity {
         this.center = center;
     }
 
-    public String getCropType() {
-        return cropType;
+    public Integer getCropId() {
+        return cropId;
     }
 
-    public void setCropType(String cropType) {
-        this.cropType = cropType;
+    public void setCropId(Integer cropId) {
+        this.cropId = cropId;
     }
 
     public String getArea() {

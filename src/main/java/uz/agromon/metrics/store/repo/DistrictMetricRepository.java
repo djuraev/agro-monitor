@@ -1,7 +1,10 @@
 package uz.agromon.metrics.store.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import uz.agromon.tenant.store.jpo.DistrictJpo;
+import uz.agromon.metrics.store.jpo.DistrictMetricJpo;
 
-public interface DistrictMetricRepository extends JpaRepository<DistrictJpo, Integer> {
+import java.util.List;
+
+public interface DistrictMetricRepository extends JpaRepository<DistrictMetricJpo, Integer> {
+    List<DistrictMetricJpo> getAllBy();
 }

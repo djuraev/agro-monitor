@@ -10,9 +10,10 @@ public class Field {
     private String polygon;
     private String apiKey;
     private String center;
-    private String cropType;
+    private Integer cropId;
     private String area;
     private String comment;
+
 
     public Field() {
     }
@@ -89,12 +90,12 @@ public class Field {
         this.center = center;
     }
 
-    public String getCropType() {
-        return cropType;
+    public Integer getCropId() {
+        return cropId;
     }
 
-    public void setCropType(String cropType) {
-        this.cropType = cropType;
+    public void setCropId(Integer cropId) {
+        this.cropId = cropId;
     }
 
     public String getArea() {

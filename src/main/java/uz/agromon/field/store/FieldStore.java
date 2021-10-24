@@ -8,4 +8,5 @@ public interface FieldStore {
     Field create(Field field);
     Field retrieve(Integer sequence);
     List<Field> retrieve();
+    Field update(Field field);
 }

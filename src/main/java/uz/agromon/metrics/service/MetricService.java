@@ -1,11 +1,11 @@
-package uz.agromon.metrics.store;
+package uz.agromon.metrics.service;
 
 import uz.agromon.metrics.domain.Metric;
 
 import java.util.List;
 
-public interface MetricStore {
+public interface MetricService {
     Metric save(Metric metric);
-    Metric getById(Integer id);
+    Metric getMetricById(Integer id);
     List<Metric> getAllMetrics();
 }
