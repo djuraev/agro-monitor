@@ -10,6 +10,6 @@ public class TestAPIResource {
 
     @GetMapping
     String getLatestVersionDate(){
-        return "MONDAY 11 OCT 2021";
+        return "WEDNESDAY 27 OCT 2021";
     }
 }

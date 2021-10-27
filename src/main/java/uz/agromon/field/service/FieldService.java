@@ -10,4 +10,5 @@ public interface FieldService {
     Field getField(Integer sequence);
     List<Field> getFieldOfVillage(Integer villageSequence);
     List<Field> getFieldOfDistrict(Integer districtSequence);
+    void deleteField(Integer fieldId);
 }

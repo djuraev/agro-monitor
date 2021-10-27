@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import uz.agromon.field.domain.Field;
 import uz.agromon.field.service.FieldService;
 import uz.agromon.field.store.FieldStore;
+import uz.agromon.field.store.jpo.FieldJpo;
 import uz.agromon.remote.AgroMonitoringCaller;
 
 import java.util.List;
@@ -41,5 +42,12 @@ public class FieldLogic implements FieldService {
     @Override
     public List<Field> getFieldOfDistrict(Integer districtSequence) {
         return null;
+    }
+
+    @Override
+    public void deleteField(Integer fieldId) {
+        Field field = fieldStore.retrieve(fieldId);
+        agroMonitoringCaller.deleteField(field.getApiKey());
+        fieldStore.delete(fieldId);
     }
 }

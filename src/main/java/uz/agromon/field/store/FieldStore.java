@@ -9,4 +9,5 @@ public interface FieldStore {
     Field retrieve(Integer sequence);
     List<Field> retrieve();
     Field update(Field field);
+    void delete(Integer field);
 }

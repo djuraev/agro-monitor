@@ -42,4 +42,10 @@ public class FieldStoreLogic implements FieldStore {
         BeanUtils.copyProperties(field, jpo);
         return repository.save(jpo).toDomain();
     }
+
+    @Override
+    public void delete(Integer fieldId) {
+        FieldJpo jpo = repository.getById(fieldId);
+        repository.delete(jpo);
+    }
 }

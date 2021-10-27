@@ -37,4 +37,16 @@ public class AgroMonitoringCaller {
         BeanUtils.copyProperties(field, entity);
         return entity;
     }
+
+    public void deleteField(String fieldApiKey) {
+        String url = apiURL
+                .concat("/")
+                .concat(fieldApiKey).concat("?appid=").concat(this.apiKey);
+        try {
+           restTemplate.delete(url);
+        }
+        catch (Exception e) {
+            throw e;
+        }
+    }
 }
