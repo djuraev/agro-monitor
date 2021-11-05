@@ -8,7 +8,8 @@ import uz.agromon.claim.service.ClaimService;
 import uz.agromon.helper.APIResponse;
 import uz.agromon.helper.ResponseBuilder;
 
-@RestController("/claim")
+@RestController
+@RequestMapping("/api/claim")
 public class ClaimResource {
     @Autowired
     ClaimService claimService;
