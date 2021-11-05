@@ -21,6 +21,10 @@ public class CropJpo {
         BeanUtils.copyProperties(crop, this);
     }
 
+    public CropJpo() {
+        //
+    }
+
     public Crop toDomain() {
         Crop domain = new Crop();
         BeanUtils.copyProperties(this, domain);

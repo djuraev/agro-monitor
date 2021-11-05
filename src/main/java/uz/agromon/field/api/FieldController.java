@@ -9,6 +9,7 @@ import uz.agromon.helper.APIResponse;
 import uz.agromon.helper.ResponseBuilder;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -36,5 +37,11 @@ public class FieldController {
         Map<String, String> responseMessage = new HashMap<>();
         responseMessage.put("resultMessage", "Field deleted.");
         return ResponseBuilder.buildOk(responseMessage);
+    }
+
+    @GetMapping("/field/{userSequence}")
+    ResponseEntity<APIResponse> getUserFields(@PathVariable String userSequence) {
+        List<Field> userFields = fieldService.getFieldsOfUser(userSequence);
+        return ResponseBuilder.buildOk(userFields);
     }
 }

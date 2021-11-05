@@ -48,4 +48,10 @@ public class FieldStoreLogic implements FieldStore {
         FieldJpo jpo = repository.getById(fieldId);
         repository.delete(jpo);
     }
+
+    @Override
+    public List<Field> getUserFields(Integer userSequence) {
+        List<FieldJpo> jpos = repository.getAllByUserSequence(userSequence);
+        return FieldJpo.toDomains(jpos);
+    }
 }

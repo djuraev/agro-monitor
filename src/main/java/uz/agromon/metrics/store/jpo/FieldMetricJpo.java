@@ -1,6 +1,7 @@
 package uz.agromon.metrics.store.jpo;
 
 import org.springframework.beans.BeanUtils;
+import uz.agromon.metrics.domain.FieldMetric;
 import uz.agromon.metrics.domain.VillageMetric;
 
 import javax.persistence.*;
@@ -8,44 +9,34 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "VILLAGE_METRIC")
-public class VillageMetricJpo {
+@Table(name = "FIELD_METRIC")
+public class FieldMetricJpo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer sequence;
-    private Integer villageId;
+    private Integer fieldId;
     private Integer metricId;
     private Integer cropId;
     private String year;
     private String value;
 
-    public VillageMetricJpo(Integer sequence, Integer villageId, Integer metricId, Integer cropId, String year, String value) {
+    public FieldMetricJpo(FieldMetric fieldMetric) {
         //
-        this.sequence = sequence;
-        this.villageId = villageId;
-        this.metricId = metricId;
-        this.cropId = cropId;
-        this.year = year;
-        this.value = value;
+        BeanUtils.copyProperties(fieldMetric, this);
     }
 
-    public VillageMetricJpo() {
+    public FieldMetricJpo() {
         //
     }
 
-    public VillageMetricJpo(VillageMetric villageMetric) {
-        //
-        BeanUtils.copyProperties(villageMetric, this);
+    public FieldMetric toDomain() {
+        FieldMetric fieldMetric = new FieldMetric();
+        BeanUtils.copyProperties(this, fieldMetric);
+        return fieldMetric;
     }
 
-    public VillageMetric toDomain() {
-        VillageMetric villageMetric = new VillageMetric();
-        BeanUtils.copyProperties(this, villageMetric);
-        return villageMetric;
-    }
-
-    public static List<VillageMetric> toDomains(List<VillageMetricJpo> jpos) {
-        return jpos.stream().map(VillageMetricJpo::toDomain).collect(Collectors.toList());
+    public static List<FieldMetric> toDomains(List<FieldMetricJpo> jpos) {
+        return jpos.stream().map(FieldMetricJpo::toDomain).collect(Collectors.toList());
     }
 
     public Integer getSequence() {
@@ -56,12 +47,12 @@ public class VillageMetricJpo {
         this.sequence = sequence;
     }
 
-    public Integer getVillageId() {
-        return villageId;
+    public Integer getFieldId() {
+        return fieldId;
     }
 
-    public void setVillageId(Integer farmId) {
-        this.villageId = farmId;
+    public void setFieldId(Integer fieldId) {
+        this.fieldId = fieldId;
     }
 
     public Integer getMetricId() {

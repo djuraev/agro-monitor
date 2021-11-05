@@ -13,7 +13,7 @@ import uz.agromon.user.api.dto.UserLoginForm;
 import uz.agromon.user.service.UserService;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 
     @Autowired

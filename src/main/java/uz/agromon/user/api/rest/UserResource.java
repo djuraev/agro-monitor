@@ -12,7 +12,7 @@ import uz.agromon.user.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/user")
 public class UserResource {
     @Autowired
     UserService userService;

@@ -28,4 +28,9 @@ public class VillageMetricStoreLogic implements VillageMetricStore {
     public List<VillageMetric> getAll() {
         return VillageMetricJpo.toDomains(repository.getAllBy());
     }
+
+    @Override
+    public List<VillageMetric> getVillageMetrics(Integer villageId) {
+        return VillageMetricJpo.toDomains(repository.getAllByVillageId(villageId));
+    }
 }

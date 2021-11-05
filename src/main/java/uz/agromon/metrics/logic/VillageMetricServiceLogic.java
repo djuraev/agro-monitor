@@ -27,4 +27,10 @@ public class VillageMetricServiceLogic implements VillageMetricService {
     public List<VillageMetric> getAllMetrics() {
         return villageMetricStore.getAll();
     }
+
+    @Override
+    public List<VillageMetric> getVillageMetrics(String villageSequence) {
+        Integer sequence = Integer.parseInt(villageSequence);
+        return villageMetricStore.getVillageMetrics(sequence);
+    }
 }

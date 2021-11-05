@@ -45,6 +45,12 @@ public class FieldLogic implements FieldService {
     }
 
     @Override
+    public List<Field> getFieldsOfUser(String userSequence) {
+        Integer sequence = Integer.parseInt(userSequence);
+        return fieldStore.getUserFields(sequence);
+    }
+
+    @Override
     public void deleteField(Integer fieldId) {
         Field field = fieldStore.retrieve(fieldId);
         agroMonitoringCaller.deleteField(field.getApiKey());

@@ -8,4 +8,5 @@ public interface VillageMetricStore {
     VillageMetric save(VillageMetric metric);
     VillageMetric getById(Integer id);
     List<VillageMetric> getAll();
+    List<VillageMetric> getVillageMetrics(Integer villageSequence);
 }

@@ -10,4 +10,5 @@ public interface FieldStore {
     List<Field> retrieve();
     Field update(Field field);
     void delete(Integer field);
+    List<Field> getUserFields(Integer userSequence);
 }

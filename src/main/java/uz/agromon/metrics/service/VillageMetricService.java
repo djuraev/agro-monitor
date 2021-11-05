@@ -8,4 +8,5 @@ public interface VillageMetricService {
     VillageMetric save(VillageMetric village);
     VillageMetric getMetricById(Integer id);
     List<VillageMetric> getAllMetrics();
+    List<VillageMetric> getVillageMetrics(String villageSequence);
 }

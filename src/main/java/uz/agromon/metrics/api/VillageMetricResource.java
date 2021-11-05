@@ -28,4 +28,10 @@ public class VillageMetricResource {
         List<VillageMetric> metrics = metricService.getAllMetrics();
         return ResponseBuilder.buildOk(metrics);
     }
+
+    @GetMapping("/village/{villageSequence}")
+    ResponseEntity<APIResponse> getVillageMetrics(@PathVariable String villageSequence) {
+        List<VillageMetric> villageMetrics = metricService.getVillageMetrics(villageSequence);
+        return ResponseBuilder.buildOk(villageMetrics);
+    }
 }
