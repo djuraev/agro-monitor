@@ -12,6 +12,7 @@ import uz.agromon.config.exception.klass.*;
 import uz.agromon.helper.APIResponse;
 import uz.agromon.helper.FailureMessage;
 import uz.agromon.helper.ResponseBuilder;
+import uz.agromon.mobile.dto.response.LoginResponse;
 
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -84,5 +85,13 @@ public class AgroMonExceptionHandler extends ResponseEntityExceptionHandler {
         failureMessage.setExceptionMessage(e.getMessage());
 
         return ResponseBuilder.buildError(failureMessage, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(InvalidUserParameterException.class)
+    protected ResponseEntity<LoginResponse> handleInvalidUserParam(InvalidUserParameterException exception) {
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setResult(false);
+        loginResponse.setMessage(exception.getMessage());
+        return ResponseEntity.ok(loginResponse);
     }
 }
