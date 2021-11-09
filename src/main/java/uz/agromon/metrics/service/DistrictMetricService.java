@@ -8,4 +8,5 @@ public interface DistrictMetricService {
     DistrictMetric save(DistrictMetric metric);
     DistrictMetric getMetricById(Integer id);
     List<DistrictMetric> getAllMetrics();
+    List<DistrictMetric> getDistrictMetrics(String districtId);
 }

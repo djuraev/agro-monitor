@@ -12,4 +12,5 @@ public interface VillageService {
     List<Village> getVillagesOfDistrict(String districtSequence);
     List<VillageCdo> getVillagesOfDistrict(String districtSequence, String langCode);
     Village addName(String districtSequence, VillageName villageName);
+    Village getVillage(Integer id);
 }

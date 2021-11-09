@@ -27,4 +27,10 @@ public class DistrictMetricLogic implements DistrictMetricService {
     public List<DistrictMetric> getAllMetrics() {
         return districtMetricStore.retrieveAll();
     }
+
+    @Override
+    public List<DistrictMetric> getDistrictMetrics(String districtId) {
+        Integer did = Integer.parseInt(districtId);
+        return districtMetricStore.retrieveByDistrictId(did);
+    }
 }

@@ -15,17 +15,17 @@ public class ClaimJpo {
     private Integer sequence;
     private Integer tenantId;
     private Integer userSequence;
-    private Integer farmSequence;
+    private Integer fieldSequence;
     private String reason;
     private String otherInfo;
     private String status;
 
-    public ClaimJpo(Integer sequence, Integer tenantId, Integer userSequence, Integer farmSequence, String reason, String otherInfo, String status) {
+    public ClaimJpo(Integer sequence, Integer tenantId, Integer userSequence, Integer fieldSequence, String reason, String otherInfo, String status) {
         //
         this.sequence = sequence;
         this.tenantId = tenantId;
         this.userSequence = userSequence;
-        this.farmSequence = farmSequence;
+        this.fieldSequence = fieldSequence;
         this.reason = reason;
         this.otherInfo = otherInfo;
         this.status = status;
@@ -74,12 +74,12 @@ public class ClaimJpo {
         this.userSequence = userSequence;
     }
 
-    public Integer getFarmSequence() {
-        return farmSequence;
+    public Integer getFieldSequence() {
+        return fieldSequence;
     }
 
-    public void setFarmSequence(Integer farmSequence) {
-        this.farmSequence = farmSequence;
+    public void setFieldSequence(Integer fieldSequence) {
+        this.fieldSequence = fieldSequence;
     }
 
     public String getReason() {

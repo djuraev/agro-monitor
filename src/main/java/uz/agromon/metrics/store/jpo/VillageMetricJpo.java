@@ -60,8 +60,8 @@ public class VillageMetricJpo {
         return villageId;
     }
 
-    public void setVillageId(Integer farmId) {
-        this.villageId = farmId;
+    public void setVillageId(Integer villageId) {
+        this.villageId = villageId;
     }
 
     public Integer getMetricId() {

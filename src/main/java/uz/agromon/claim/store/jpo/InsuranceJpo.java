@@ -15,17 +15,17 @@ public class InsuranceJpo {
     private Integer sequence;
     private Integer userSequence;
     private Integer tenantId;
-    private Integer farmSequence;
+    private Integer fieldSequence;
     private Integer agencySequence;
     private Integer insuranceNumber;
     private String insurancePeriod;
 
-    public InsuranceJpo(Integer sequence, Integer userSequence, Integer tenantId, Integer farmSequence, Integer agencySequence, Integer insuranceNumber, String insurancePeriod) {
+    public InsuranceJpo(Integer sequence, Integer userSequence, Integer tenantId, Integer fieldSequence, Integer agencySequence, Integer insuranceNumber, String insurancePeriod) {
         //
         this.sequence = sequence;
         this.userSequence = userSequence;
         this.tenantId = tenantId;
-        this.farmSequence = farmSequence;
+        this.fieldSequence = fieldSequence;
         this.agencySequence = agencySequence;
         this.insuranceNumber = insuranceNumber;
         this.insurancePeriod = insurancePeriod;
@@ -74,12 +74,12 @@ public class InsuranceJpo {
         this.tenantId = tenantId;
     }
 
-    public Integer getFarmSequence() {
-        return farmSequence;
+    public Integer getFieldSequence() {
+        return fieldSequence;
     }
 
-    public void setFarmSequence(Integer farmSequence) {
-        this.farmSequence = farmSequence;
+    public void setFieldSequence(Integer fieldSequence) {
+        this.fieldSequence = fieldSequence;
     }
 
     public Integer getAgencySequence() {

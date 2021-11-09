@@ -44,4 +44,9 @@ public class VillageLogic implements VillageService {
         Integer dId = Integer.valueOf(districtSequence);
         return villageStore.addName(dId, villageName);
     }
+
+    @Override
+    public Village getVillage(Integer id) {
+        return villageStore.retrieve(id);
+    }
 }

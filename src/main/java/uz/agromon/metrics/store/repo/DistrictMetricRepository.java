@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface DistrictMetricRepository extends JpaRepository<DistrictMetricJpo, Integer> {
     List<DistrictMetricJpo> getAllBy();
+    List<DistrictMetricJpo> getAllByDistrictId(Integer districtId);
 }

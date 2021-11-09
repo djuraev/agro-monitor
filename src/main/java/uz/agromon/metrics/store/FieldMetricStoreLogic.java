@@ -18,7 +18,7 @@ public class FieldMetricStoreLogic implements FieldMetricStore{
     @Override
     public List<FieldMetric> getMetricsByFieldId(Integer id) {
         List<FieldMetricJpo> jpos = repository.getAllByFieldId(id);
-        if (jpos == null || jpos.isEmpty()) {
+        if (jpos == null) {
             throw new ResourceNotFoundException(FieldMetric.class, "Cannot find field metrics");
         }
         return FieldMetricJpo.toDomains(jpos);

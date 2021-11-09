@@ -8,4 +8,5 @@ public interface DistrictMetricStore {
     DistrictMetric save(DistrictMetric metric);
     DistrictMetric getById(Integer id);
     List<DistrictMetric> retrieveAll();
+    List<DistrictMetric> retrieveByDistrictId(Integer districtId);
 }

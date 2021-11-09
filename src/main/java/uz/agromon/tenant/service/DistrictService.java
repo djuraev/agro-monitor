@@ -13,4 +13,5 @@ public interface DistrictService {
     List<District> getDistrictsOfRegion(String regionSequence);
     List<DistrictCdo> getDistrictOfRegion(String regionSequence, String langCode);
     District addName(String regionSequence, DistrictName name);
+    District getDistrict(Integer id);
 }

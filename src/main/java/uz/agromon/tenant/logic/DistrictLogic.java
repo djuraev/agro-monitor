@@ -61,4 +61,9 @@ public class DistrictLogic implements DistrictService {
         Integer rId = Integer.valueOf(regionSequence);
         return districtStore.addName(rId, name);
     }
+
+    @Override
+    public District getDistrict(Integer id) {
+        return districtStore.retrieve(id);
+    }
 }

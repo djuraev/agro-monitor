@@ -8,6 +8,9 @@ import uz.agromon.field.domain.Field;
 import uz.agromon.field.service.FieldService;
 import uz.agromon.metrics.domain.Crop;
 import uz.agromon.metrics.service.CropService;
+import uz.agromon.metrics.service.DistrictMetricService;
+import uz.agromon.metrics.service.FieldMetricService;
+import uz.agromon.mobile.dto.request.GraphViewRequest;
 import uz.agromon.mobile.dto.request.LoginRequest;
 import uz.agromon.mobile.dto.response.*;
 import uz.agromon.mobile.service.MUserService;
@@ -29,7 +32,6 @@ public class ResourceForMobile {
     ApiInfoService apiInfoService;
     @Autowired
     FieldService fieldService;
-
     @Autowired
     CropService cropService;
 
@@ -66,5 +68,10 @@ public class ResourceForMobile {
         List<Crop> crops = cropService.getAllCrops();
         CropsResponse response = new CropsResponse(crops);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping(value = "/metrics")
+    ResponseEntity<?> getGraphViewInfo(@RequestBody GraphViewRequest request) {
+
     }
 }
