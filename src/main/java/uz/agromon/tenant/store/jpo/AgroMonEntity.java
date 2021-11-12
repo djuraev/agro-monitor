@@ -8,9 +8,8 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class AgroMonEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer sequence;
-
     Integer tenantId;
 
     protected void copy(final AgroMonEntity source)

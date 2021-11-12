@@ -6,15 +6,10 @@ import java.util.Map;
 
 public class ResourceNotFoundException extends RuntimeException {
     Class klass;
-    String searchParam;
 
-    public ResourceNotFoundException(Class klass, String searchParam) {
-        super();
+    public ResourceNotFoundException(Class klass, String message) {
+        super(message);
         this.klass = klass;
-        this.searchParam = searchParam;
     }
 
-    private static String generateMessage(String entity, Map<String, String> searchParams) {
-        return StringUtils.capitalize(entity) + " was not found for parameters " + searchParams;
-    }
 }

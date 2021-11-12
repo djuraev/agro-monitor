@@ -9,4 +9,5 @@ public interface UserRepository extends JpaRepository<UserJpo, Integer> {
     UserJpo findByEmail(String email);
     Optional<UserJpo> findByInsuranceNumber(String insuranceNumber);
     boolean existsByInsuranceNumber(String insuranceNumber);
+
 }

@@ -11,4 +11,5 @@ public interface UserService {
     User update(User user);
     User login(String username, String password);
     List<User> getAllUsers();
+    boolean userExists(String username);
 }

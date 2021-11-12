@@ -4,6 +4,6 @@ import uz.agromon.mobile.dto.response.MetricResponse;
 
 import java.util.List;
 
-public interface MetricService {
+public interface MMetricService {
     List<MetricResponse> getMetricsForField(String fieldId, String metricId);
 }

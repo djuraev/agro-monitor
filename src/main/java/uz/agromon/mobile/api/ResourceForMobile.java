@@ -4,16 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uz.agromon.claim.domain.Claim;
+import uz.agromon.claim.service.ClaimService;
+import uz.agromon.cropyield.domain.CropYield;
+import uz.agromon.cropyield.service.CropYieldService;
 import uz.agromon.field.domain.Field;
 import uz.agromon.field.service.FieldService;
 import uz.agromon.metrics.domain.Crop;
 import uz.agromon.metrics.service.CropService;
-import uz.agromon.metrics.service.DistrictMetricService;
-import uz.agromon.metrics.service.FieldMetricService;
+import uz.agromon.mobile.dto.request.CropYieldRequest;
 import uz.agromon.mobile.dto.request.GraphViewRequest;
 import uz.agromon.mobile.dto.request.LoginRequest;
+import uz.agromon.mobile.dto.request.Request;
 import uz.agromon.mobile.dto.response.*;
 import uz.agromon.mobile.service.MUserService;
+import uz.agromon.mobile.service.MobileService;
 import uz.agromon.tenant.domain.ApiInfo;
 import uz.agromon.tenant.service.ApiInfoService;
 import uz.agromon.user.domain.User;
@@ -34,6 +39,12 @@ public class ResourceForMobile {
     FieldService fieldService;
     @Autowired
     CropService cropService;
+    @Autowired
+    ClaimService claimService;
+    @Autowired
+    CropYieldService cropYieldService;
+    @Autowired
+    MobileService mobileService;
 
     @PostMapping(value = "/login")
     ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
@@ -57,9 +68,9 @@ public class ResourceForMobile {
         return ResponseEntity.ok(aboutResponse);
     }
 
-    @GetMapping(value = "/user/fields/{userId}")
-    ResponseEntity<FieldsResponse> getUserFields(@PathVariable String userId) {
-        List<Field> fields = fieldService.getFieldsOfUser(userId);
+    @GetMapping(value = "/user/fields/{username}")
+    ResponseEntity<FieldsResponse> getUserFields(@PathVariable String username) {
+        List<Field> fields = fieldService.getFieldsOfUser(username);
         return ResponseEntity.ok(new FieldsResponse(fields));
     }
 
@@ -72,6 +83,33 @@ public class ResourceForMobile {
 
     @GetMapping(value = "/metrics")
     ResponseEntity<?> getGraphViewInfo(@RequestBody GraphViewRequest request) {
+        return null;
+    }
 
+    @PostMapping(value = "/claim")
+    ResponseEntity<ClaimResponse> createUserClaim(@RequestBody Claim claim) {
+        Claim savedClaim = claimService.createClaim(claim);
+        ClaimResponse claimResponse = new ClaimResponse(savedClaim);
+        return ResponseEntity.ok(claimResponse);
+    }
+
+    @GetMapping(value = "/claims/{username}")
+    ResponseEntity<?> getUserClaims(@PathVariable String username) {
+        List<Claim> claims = claimService.getAllUserClaim(username);
+        ClaimsResponse response = new ClaimsResponse(claims);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping(value = "/cropYield")
+    ResponseEntity<?> saveCropYieldData(@RequestBody CropYieldRequest request) {
+        List<CropYield> savedCY = mobileService.saveCropYield(request);
+        CropYieldResponse response = new CropYieldResponse(savedCY, "");
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping(value = "/cropYields/{username}/{fieldId}")
+    ResponseEntity<?> getFieldCropYield(@PathVariable String username, @PathVariable String fieldId) {
+        CropYieldResponse response = mobileService.getUserFieldCropYield(username, fieldId);
+        return ResponseEntity.ok(response);
     }
 }

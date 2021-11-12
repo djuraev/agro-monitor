@@ -7,36 +7,28 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Entity
 @Table(name="CLAIM")
 public class ClaimJpo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer sequence;
-    private Integer tenantId;
-    private Integer userSequence;
-    private Integer fieldSequence;
-    private String reason;
-    private String otherInfo;
+    private String username;
+    private Integer fieldId;
+    private String fieldName;
+    private String cropType;
+    private String areaTon;
+    private String farmerName;
+    private String farmerPhone;
+    private String description;
     private String status;
-
-    public ClaimJpo(Integer sequence, Integer tenantId, Integer userSequence, Integer fieldSequence, String reason, String otherInfo, String status) {
-        //
-        this.sequence = sequence;
-        this.tenantId = tenantId;
-        this.userSequence = userSequence;
-        this.fieldSequence = fieldSequence;
-        this.reason = reason;
-        this.otherInfo = otherInfo;
-        this.status = status;
-    }
 
     public ClaimJpo() {
         //
     }
 
     public ClaimJpo(Claim claim) {
-        //
         BeanUtils.copyProperties(claim, this);
     }
 
@@ -46,7 +38,7 @@ public class ClaimJpo {
         return domain;
     }
 
-    public static List<Claim> toDomains(List<ClaimJpo> jpos) {
+    public static List<Claim> toDomain(List<ClaimJpo> jpos) {
         return jpos.stream().map(ClaimJpo::toDomain).collect(Collectors.toList());
     }
 
@@ -58,44 +50,68 @@ public class ClaimJpo {
         this.sequence = sequence;
     }
 
-    public Integer getTenantId() {
-        return tenantId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setTenantId(Integer tenantId) {
-        this.tenantId = tenantId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public Integer getUserSequence() {
-        return userSequence;
+    public Integer getFieldId() {
+        return fieldId;
     }
 
-    public void setUserSequence(Integer userSequence) {
-        this.userSequence = userSequence;
+    public void setFieldId(Integer fieldId) {
+        this.fieldId = fieldId;
     }
 
-    public Integer getFieldSequence() {
-        return fieldSequence;
+    public String getFieldName() {
+        return fieldName;
     }
 
-    public void setFieldSequence(Integer fieldSequence) {
-        this.fieldSequence = fieldSequence;
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
     }
 
-    public String getReason() {
-        return reason;
+    public String getCropType() {
+        return cropType;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
+    public void setCropType(String cropType) {
+        this.cropType = cropType;
     }
 
-    public String getOtherInfo() {
-        return otherInfo;
+    public String getAreaTon() {
+        return areaTon;
     }
 
-    public void setOtherInfo(String otherInfo) {
-        this.otherInfo = otherInfo;
+    public void setAreaTon(String areaTon) {
+        this.areaTon = areaTon;
+    }
+
+    public String getFarmerName() {
+        return farmerName;
+    }
+
+    public void setFarmerName(String farmerName) {
+        this.farmerName = farmerName;
+    }
+
+    public String getFarmerPhone() {
+        return farmerPhone;
+    }
+
+    public void setFarmerPhone(String farmerPhone) {
+        this.farmerPhone = farmerPhone;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {

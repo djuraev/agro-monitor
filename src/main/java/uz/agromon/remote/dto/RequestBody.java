@@ -22,10 +22,10 @@ public class RequestBody {
         this.geo_json.setType("Feature");
 
         List<Double[]> coordinates = new ArrayList<>();
-        String[] splits = field.getPolygon().trim().split("\\+");
+        String[] splits = field.getPolygon().trim().split(":");
 
         for (String split: splits) {
-            String[] xyC = split.split(",");
+            String[] xyC = split.split("\\+");
             Double[] xy = new Double[]{Double.parseDouble(xyC[0]), Double.parseDouble(xyC[1])};
             coordinates.add(xy);
         }

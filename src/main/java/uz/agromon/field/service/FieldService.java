@@ -10,6 +10,7 @@ public interface FieldService {
     Field getField(Integer sequence);
     List<Field> getFieldOfVillage(Integer villageSequence);
     List<Field> getFieldOfDistrict(Integer districtSequence);
-    List<Field> getFieldsOfUser(String userSequence);
+    List<Field> getFieldsOfUser(String username);
     void deleteField(Integer fieldId);
+    boolean isUserFieldOwner(String username, Integer fieldId);
 }

@@ -3,7 +3,7 @@ package uz.agromon.field.domain;
 public class Field {
     private Integer sequence;
     private Integer tenantId;
-    private Integer userSequence;
+    private String username;
     private Integer villageSequence;
     private String villageName;
     private String name;
@@ -34,12 +34,12 @@ public class Field {
         this.tenantId = tenantId;
     }
 
-    public Integer getUserSequence() {
-        return userSequence;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserSequence(Integer userSequence) {
-        this.userSequence = userSequence;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Integer getVillageSequence() {

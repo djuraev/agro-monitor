@@ -2,7 +2,9 @@ package uz.agromon.claim.service;
 
 import uz.agromon.claim.domain.Claim;
 
+import java.util.List;
+
 public interface ClaimService {
     Claim createClaim(Claim claim);
-    Claim getClaimByUser(String userSequence);
+    List<Claim> getAllUserClaim(String username);
 }

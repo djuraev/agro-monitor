@@ -1,9 +1,14 @@
-package uz.agromon.claim.domain;
+package uz.agromon.mobile.dto.response;
 
-public class Claim {
+import org.springframework.beans.BeanUtils;
+import uz.agromon.claim.domain.Claim;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ClaimResponse extends Response {
     //
     private Integer sequence;
-    private String username;
+    private Integer username;
     private Integer fieldId;
     private String fieldName;
     private String cropType;
@@ -13,8 +18,22 @@ public class Claim {
     private String description;
     private String status;
 
-    public Claim() {
+    public ClaimResponse() {
         //
+    }
+
+    public ClaimResponse(Claim claim) {
+        super();
+        setResult(true);
+        BeanUtils.copyProperties(claim, this);
+    }
+
+    public static ClaimResponse build(Claim claim) {
+        return new ClaimResponse(claim);
+    }
+
+    public static List<ClaimResponse> toClaimResponse(List<Claim> claims) {
+        return claims.stream().map(ClaimResponse::build).collect(Collectors.toList());
     }
 
     public Integer getSequence() {
@@ -25,11 +44,11 @@ public class Claim {
         this.sequence = sequence;
     }
 
-    public String getUsername() {
+    public Integer getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(Integer username) {
         this.username = username;
     }
 

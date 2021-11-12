@@ -7,6 +7,9 @@ import uz.agromon.claim.store.jpo.ClaimJpo;
 import uz.agromon.claim.store.repo.ClaimRepository;
 import uz.agromon.config.exception.klass.ResourceNotFoundException;
 
+import java.util.Collections;
+import java.util.List;
+
 @Repository
 public class ClaimStoreLogic implements ClaimStore {
 
@@ -20,11 +23,11 @@ public class ClaimStoreLogic implements ClaimStore {
     }
 
     @Override
-    public Claim getByUserSequence(Integer sequence) {
-        ClaimJpo jpo = claimRepository.getByUserSequence(sequence);
-        if (jpo.getUserSequence() == null) {
-            throw new ResourceNotFoundException(Claim.class, "Claim not found for this user");
+    public List<Claim> getByUsername(String username) {
+        List<ClaimJpo> jpos = claimRepository.getAllByUsername(username);
+        if (jpos == null || jpos.isEmpty()) {
+            return Collections.emptyList();
         }
-        return jpo.toDomain();
+        return ClaimJpo.toDomain(jpos);
     }
 }

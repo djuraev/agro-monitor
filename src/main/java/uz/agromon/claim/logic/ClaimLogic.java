@@ -6,6 +6,8 @@ import uz.agromon.claim.domain.Claim;
 import uz.agromon.claim.service.ClaimService;
 import uz.agromon.claim.store.ClaimStore;
 
+import java.util.List;
+
 @Service
 public class ClaimLogic implements ClaimService {
     @Autowired
@@ -17,8 +19,8 @@ public class ClaimLogic implements ClaimService {
     }
 
     @Override
-    public Claim getClaimByUser(String userSequence) {
-        Integer id = Integer.parseInt(userSequence);
-        return claimStore.getByUserSequence(id);
+    public List<Claim> getAllUserClaim(String username) {
+
+        return claimStore.getByUsername(username);
     }
 }

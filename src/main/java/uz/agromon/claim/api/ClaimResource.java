@@ -19,10 +19,4 @@ public class ClaimResource {
         Claim savedClaim = claimService.createClaim(claim);
         return ResponseBuilder.buildOk(savedClaim);
     }
-
-    @GetMapping("/claim/{userSequence}")
-    ResponseEntity<APIResponse> getUserClaim(@PathVariable String userSequence) {
-        Claim claim = claimService.getClaimByUser(userSequence);
-        return ResponseBuilder.buildOk(claim);
-    }
 }

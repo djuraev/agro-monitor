@@ -8,6 +8,7 @@ import uz.agromon.field.domain.Field;
 import uz.agromon.field.store.jpo.FieldJpo;
 import uz.agromon.field.store.repo.FieldRepository;
 
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -50,8 +51,11 @@ public class FieldStoreLogic implements FieldStore {
     }
 
     @Override
-    public List<Field> getUserFields(Integer userSequence) {
-        List<FieldJpo> jpos = repository.getAllByUserSequence(userSequence);
+    public List<Field> getUserFields(String username) {
+        List<FieldJpo> jpos = repository.getAllByUsername(username);
+        if (jpos == null || jpos.isEmpty()) {
+            return Collections.emptyList();
+        }
         return FieldJpo.toDomains(jpos);
     }
 }

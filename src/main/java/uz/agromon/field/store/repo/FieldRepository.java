@@ -7,5 +7,6 @@ import uz.agromon.field.store.jpo.FieldJpo;
 import java.util.List;
 
 public interface FieldRepository extends JpaRepository<FieldJpo, Integer> {
-    List<FieldJpo> getAllByUserSequence(Integer userSequence);
+    List<FieldJpo> getAllByUsername(String username);
+    FieldJpo getByUsername(String username);
 }

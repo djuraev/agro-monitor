@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name="FIELD")
 public class FieldJpo extends AgroMonEntity {
-    private Integer userSequence;
+    private String username;
     private Integer villageSequence;
     private String villageName;
     private String name;
@@ -45,12 +45,12 @@ public class FieldJpo extends AgroMonEntity {
         return jpos.stream().map(FieldJpo::toDomain).collect(Collectors.toList());
     }
 
-    public Integer getUserSequence() {
-        return userSequence;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserSequence(Integer userSequence) {
-        this.userSequence = userSequence;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Integer getVillageSequence() {

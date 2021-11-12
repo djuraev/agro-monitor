@@ -71,7 +71,7 @@ public class AgroMonExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<APIResponse> handleResourceNotFoundException(ResourceNotFoundException e) {
         FailureMessage failureMessage = new FailureMessage();
 
-        failureMessage.setExceptionMessage(InvalidParameterException.class.toString());
+        failureMessage.setExceptionMessage(ResourceNotFoundException.class.toString());
         failureMessage.setExceptionMessage(e.getMessage());
 
         return ResponseBuilder.buildError(failureMessage, HttpStatus.NOT_FOUND);

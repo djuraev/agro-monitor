@@ -5,14 +5,11 @@ import org.springframework.stereotype.Service;
 import uz.agromon.field.domain.Field;
 import uz.agromon.field.service.FieldService;
 import uz.agromon.metrics.domain.DistrictMetric;
-import uz.agromon.metrics.domain.FieldMetric;
-import uz.agromon.metrics.domain.Metric;
 import uz.agromon.metrics.domain.VillageMetric;
 import uz.agromon.metrics.service.DistrictMetricService;
-import uz.agromon.metrics.service.FieldMetricService;
 import uz.agromon.metrics.service.VillageMetricService;
 import uz.agromon.mobile.dto.response.MetricResponse;
-import uz.agromon.mobile.service.MetricService;
+import uz.agromon.mobile.service.MMetricService;
 import uz.agromon.tenant.domain.District;
 import uz.agromon.tenant.domain.Village;
 import uz.agromon.tenant.service.DistrictService;
@@ -22,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MetricLogic implements MetricService {
+public class MMMetricLogic implements MMetricService {
 
     @Autowired
     VillageMetricService villageMetricService;
