@@ -11,14 +11,14 @@ import uz.agromon.cropyield.service.CropYieldService;
 import uz.agromon.field.domain.Field;
 import uz.agromon.field.service.FieldService;
 import uz.agromon.metrics.domain.Crop;
+import uz.agromon.metrics.domain.Metric;
 import uz.agromon.metrics.service.CropService;
-import uz.agromon.mobile.dto.request.CropYieldRequest;
-import uz.agromon.mobile.dto.request.GraphViewRequest;
-import uz.agromon.mobile.dto.request.LoginRequest;
-import uz.agromon.mobile.dto.request.Request;
+import uz.agromon.metrics.service.MetricService;
+import uz.agromon.mobile.dto.request.*;
 import uz.agromon.mobile.dto.response.*;
 import uz.agromon.mobile.service.MUserService;
 import uz.agromon.mobile.service.MobileService;
+import uz.agromon.purchase.service.PurchaseService;
 import uz.agromon.tenant.domain.ApiInfo;
 import uz.agromon.tenant.service.ApiInfoService;
 import uz.agromon.user.domain.User;
@@ -45,6 +45,10 @@ public class ResourceForMobile {
     CropYieldService cropYieldService;
     @Autowired
     MobileService mobileService;
+    @Autowired
+    PurchaseService purchaseService;
+    @Autowired
+    MetricService metricService;
 
     @PostMapping(value = "/login")
     ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
@@ -111,5 +115,17 @@ public class ResourceForMobile {
     ResponseEntity<?> getFieldCropYield(@PathVariable String username, @PathVariable String fieldId) {
         CropYieldResponse response = mobileService.getUserFieldCropYield(username, fieldId);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping(value = "/purchase")
+    ResponseEntity<?> saveFarmerPurchase(@RequestBody BuyInsuranceRequest buyInsuranceRequest) {
+        BuyInsuranceResponse response = mobileService.buyInsurance(buyInsuranceRequest);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping(value = "/purchases/{username}")
+    ResponseEntity<?> getFarmerPurchases(@PathVariable String username) {
+        FarmerInsurancePurchases purchases = mobileService.getFarmerPurchases(username);
+        return ResponseEntity.ok(purchases);
     }
 }

@@ -11,4 +11,6 @@ public interface FieldStore {
     Field update(Field field);
     void delete(Integer field);
     List<Field> getUserFields(String username);
+    Field getByUsernameAndId(String username, Integer id);
+    boolean existsByUsernameAndId(String username, Integer fieldId);
 }

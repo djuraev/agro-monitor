@@ -14,7 +14,7 @@ public class TestAPIResource {
 
     @GetMapping("/info")
     String getLatestVersionDate(){
-        return "FRIDAY 5 NOV 2021";
+        return "FRIDAY 19 NOV 2021";
     }
 
     @GetMapping("/demo")

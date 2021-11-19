@@ -1,5 +1,6 @@
 package uz.agromon.field.logic;
 
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.agromon.config.exception.klass.ResourceNotFoundException;
@@ -65,6 +66,6 @@ public class FieldLogic implements FieldService {
 
     @Override
     public boolean isUserFieldOwner(String username, Integer fieldId) {
-        return false;
+        return fieldStore.existsByUsernameAndId(username, fieldId);
     }
 }

@@ -42,4 +42,5 @@ public class TenantResource {
         return ResponseBuilder.buildOk(tenant);
     }
 
+
 }

@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface FieldRepository extends JpaRepository<FieldJpo, Integer> {
     List<FieldJpo> getAllByUsername(String username);
-    FieldJpo getByUsername(String username);
+    FieldJpo getByUsernameAndSequence(String username, Integer sequence);
+    boolean existsByUsernameAndSequence(String username, Integer sequence);
 }

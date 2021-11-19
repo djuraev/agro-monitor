@@ -18,6 +18,7 @@ public class CropYieldResponse extends Response {
 
     public CropYieldResponse(List<CropYield> cropYields, String fieldName) {
         if (!cropYields.isEmpty()) {
+            setResult(true);
             this.fieldId = cropYields.get(0).getFieldId().toString();
             this.cropName = cropYields.get(0).getCropName();
             this.fieldName = fieldName;

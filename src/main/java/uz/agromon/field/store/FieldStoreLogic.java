@@ -58,4 +58,14 @@ public class FieldStoreLogic implements FieldStore {
         }
         return FieldJpo.toDomains(jpos);
     }
+
+    @Override
+    public Field getByUsernameAndId(String username, Integer id) {
+        return repository.getByUsernameAndSequence(username, id).toDomain();
+    }
+
+    @Override
+    public boolean existsByUsernameAndId(String username, Integer fieldId) {
+        return repository.existsByUsernameAndSequence(username, fieldId);
+    }
 }
