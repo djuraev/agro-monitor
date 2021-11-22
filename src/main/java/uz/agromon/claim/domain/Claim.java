@@ -12,6 +12,7 @@ public class Claim {
     private String farmerPhone;
     private String description;
     private String status;
+    private String date;
 
     public Claim() {
         //
@@ -95,5 +96,13 @@ public class Claim {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

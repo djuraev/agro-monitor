@@ -23,6 +23,7 @@ public class ClaimJpo {
     private String farmerPhone;
     private String description;
     private String status;
+    private String date;
 
     public ClaimJpo() {
         //
@@ -120,5 +121,13 @@ public class ClaimJpo {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

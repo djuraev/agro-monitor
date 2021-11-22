@@ -1,12 +1,13 @@
 package uz.agromon.field.logic;
 
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.agromon.config.exception.klass.ResourceNotFoundException;
 import uz.agromon.field.domain.Field;
 import uz.agromon.field.service.FieldService;
 import uz.agromon.field.store.FieldStore;
+import uz.agromon.metrics.domain.Crop;
+import uz.agromon.metrics.service.CropService;
 import uz.agromon.remote.AgroMonitoringCaller;
 import uz.agromon.user.domain.User;
 import uz.agromon.user.service.UserService;
@@ -17,10 +18,15 @@ import java.util.List;
 public class FieldLogic implements FieldService {
     @Autowired
     FieldStore fieldStore;
+
     @Autowired
     UserService userService;
+
     @Autowired
     AgroMonitoringCaller agroMonitoringCaller;
+
+    @Autowired
+    CropService cropService;
 
     @Override
     public Field create(Field field) {
@@ -54,7 +60,12 @@ public class FieldLogic implements FieldService {
 
     @Override
     public List<Field> getFieldsOfUser(String username) {
-        return fieldStore.getUserFields(username);
+        List<Field> userFields = fieldStore.getUserFields(username);
+        for (Field field: userFields) {
+            Crop crop = cropService.getCropById(field.getCropId());
+            field.setCropName(crop.getName());
+        }
+        return userFields;
     }
 
     @Override

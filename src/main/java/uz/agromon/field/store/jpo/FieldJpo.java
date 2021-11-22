@@ -38,6 +38,7 @@ public class FieldJpo extends AgroMonEntity {
     public Field toDomain(){
         Field field = new Field();
         BeanUtils.copyProperties(this, field);
+        field.setFieldId(this.getSequence());
         return field;
     }
 

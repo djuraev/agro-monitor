@@ -1,7 +1,7 @@
 package uz.agromon.field.domain;
 
 public class Field {
-    private Integer sequence;
+    private Integer fieldId;
     private Integer tenantId;
     private String username;
     private Integer villageSequence;
@@ -11,6 +11,7 @@ public class Field {
     private String apiKey;
     private String center;
     private Integer cropId;
+    private String cropName;
     private String area;
     private String comment;
 
@@ -18,12 +19,12 @@ public class Field {
     public Field() {
     }
 
-    public Integer getSequence() {
-        return sequence;
+    public Integer getFieldId() {
+        return fieldId;
     }
 
-    public void setSequence(Integer sequence) {
-        this.sequence = sequence;
+    public void setFieldId(Integer fieldId) {
+        this.fieldId = fieldId;
     }
 
     public Integer getTenantId() {
@@ -112,5 +113,13 @@ public class Field {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getCropName() {
+        return cropName;
+    }
+
+    public void setCropName(String cropName) {
+        this.cropName = cropName;
     }
 }

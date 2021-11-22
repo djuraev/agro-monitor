@@ -21,6 +21,7 @@ public class PurchaseJpo {
     String farmerName;
     String phoneNumber;
     String status;
+    private String date;
 
     public PurchaseJpo() {
         //
@@ -110,5 +111,13 @@ public class PurchaseJpo {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

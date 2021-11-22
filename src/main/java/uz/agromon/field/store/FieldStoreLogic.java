@@ -1,6 +1,6 @@
 package uz.agromon.field.store;
 
-import org.springframework.beans.BeanUtils;
+import  org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import uz.agromon.config.exception.klass.ResourceNotFoundException;
@@ -39,7 +39,7 @@ public class FieldStoreLogic implements FieldStore {
 
     @Override
     public Field update(Field field) {
-        FieldJpo jpo = repository.getById(field.getSequence());
+        FieldJpo jpo = repository.getById(field.getFieldId());
         BeanUtils.copyProperties(field, jpo);
         return repository.save(jpo).toDomain();
     }
