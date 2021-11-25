@@ -134,6 +134,8 @@ public class ResourceForMobile {
     @GetMapping(value = "/metrics")
     ResponseEntity<?> getAllMetrics() {
         List<Metric> metrics = metricService.getAllMetrics();
-        return ResponseEntity.ok(metrics);
+        MetricsResponse response = new MetricsResponse();
+        response.setList(metrics);
+        return ResponseEntity.ok(response);
     }
 }
