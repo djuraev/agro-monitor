@@ -1,7 +1,7 @@
 package uz.agromon.mobile.dto.response;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class GraphViewResponse extends Response {
     //
@@ -9,20 +9,12 @@ public class GraphViewResponse extends Response {
     String districtId;
     String metricId;
     String metricName;
-    Map<String, List<YearValue>> values;
+    List<CropValues> values;
 
     public GraphViewResponse() {
         //
+        values = new ArrayList<>();
         setResult(true);
-    }
-
-    public GraphViewResponse(String fieldId, String districtId, String metricId, String metricName, Map<String, List<YearValue>> values) {
-        //
-        this.fieldId = fieldId;
-        this.districtId = districtId;
-        this.metricId = metricId;
-        this.metricName = metricName;
-        this.values = values;
     }
 
     public String getFieldId() {
@@ -57,11 +49,11 @@ public class GraphViewResponse extends Response {
         this.metricName = metricName;
     }
 
-    public Map<String, List<YearValue>> getValues() {
+    public List<CropValues> getValues() {
         return values;
     }
 
-    public void setValues(Map<String, List<YearValue>> values) {
+    public void setValues(List<CropValues> values) {
         this.values = values;
     }
 }

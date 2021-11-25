@@ -6,9 +6,11 @@ import uz.agromon.cropyield.domain.CropYield;
 import uz.agromon.cropyield.store.jpo.CropYieldJpo;
 import uz.agromon.cropyield.store.repo.CropYieldRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@Transactional
 public class CropYieldStoreLogic implements CropYieldStore{
     @Autowired
     CropYieldRepository repository;

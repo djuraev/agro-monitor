@@ -92,9 +92,10 @@ public class MobileLogic implements MobileService {
         Field field = fieldService.getField(fid);
         Metric metric = metricService.getMetricById(mid);
         List<Crop> allCrops = cropService.getAllCrops();
-        HashMap<String, List<YearValue>> cropYearValues = new HashMap<>();
+
 
         for (Crop crop: allCrops) {
+            CropValues cropValues = new CropValues();
             List<YearValue> metricValues;
             metricValues = villageMetricService.getVillageMetricsYearValues(field.getVillageSequence(), mid);
 
@@ -103,11 +104,16 @@ public class MobileLogic implements MobileService {
                 metricValues = districtMetricService.getDistrictMetricYearValues(did, mid);
                 graphViewResponse.setDistrictId(String.valueOf(did));
             }
-            cropYearValues.put(crop.getName(), metricValues);
+            cropValues.setCropName(crop.getName());
+            cropValues.setChartInfoList(metricValues);
+            graphViewResponse.getValues().add(cropValues);
         }
         List<YearValue> cropYieldValues = cropYieldService.getFieldCropYieldYearValues(fid);
-        cropYearValues.put("CropYield", cropYieldValues);
-        graphViewResponse.setValues(cropYearValues);
+        CropValues cropValues = new CropValues();
+        cropValues.setCropName("cropYield");
+        cropValues.setChartInfoList(cropYieldValues);
+        graphViewResponse.getValues().add(cropValues);
+
         graphViewResponse.setFieldId(fieldId);
         graphViewResponse.setMetricId(metricId);
         graphViewResponse.setMetricName(metric.getName());
