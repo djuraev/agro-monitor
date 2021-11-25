@@ -12,15 +12,25 @@ public class Field {
     private String center;
     private Integer cropId;
     private String cropName;
-    private String area;
+    private String agromonArea;
+    private String userArea;
     private String comment;
 
 
     public Field() {
+        //
     }
 
     public Integer getFieldId() {
         return fieldId;
+    }
+
+    public String getUserArea() {
+        return userArea;
+    }
+
+    public void setUserArea(String userArea) {
+        this.userArea = userArea;
     }
 
     public void setFieldId(Integer fieldId) {
@@ -99,12 +109,12 @@ public class Field {
         this.cropId = cropId;
     }
 
-    public String getArea() {
-        return area;
+    public String getAgromonArea() {
+        return agromonArea;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setAgromonArea(String agromonArea) {
+        this.agromonArea = agromonArea;
     }
 
     public String getComment() {

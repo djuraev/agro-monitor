@@ -9,4 +9,5 @@ import java.util.List;
 public interface VillageMetricRepository extends JpaRepository<VillageMetricJpo, Integer> {
     List<VillageMetricJpo> getAllBy();
     List<VillageMetricJpo> getAllByVillageId(Integer villageId);
+    List<VillageMetricJpo> getAllByVillageIdAndMetricId(Integer villageId, Integer metricId);
 }

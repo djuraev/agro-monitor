@@ -10,6 +10,7 @@ import uz.agromon.metrics.store.repo.FieldMetricRepository;
 import java.util.List;
 
 @Repository
+@Deprecated
 public class FieldMetricStoreLogic implements FieldMetricStore{
 
     @Autowired

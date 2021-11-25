@@ -9,4 +9,5 @@ public interface VillageMetricStore {
     VillageMetric getById(Integer id);
     List<VillageMetric> getAll();
     List<VillageMetric> getVillageMetrics(Integer villageSequence);
+    List<VillageMetric> getVillageMetrics(Integer villageId, Integer metricId);
 }

@@ -24,7 +24,8 @@ public class FieldJpo extends AgroMonEntity {
     private String apiKey;
     private String center;
     private Integer cropId;
-    private String area;
+    private String agromonArea;
+    private String userArea;
     private String comment;
 
     public FieldJpo() {
@@ -40,6 +41,14 @@ public class FieldJpo extends AgroMonEntity {
         BeanUtils.copyProperties(this, field);
         field.setFieldId(this.getSequence());
         return field;
+    }
+
+    public String getUserArea() {
+        return userArea;
+    }
+
+    public void setUserArea(String userArea) {
+        this.userArea = userArea;
     }
 
     public static List<Field> toDomains(List<FieldJpo> jpos){
@@ -110,12 +119,12 @@ public class FieldJpo extends AgroMonEntity {
         this.cropId = cropId;
     }
 
-    public String getArea() {
-        return area;
+    public String getAgromonArea() {
+        return agromonArea;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setAgromonArea(String area) {
+        this.agromonArea = area;
     }
 
     public String getComment() {

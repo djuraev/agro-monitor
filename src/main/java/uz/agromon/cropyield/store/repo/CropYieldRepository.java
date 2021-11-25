@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CropYieldRepository extends JpaRepository<CropYieldJpo, Integer> {
     List<CropYieldJpo> getAllByFieldId(Integer fieldId);
+    void deleteAllByFieldId(Integer fieldId);
+    boolean existsByFieldId(Integer fieldId);
 }

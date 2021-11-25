@@ -24,4 +24,14 @@ public class CropYieldStoreLogic implements CropYieldStore{
         List<CropYieldJpo> jpos = repository.getAllByFieldId(fieldId);
         return CropYieldJpo.toDomains(jpos);
     }
+
+    @Override
+    public void deleteCropYield(Integer fieldId) {
+        repository.deleteAllByFieldId(fieldId);
+    }
+
+    @Override
+    public boolean existsByFieldId(Integer fieldId) {
+        return repository.existsByFieldId(fieldId);
+    }
 }

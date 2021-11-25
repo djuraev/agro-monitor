@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "FIELD_METRIC")
+@Deprecated
 public class FieldMetricJpo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

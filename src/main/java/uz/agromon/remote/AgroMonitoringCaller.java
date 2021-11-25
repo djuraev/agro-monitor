@@ -31,7 +31,7 @@ public class AgroMonitoringCaller {
         }
         field.setApiKey(response.getId());
         field.setCenter(response.getCenter().toString());
-        field.setArea(response.getArea().toString());
+        field.setAgromonArea(response.getArea().toString());
 
         Field entity = new Field();
         BeanUtils.copyProperties(field, entity);

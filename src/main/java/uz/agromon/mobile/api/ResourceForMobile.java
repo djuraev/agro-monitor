@@ -24,6 +24,7 @@ import uz.agromon.tenant.service.ApiInfoService;
 import uz.agromon.user.domain.User;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -85,11 +86,6 @@ public class ResourceForMobile {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping(value = "/metrics")
-    ResponseEntity<?> getGraphViewInfo(@RequestBody GraphViewRequest request) {
-        return null;
-    }
-
     @PostMapping(value = "/claim")
     ResponseEntity<ClaimResponse> createUserClaim(@RequestBody Claim claim) {
         Claim savedClaim = claimService.createClaim(claim);
@@ -127,5 +123,17 @@ public class ResourceForMobile {
     ResponseEntity<?> getFarmerPurchases(@PathVariable String username) {
         FarmerInsurancePurchases purchases = mobileService.getFarmerPurchases(username);
         return ResponseEntity.ok(purchases);
+    }
+
+    @GetMapping(value = "/graphview/{fieldId}/{metricId}")
+    ResponseEntity<?> getGraphViewData(@PathVariable String fieldId, @PathVariable String metricId) {
+        GraphViewResponse graphView = mobileService.getGraphViewForField(fieldId, metricId);
+        return ResponseEntity.ok(graphView);
+    }
+
+    @GetMapping(value = "/metrics")
+    ResponseEntity<?> getAllMetrics() {
+        List<Metric> metrics = metricService.getAllMetrics();
+        return ResponseEntity.ok(metrics);
     }
 }

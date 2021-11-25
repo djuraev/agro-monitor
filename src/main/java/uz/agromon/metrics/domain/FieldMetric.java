@@ -1,5 +1,6 @@
 package uz.agromon.metrics.domain;
 
+@Deprecated
 public class FieldMetric {
     //
     private Integer fieldId;

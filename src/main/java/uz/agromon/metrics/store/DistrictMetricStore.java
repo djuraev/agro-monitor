@@ -9,4 +9,5 @@ public interface DistrictMetricStore {
     DistrictMetric getById(Integer id);
     List<DistrictMetric> retrieveAll();
     List<DistrictMetric> retrieveByDistrictId(Integer districtId);
+    List<DistrictMetric> retrieveByDistrictAndMetric(Integer districtId, Integer metricId);
 }

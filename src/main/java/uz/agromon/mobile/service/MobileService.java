@@ -6,6 +6,7 @@ import uz.agromon.mobile.dto.request.BuyInsuranceRequest;
 import uz.agromon.mobile.dto.response.BuyInsuranceResponse;
 import uz.agromon.mobile.dto.response.CropYieldResponse;
 import uz.agromon.mobile.dto.response.FarmerInsurancePurchases;
+import uz.agromon.mobile.dto.response.GraphViewResponse;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ public interface MobileService {
     CropYieldResponse getUserFieldCropYield(String username, String fieldId);
     BuyInsuranceResponse buyInsurance(BuyInsuranceRequest buyInsurance);
     FarmerInsurancePurchases getFarmerPurchases(String username);
+    GraphViewResponse getGraphViewForField(String fieldId, String metricId);
 }

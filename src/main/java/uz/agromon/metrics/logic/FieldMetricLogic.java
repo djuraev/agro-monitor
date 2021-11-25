@@ -9,6 +9,7 @@ import uz.agromon.metrics.store.FieldMetricStore;
 import java.util.List;
 
 @Service
+@Deprecated
 public class FieldMetricLogic implements FieldMetricService {
     @Autowired
     FieldMetricStore fieldMetricStore;
