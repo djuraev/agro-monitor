@@ -1,7 +1,10 @@
 package uz.agromon.tenant.api.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uz.agromon.helper.APIResponse;
+import uz.agromon.helper.ResponseBuilder;
 import uz.agromon.tenant.domain.Region;
 import uz.agromon.tenant.domain.RegionName;
 import uz.agromon.tenant.domain.cdo.RegionCdo;
@@ -36,7 +39,8 @@ public class RegionResource {
         return regionService.getRegionsOfTenant(tenantCode, langCode);
     }
     @GetMapping("/regions/{tenantCode}")
-    List<Region> getTenantRegions(@PathVariable String tenantCode) {
-        return regionService.getAllRegionsByTenantCode(tenantCode);
+    ResponseEntity<APIResponse> getTenantRegions(@PathVariable String tenantCode) {
+        List<Region> regions = regionService.getAllRegionsByTenantCode(tenantCode);
+        return ResponseBuilder.buildOk(regions);
     }
 }

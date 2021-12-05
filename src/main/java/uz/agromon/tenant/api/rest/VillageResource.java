@@ -1,7 +1,10 @@
 package uz.agromon.tenant.api.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uz.agromon.helper.APIResponse;
+import uz.agromon.helper.ResponseBuilder;
 import uz.agromon.tenant.domain.District;
 import uz.agromon.tenant.domain.Village;
 import uz.agromon.tenant.domain.VillageName;
@@ -28,8 +31,9 @@ public class VillageResource {
     }
 
     @GetMapping(value = "/village/{districtCode}")
-    List<Village> getRegionDistricts(@PathVariable String districtCode) {
-        return villageService.getVillagesOfDistrict(districtCode);
+    ResponseEntity<APIResponse> getRegionDistricts(@PathVariable String districtCode) {
+        List<Village> villages = villageService.getVillagesOfDistrict(districtCode);
+        return ResponseBuilder.buildOk(villages);
     }
 
     @PostMapping(value = "/village/{villageSequence}")
