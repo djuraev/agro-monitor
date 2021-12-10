@@ -13,4 +13,5 @@ public interface VillageMetricService {
     List<VillageMetric> getVillageMetrics(Integer villageSequence);
     List<VillageMetric> getVillageMetrics(Integer villageId, Integer metricId);
     List<YearValue> getVillageMetricsYearValues(Integer villageId, Integer metricId);
+    List<YearValue> getVillageMetricsYearValues(Integer villageId, Integer metricId, Integer cropId);
 }

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Deprecated
 public class FieldMetricJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sequence;
     private Integer fieldId;
     private Integer metricId;

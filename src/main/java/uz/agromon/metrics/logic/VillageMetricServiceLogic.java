@@ -55,4 +55,14 @@ public class VillageMetricServiceLogic implements VillageMetricService {
         }
         return yearValues;
     }
+
+    @Override
+    public List<YearValue> getVillageMetricsYearValues(Integer villageId, Integer metricId, Integer cropId) {
+        List<VillageMetric> villageMetrics = villageMetricStore.getVillageMetrics(villageId, metricId, cropId);
+        List<YearValue> yearValues = new ArrayList<>();
+        for (VillageMetric vm: villageMetrics) {
+            yearValues.add(new YearValue(vm.getYear(), vm.getValue()));
+        }
+        return yearValues;
+    }
 }

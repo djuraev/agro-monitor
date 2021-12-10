@@ -93,15 +93,14 @@ public class MobileLogic implements MobileService {
         Metric metric = metricService.getMetricById(mid);
         List<Crop> allCrops = cropService.getAllCrops();
 
-
         for (Crop crop: allCrops) {
             CropValues cropValues = new CropValues();
             List<YearValue> metricValues;
-            metricValues = villageMetricService.getVillageMetricsYearValues(field.getVillageSequence(), mid);
+            metricValues = villageMetricService.getVillageMetricsYearValues(field.getVillageSequence(), mid, crop.getSequence());
 
             if (metricValues.isEmpty()) {
                 Integer did = villageService.getVillage(field.getVillageSequence()).getDistrictSequence();
-                metricValues = districtMetricService.getDistrictMetricYearValues(did, mid);
+                metricValues = districtMetricService.getDistrictMetricYearValues(did, mid, crop.getSequence());
                 graphViewResponse.setDistrictId(String.valueOf(did));
             }
             cropValues.setCropName(crop.getName());

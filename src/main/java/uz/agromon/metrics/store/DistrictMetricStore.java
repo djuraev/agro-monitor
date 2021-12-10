@@ -10,4 +10,5 @@ public interface DistrictMetricStore {
     List<DistrictMetric> retrieveAll();
     List<DistrictMetric> retrieveByDistrictId(Integer districtId);
     List<DistrictMetric> retrieveByDistrictAndMetric(Integer districtId, Integer metricId);
+    List<DistrictMetric> retrieveByDistrictAndMetricAndCrop(Integer districtId, Integer metricId, Integer cropId);
 }

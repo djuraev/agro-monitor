@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Table(name="TENANT")
 public class TenantJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
     @Column(unique = true)

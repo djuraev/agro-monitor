@@ -38,4 +38,9 @@ public class VillageMetricStoreLogic implements VillageMetricStore {
     public List<VillageMetric> getVillageMetrics(Integer villageId, Integer metricId) {
         return VillageMetricJpo.toDomains(repository.getAllByVillageIdAndMetricId(villageId, metricId));
     }
+
+    @Override
+    public List<VillageMetric> getVillageMetrics(Integer villageId, Integer metricId, Integer cropId) {
+        return VillageMetricJpo.toDomains(repository.getAllByVillageIdAndMetricIdAndCropId(villageId, metricId, cropId));
+    }
 }

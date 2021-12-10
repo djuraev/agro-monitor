@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Table(name = "VILLAGE_NAME")
 public class VillageNameJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
     String langCode;
     String localName;

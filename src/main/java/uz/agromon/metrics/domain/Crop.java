@@ -5,6 +5,7 @@ public class Crop {
     private String name;
     private String extraInfo;
     private String code;
+    private Integer sequence;
 
     public Crop(String name, String extraInfo, String code) {
         //
@@ -39,5 +40,13 @@ public class Crop {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Integer getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(Integer sequence) {
+        this.sequence = sequence;
     }
 }

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Table(name="API_INFO")
 public class ApiInfoJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer sequence;
     private String apiName;
     private String apiKey;

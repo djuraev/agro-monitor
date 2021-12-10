@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table(name="TENANT_INFO")
 public class TenantInfoJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer sequence;
     Integer tenantId;
     String name;

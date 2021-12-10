@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Table(name="PURCHASE")
 public class PurchaseJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer sequence;
     String username;
     String fieldId;

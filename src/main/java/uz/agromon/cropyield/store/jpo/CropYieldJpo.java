@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Table(name="CROP_YIELD")
 public class CropYieldJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Integer fieldId;
     private String cropName;

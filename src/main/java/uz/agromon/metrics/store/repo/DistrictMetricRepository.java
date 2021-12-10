@@ -9,4 +9,5 @@ public interface DistrictMetricRepository extends JpaRepository<DistrictMetricJp
     List<DistrictMetricJpo> getAllBy();
     List<DistrictMetricJpo> getAllByDistrictId(Integer districtId);
     List<DistrictMetricJpo> getAllByDistrictIdAndMetricId(Integer districtId, Integer metricId);
+    List<DistrictMetricJpo> getAllByDistrictIdAndMetricIdAndCropId(Integer districtId, Integer metricId, Integer cropId);
 }

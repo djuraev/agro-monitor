@@ -36,7 +36,8 @@ public class UserStoreLogic implements UserStore{
             roleJpos.add(roleJpo);
         }
         UserJpo jpo = new UserJpo(user, roleJpos);
-        return repository.save(jpo).toDomain();
+        jpo = repository.save(jpo);
+        return jpo.toDomain();
     }
 
     @Override

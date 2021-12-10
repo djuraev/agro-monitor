@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Table(name="INSURANCE_AGENCY")
 public class InsuranceAgencyJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sequence;
     private Integer tenantId;
     private String name;

@@ -41,4 +41,9 @@ public class DistrictMetricStoreLogic implements DistrictMetricStore {
     public List<DistrictMetric> retrieveByDistrictAndMetric(Integer districtId, Integer metricId) {
         return DistrictMetricJpo.toDomains(repository.getAllByDistrictIdAndMetricId(districtId, metricId));
     }
+
+    @Override
+    public List<DistrictMetric> retrieveByDistrictAndMetricAndCrop(Integer districtId, Integer metricId, Integer cropId) {
+        return DistrictMetricJpo.toDomains(repository.getAllByDistrictIdAndMetricIdAndCropId(districtId, metricId, cropId));
+    }
 }

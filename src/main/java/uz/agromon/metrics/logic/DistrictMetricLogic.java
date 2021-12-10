@@ -50,4 +50,14 @@ public class DistrictMetricLogic implements DistrictMetricService {
         }
         return dmValues;
     }
+
+    @Override
+    public List<YearValue> getDistrictMetricYearValues(Integer districtId, Integer metricId, Integer cropId) {
+        List<YearValue> dmValues = new ArrayList<>();
+        List<DistrictMetric> districtMetrics = districtMetricStore.retrieveByDistrictAndMetricAndCrop(districtId, metricId, cropId);
+        for (DistrictMetric dm: districtMetrics) {
+            dmValues.add(new YearValue(dm.getYear(), dm.getValue()));
+        }
+        return dmValues;
+    }
 }

@@ -10,4 +10,5 @@ public interface VillageMetricRepository extends JpaRepository<VillageMetricJpo,
     List<VillageMetricJpo> getAllBy();
     List<VillageMetricJpo> getAllByVillageId(Integer villageId);
     List<VillageMetricJpo> getAllByVillageIdAndMetricId(Integer villageId, Integer metricId);
+    List<VillageMetricJpo> getAllByVillageIdAndMetricIdAndCropId(Integer villageId, Integer metricId, Integer cropId);
 }

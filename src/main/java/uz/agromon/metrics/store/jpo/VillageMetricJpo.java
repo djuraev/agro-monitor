@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Table(name = "VILLAGE_METRIC")
 public class VillageMetricJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sequence;
     private Integer villageId;
     private Integer metricId;

@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Table(name = "ROLES")
 public class RoleJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sequence;
 
     @Column(length = 20)

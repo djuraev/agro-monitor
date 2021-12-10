@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Table(name="CLAIM")
 public class ClaimJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sequence;
     private String username;
     private Integer fieldId;

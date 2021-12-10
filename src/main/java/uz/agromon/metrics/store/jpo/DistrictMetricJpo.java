@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Table(name="DISTRICT_METRIC")
 public class DistrictMetricJpo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sequence;
     private Integer cropId;
     private Integer districtId;
