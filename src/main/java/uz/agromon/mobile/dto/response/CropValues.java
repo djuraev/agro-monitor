@@ -6,17 +6,12 @@ import java.util.List;
 public class CropValues {
     //
     String cropName;
+    String name;
     List<YearValue> chartInfoList;
 
     public CropValues() {
         //
         chartInfoList = new ArrayList<>();
-    }
-
-    public CropValues(String cropName, List<YearValue> chartInfoList) {
-        //
-        this.cropName = cropName;
-        this.chartInfoList = chartInfoList;
     }
 
     public String getCropName() {
@@ -33,5 +28,13 @@ public class CropValues {
 
     public void setChartInfoList(List<YearValue> chartInfoList) {
         this.chartInfoList = chartInfoList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

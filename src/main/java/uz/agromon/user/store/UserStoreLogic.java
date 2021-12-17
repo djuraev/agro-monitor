@@ -77,4 +77,18 @@ public class UserStoreLogic implements UserStore{
     public boolean existsByInsurance(String insuranceNumber) {
         return repository.existsByInsuranceNumber(insuranceNumber);
     }
+
+    @Override
+    public User retrieve(String birthday, String phone, Integer districtId) {
+        UserJpo userJpo = repository.findByDateOfBirthAndPhoneNumberAndDistrictSequence(birthday, phone, districtId);
+        if (userJpo == null) {
+            return User.getEmptyInstance();
+        }
+        return userJpo.toDomain();
+    }
+
+    @Override
+    public User retrieve(String birthday, String phone, String insuNumber, Integer districtId) {
+        return repository.findByDateOfBirthAndPhoneNumberAndInsuranceNumberAndDistrictSequence(birthday, phone, insuNumber, districtId).toDomain();
+    }
 }

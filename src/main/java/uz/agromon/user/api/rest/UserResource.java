@@ -35,4 +35,10 @@ public class UserResource {
         User result = userService.update(user);
         return ResponseBuilder.buildOk(result);
     }
+
+    @GetMapping(value = "/user/{insuNumber}")
+    ResponseEntity<APIResponse> getUserInfo(@PathVariable String insuNumber) {
+        User user = userService.getByInsuranceNumber(insuNumber);
+        return ResponseBuilder.buildOk(user);
+    }
 }

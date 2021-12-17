@@ -61,4 +61,9 @@ public class UserLogic implements UserService {
     public boolean userExists(String username) {
         return userStore.existsByInsurance(username);
     }
+
+    @Override
+    public User getByInsuranceNumber(String insuranceNumber) {
+        return userStore.retrieve(insuranceNumber);
+    }
 }

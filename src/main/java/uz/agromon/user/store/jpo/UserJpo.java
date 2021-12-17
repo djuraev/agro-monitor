@@ -28,6 +28,10 @@ public class UserJpo extends AgroMonEntity {
     Integer regionSequence;
     Integer districtSequence;
     Integer villageSequence;
+    //Added after requirement
+    String dateOfBirth;  //DD.MM.YYYY
+    String phoneNumber;
+    String extraInfo;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "USER_ROLES",
@@ -133,5 +137,29 @@ public class UserJpo extends AgroMonEntity {
 
     public void setRoles(Set<RoleJpo> roles) {
         this.roles = roles;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getExtraInfo() {
+        return extraInfo;
+    }
+
+    public void setExtraInfo(String extraInfo) {
+        this.extraInfo = extraInfo;
     }
 }

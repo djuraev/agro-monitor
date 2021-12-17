@@ -12,4 +12,5 @@ public interface UserService {
     User login(String username, String password);
     List<User> getAllUsers();
     boolean userExists(String username);
+    User getByInsuranceNumber(String insuranceNumber);
 }

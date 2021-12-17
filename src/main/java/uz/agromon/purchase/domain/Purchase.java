@@ -10,7 +10,7 @@ public class Purchase {
     String farmerName;
     String phoneNumber;
     String status;
-    private String date;
+    String date;
 
     public Purchase() {
         //

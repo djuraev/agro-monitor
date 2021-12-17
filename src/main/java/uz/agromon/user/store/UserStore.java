@@ -11,4 +11,6 @@ public interface UserStore {
     User update(User user);
     User retrieve(String insuranceNumber);
     boolean existsByInsurance(String insuranceNumber);
+    User retrieve(String birthday, String phone, Integer districtId);
+    User retrieve(String birthday, String phone, String insuNumber, Integer districtId);
 }

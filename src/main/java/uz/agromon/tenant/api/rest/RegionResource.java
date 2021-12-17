@@ -38,6 +38,13 @@ public class RegionResource {
     List<RegionCdo> getTenantRegionsByLanguage(@PathVariable String tenantCode, @PathVariable String langCode) {
         return regionService.getRegionsOfTenant(tenantCode, langCode);
     }
+
+    @GetMapping("/regions/id/{tenantId}")
+    ResponseEntity<APIResponse> getTenantRegionsById(@PathVariable String tenantId) {
+        List<Region> regions = regionService.getAllRegionsByTenant(tenantId);
+        return ResponseBuilder.buildOk(regions);
+    }
+
     @GetMapping("/regions/{tenantCode}")
     ResponseEntity<APIResponse> getTenantRegions(@PathVariable String tenantCode) {
         List<Region> regions = regionService.getAllRegionsByTenantCode(tenantCode);

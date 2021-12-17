@@ -10,6 +10,7 @@ public interface RegionStore {
     Region retrieve(Integer sequence);
     List<Region> retrieve();
     List<Region> retrieveByTenantId(Integer tenantId);
+    List<Region> retrieveByTenantCode(String tenantCode);
     Region addName(Integer regionSequence, RegionName regionName);
 
 }

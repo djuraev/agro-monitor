@@ -138,4 +138,34 @@ public class ResourceForMobile {
         response.setList(metrics);
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping(value = "/findInsurance")
+    ResponseEntity<?> findInsuranceNumber(@RequestBody FindInsuranceRequest request) {
+        FindInsuranceResponse resp = mobileService.findUserInsurance(request.getPhoneNumber(), request.getBirthday(), request.getDistrictId());
+        return ResponseEntity.ok(resp);
+    }
+
+    @PostMapping(value = "/findPassword")
+    ResponseEntity<?> findPassword(@RequestBody FindPasswordRequest request) {
+        FindPasswordResponse response = mobileService.findUserPassword(request.getBirthday(), request.getPhoneNumber(), request.getInsurance(), request.getDistrictId());
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping(value = "/countries")
+    ResponseEntity<?> getAllCountries() {
+        CountryResponse countryResponse = mobileService.getCountries();
+        return ResponseEntity.ok(countryResponse);
+    }
+
+    @GetMapping(value = "/regions/{countryId}")
+    ResponseEntity<?> getRegionsOfCountry(@PathVariable String countryId) {
+        RegionResponse response = mobileService.getRegions(countryId);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping(value = "/districts/{regionId}")
+    ResponseEntity<?> getDistrictsOfRegion(@PathVariable String regionId) {
+        DistrictResponse response = mobileService.getDistricts(regionId);
+        return ResponseEntity.ok(response);
+    }
 }
