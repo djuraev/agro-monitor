@@ -9,6 +9,7 @@ public class FindPasswordResponse extends Response {
     }
 
     public FindPasswordResponse(String password) {
+        result = true;
         this.password = password;
     }
 

@@ -2,6 +2,7 @@ package uz.agromon.tenant.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.config.exception.klass.ResourceNotFoundException;
 import uz.agromon.tenant.domain.Region;
 import uz.agromon.tenant.domain.RegionName;
@@ -22,7 +23,7 @@ public class RegionLogic implements RegionService {
     TenantStore tenantStore;
 
     @Override
-    public Region create(Region region) {
+    public Region create(Region region) throws AlreadyExistsException {
         return regionStore.create(region);
     }
 

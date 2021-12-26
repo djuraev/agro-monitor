@@ -15,6 +15,8 @@ public class Tenant {
     Integer id;
     String country;
     String code;
+    String capital;
+    String coordinates;
     Set<TenantName> names;
 
     public Tenant(Integer id, String country, String code, Set<TenantName> names) {
@@ -58,5 +60,21 @@ public class Tenant {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getCapital() {
+        return capital;
+    }
+
+    public void setCapital(String capital) {
+        this.capital = capital;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
     }
 }

@@ -26,6 +26,9 @@ public class TenantJpo {
     @Column(unique = true)
     String code;
 
+    String capital;
+    String coordinates;
+
     @JoinColumn(name = "tenant_id")
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
     Set<TenantNameJpo> names;
@@ -84,4 +87,19 @@ public class TenantJpo {
         return code;
     }
 
+    public String getCapital() {
+        return capital;
+    }
+
+    public void setCapital(String capital) {
+        this.capital = capital;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
+    }
 }

@@ -3,6 +3,7 @@ package uz.agromon.tenant.api.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.helper.APIResponse;
 import uz.agromon.helper.ResponseBuilder;
 import uz.agromon.tenant.domain.District;
@@ -28,7 +29,7 @@ public class CountryResource {
         return ResponseBuilder.buildOk(regions);
     }
     @PostMapping(value = "/regions")
-    ResponseEntity<APIResponse> createRegion(@RequestBody Region region){
+    ResponseEntity<APIResponse> createRegion(@RequestBody Region region) throws AlreadyExistsException {
         Region savedRegion = regionService.create(region);
         return ResponseBuilder.buildOk(savedRegion);
     }

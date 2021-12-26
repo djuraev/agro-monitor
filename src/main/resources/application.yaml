@@ -10,11 +10,16 @@ spring:
     username: root
     password: Zippo125*
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   application:
     name: AGROMON-SERVICE
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
 server:
   port: 8090
 

@@ -89,6 +89,10 @@ public class UserStoreLogic implements UserStore{
 
     @Override
     public User retrieve(String birthday, String phone, String insuNumber, Integer districtId) {
-        return repository.findByDateOfBirthAndPhoneNumberAndInsuranceNumberAndDistrictSequence(birthday, phone, insuNumber, districtId).toDomain();
+        UserJpo userJpo = repository.findByDateOfBirthAndPhoneNumberAndInsuranceNumberAndDistrictSequence(birthday, phone, insuNumber, districtId);
+        if (userJpo == null) {
+            return User.getEmptyInstance();
+        }
+        return userJpo.toDomain();
     }
 }

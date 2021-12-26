@@ -9,4 +9,5 @@ import java.util.List;
 public interface RegionRepository extends JpaRepository<RegionJpo, Integer> {
     List<RegionJpo> getAllByTenantId(Integer tenantId);
     RegionJpo getBySequence(Integer sequence);
+    boolean existsByName(String name);
 }

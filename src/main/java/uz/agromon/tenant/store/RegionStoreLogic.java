@@ -2,6 +2,7 @@ package uz.agromon.tenant.store;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.tenant.domain.Region;
 import uz.agromon.tenant.domain.RegionName;
 import uz.agromon.tenant.domain.Tenant;
@@ -29,8 +30,11 @@ public class RegionStoreLogic implements RegionStore{
     RegionNameRepository regionNameRepository;
 
     @Override
-    public Region create(Region region) {
+    public Region create(Region region) throws AlreadyExistsException {
         RegionJpo jpo = new RegionJpo(region);
+        if (repository.existsByName(region.getName())) {
+            throw new AlreadyExistsException(String.format("Region already exists with this name: %s", region.getName()));
+        }
         return repository.save(jpo).toDomain();
     }
 

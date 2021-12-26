@@ -12,7 +12,6 @@ import uz.agromon.tenant.service.TenantService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping("/api/tenant")
 public class TenantResource {
     @Autowired

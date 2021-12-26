@@ -44,7 +44,7 @@ public class AgroMonExceptionHandler extends ResponseEntityExceptionHandler {
         failureMessage.setExceptionName(AlreadyExistsException.class.toString());
         failureMessage.setExceptionMessage(e.getMessage());
 
-        return ResponseBuilder.buildError(failureMessage, HttpStatus.CONFLICT);
+        return ResponseBuilder.buildError(failureMessage, HttpStatus.OK);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

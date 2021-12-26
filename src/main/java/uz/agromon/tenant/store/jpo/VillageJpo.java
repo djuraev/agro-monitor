@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class VillageJpo extends AgroMonEntity {
     Integer districtSequence;
     String name;
+    String coordinates;
 
     @JoinColumn(name = "village_sequence")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -61,5 +62,13 @@ public class VillageJpo extends AgroMonEntity {
 
     public void setNames(List<VillageNameJpo> names) {
         this.names = names;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
     }
 }

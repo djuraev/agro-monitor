@@ -12,6 +12,7 @@ public class Village {
     Integer tenantId;
     Integer districtSequence;
     String name;
+    String coordinates;
     List<VillageName> names;
 
     public Village() {
@@ -64,5 +65,13 @@ public class Village {
 
     public void setNames(List<VillageName> names) {
         this.names = names;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
     }
 }

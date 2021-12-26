@@ -16,8 +16,9 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name="REGION")
 public class RegionJpo extends AgroMonEntity{
-    String name;
 
+    @Column(unique = true)
+    String name;
     @JoinColumn(name = "region_sequence")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     List<RegionNameJpo> names;
