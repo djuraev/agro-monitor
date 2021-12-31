@@ -5,6 +5,14 @@ import org.springframework.stereotype.Service;
 import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.config.exception.klass.InvalidParameterException;
 import uz.agromon.config.exception.klass.ResourceNotFoundException;
+import uz.agromon.tenant.domain.District;
+import uz.agromon.tenant.domain.Region;
+import uz.agromon.tenant.domain.Tenant;
+import uz.agromon.tenant.domain.Village;
+import uz.agromon.tenant.store.DistrictStore;
+import uz.agromon.tenant.store.RegionStore;
+import uz.agromon.tenant.store.TenantStore;
+import uz.agromon.tenant.store.VillageStore;
 import uz.agromon.user.domain.User;
 import uz.agromon.user.service.UserService;
 import uz.agromon.user.store.UserStore;
@@ -21,6 +29,19 @@ public class UserLogic implements UserService {
 
     @Autowired
     RoleRepository repository;
+
+    @Autowired
+    TenantStore tenantStore;
+
+    @Autowired
+    RegionStore regionStore;
+
+    @Autowired
+    DistrictStore districtStore;
+
+    @Autowired
+    VillageStore villageStore;
+
 
     @Override
     public User create(User user) throws AlreadyExistsException{
@@ -54,7 +75,19 @@ public class UserLogic implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-        return userStore.retrieve();
+        List<User> users = userStore.retrieve();
+        for (User user: users) {
+            Tenant tenant = tenantStore.retrieve(user.getTenantId());
+            Region region = regionStore.retrieve(user.getRegionSequence());
+            District district = districtStore.retrieve(user.getDistrictSequence());
+            Village village = villageStore.retrieve(user.getVillageSequence());
+
+            user.setCountry(tenant.getCountry());
+            user.setRegion(region.getName());
+            user.setDistrict(district.getName());
+            user.setVillage(village.getName());
+        }
+        return users;
     }
 
     @Override

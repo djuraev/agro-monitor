@@ -9,6 +9,8 @@ import uz.agromon.field.store.FieldStore;
 import uz.agromon.metrics.domain.Crop;
 import uz.agromon.metrics.service.CropService;
 import uz.agromon.remote.AgroMonitoringCaller;
+import uz.agromon.tenant.domain.Village;
+import uz.agromon.tenant.store.VillageStore;
 import uz.agromon.user.domain.User;
 import uz.agromon.user.service.UserService;
 
@@ -28,6 +30,9 @@ public class FieldLogic implements FieldService {
     @Autowired
     CropService cropService;
 
+    @Autowired
+    VillageStore villageStore;
+
     @Override
     public Field create(Field field) {
         boolean userExists = userService.userExists(field.getUsername());
@@ -35,6 +40,8 @@ public class FieldLogic implements FieldService {
             throw new ResourceNotFoundException(User.class, "Username not found: "+field.getUsername());
         }
         field = agroMonitoringCaller.createField(field);
+        Village village = villageStore.retrieve(field.getVillageSequence());
+        field.setVillageName(village.getName());
         return fieldStore.create(field);
     }
 

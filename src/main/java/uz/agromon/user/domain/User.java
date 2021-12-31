@@ -3,22 +3,26 @@ package uz.agromon.user.domain;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import javax.swing.*;
 import java.util.Set;
 
 
 @AllArgsConstructor
-@NoArgsConstructor
 public class User {
     private Integer sequence;
     private Integer tenantId;
+    private String country;
     private String name;
     private String surname;
     private String insuranceNumber;
     private String email;
     private String password;
     private Integer regionSequence;
+    private String region;
     private Integer districtSequence;
+    private String district;
     private Integer villageSequence;
+    private String village;
     private Set<String> roles;
     //Added after requirement
     String dateOfBirth;  //DD.MM.YYYY
@@ -144,4 +148,35 @@ public class User {
         this.extraInfo = extraInfo;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getVillage() {
+        return village;
+    }
+
+    public void setVillage(String village) {
+        this.village = village;
+    }
 }
