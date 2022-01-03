@@ -2,8 +2,12 @@ package uz.agromon.metrics.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.agromon.metrics.domain.Crop;
+import uz.agromon.metrics.domain.Metric;
 import uz.agromon.metrics.domain.VillageMetric;
 import uz.agromon.metrics.service.VillageMetricService;
+import uz.agromon.metrics.store.CropStore;
+import uz.agromon.metrics.store.MetricStore;
 import uz.agromon.metrics.store.VillageMetricStore;
 import uz.agromon.mobile.dto.response.YearValue;
 
@@ -14,6 +18,12 @@ import java.util.List;
 public class VillageMetricServiceLogic implements VillageMetricService {
     @Autowired
     VillageMetricStore villageMetricStore;
+
+    @Autowired
+    CropStore cropStore;
+
+    @Autowired
+    MetricStore metricStore;
 
     @Override
     public VillageMetric save(VillageMetric village) {
@@ -33,7 +43,14 @@ public class VillageMetricServiceLogic implements VillageMetricService {
     @Override
     public List<VillageMetric> getVillageMetrics(String villageSequence) {
         Integer sequence = Integer.parseInt(villageSequence);
-        return villageMetricStore.getVillageMetrics(sequence);
+        List<VillageMetric> villageMetrics = villageMetricStore.getVillageMetrics(sequence);
+        for (VillageMetric vm: villageMetrics) {
+            Crop crop = cropStore.retrieve(vm.getCropId());
+            Metric metric = metricStore.getById(vm.getMetricId());
+            vm.setMetricName(metric.getName());
+            vm.setCropName(crop.getName());
+        }
+        return villageMetrics;
     }
 
     @Override

@@ -31,8 +31,7 @@ public class DistrictMetricResource {
 
     @GetMapping("/metric/{id}")
     ResponseEntity<APIResponse> getMetricById(@PathVariable String id) {
-        Integer metricID = Integer.parseInt(id);
-        DistrictMetric entity = districtMetricService.getMetricById(metricID);
+        List<DistrictMetric> entity = districtMetricService.getDistrictMetrics(id);
         return ResponseBuilder.buildOk(entity);
     }
 }

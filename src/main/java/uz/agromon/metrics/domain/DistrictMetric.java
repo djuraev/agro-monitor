@@ -3,8 +3,10 @@ package uz.agromon.metrics.domain;
 public class DistrictMetric {
     //
     private Integer cropId;
+    private String cropName;
     private Integer districtId;
     private Integer metricId;
+    private String metricName;
     private String year;
     private String value;
 
@@ -59,5 +61,21 @@ public class DistrictMetric {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public String getCropName() {
+        return cropName;
+    }
+
+    public void setCropName(String cropName) {
+        this.cropName = cropName;
+    }
+
+    public String getMetricName() {
+        return metricName;
+    }
+
+    public void setMetricName(String metricName) {
+        this.metricName = metricName;
     }
 }

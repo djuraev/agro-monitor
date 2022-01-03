@@ -4,7 +4,9 @@ public class VillageMetric {
     //
     private Integer villageId;
     private Integer metricId;
+    private String metricName;
     private Integer cropId;
+    private String cropName;
     private String year;
     private String value;
 
@@ -59,5 +61,21 @@ public class VillageMetric {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public String getMetricName() {
+        return metricName;
+    }
+
+    public void setMetricName(String metricName) {
+        this.metricName = metricName;
+    }
+
+    public String getCropName() {
+        return cropName;
+    }
+
+    public void setCropName(String cropName) {
+        this.cropName = cropName;
     }
 }
