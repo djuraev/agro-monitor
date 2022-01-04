@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface VillageStore {
     Village create(Village village);
+    List<Village> saveAll(List<Village> villages);
     Village retrieve(Integer sequence);
     List<Village> retrieve();
     List<Village> retrieveByDistrict(Integer districtSequence);

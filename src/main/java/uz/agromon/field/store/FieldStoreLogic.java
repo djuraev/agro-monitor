@@ -68,4 +68,10 @@ public class FieldStoreLogic implements FieldStore {
     public boolean existsByUsernameAndId(String username, Integer fieldId) {
         return repository.existsByUsernameAndSequence(username, fieldId);
     }
+
+    @Override
+    public List<Field> getVillageFields(Integer vid) {
+        List<FieldJpo> fieldJpos = repository.getAllByVillageSequence(vid);
+        return FieldJpo.toDomains(fieldJpos);
+    }
 }

@@ -24,7 +24,7 @@ public class FieldJpo extends AgroMonEntity {
     private String apiKey;
     private String center;
     private Integer cropId;
-    private Integer cropName;
+    private String cropName;
     private String agromonArea;
     private String userArea;
     private String comment;
@@ -136,11 +136,11 @@ public class FieldJpo extends AgroMonEntity {
         this.comment = comment;
     }
 
-    public Integer getCropName() {
+    public String getCropName() {
         return cropName;
     }
 
-    public void setCropName(Integer cropName) {
+    public void setCropName(String cropName) {
         this.cropName = cropName;
     }
 }

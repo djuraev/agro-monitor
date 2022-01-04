@@ -44,4 +44,11 @@ public class FieldController {
         List<Field> userFields = fieldService.getFieldsOfUser(userSequence);
         return ResponseBuilder.buildOk(userFields);
     }
+
+    @GetMapping("/fields/{villageId}")
+    ResponseEntity<APIResponse> getAllFields(@PathVariable String villageId) {
+        Integer vid = Integer.valueOf(villageId);
+        List<Field> allFields = fieldService.getFieldOfVillage(vid);
+        return ResponseBuilder.buildOk(allFields);
+    }
 }

@@ -13,4 +13,5 @@ public interface FieldStore {
     List<Field> getUserFields(String username);
     Field getByUsernameAndId(String username, Integer id);
     boolean existsByUsernameAndId(String username, Integer fieldId);
+    List<Field> getVillageFields(Integer vid);
 }

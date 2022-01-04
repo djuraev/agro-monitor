@@ -42,6 +42,8 @@ public class FieldLogic implements FieldService {
         field = agroMonitoringCaller.createField(field);
         Village village = villageStore.retrieve(field.getVillageSequence());
         field.setVillageName(village.getName());
+        Crop crop = cropService.getCropById(field.getCropId());
+        field.setCropName(crop.getName());
         return fieldStore.create(field);
     }
 
@@ -57,7 +59,7 @@ public class FieldLogic implements FieldService {
 
     @Override
     public List<Field> getFieldOfVillage(Integer villageSequence) {
-        return null;
+        return fieldStore.getVillageFields(villageSequence);
     }
 
     @Override

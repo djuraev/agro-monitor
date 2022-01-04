@@ -39,5 +39,4 @@ public class DistrictResource {
     District addName(@PathVariable String  districtSequence, @RequestBody DistrictName name) {
         return districtService.addName(districtSequence, name);
     }
-
 }

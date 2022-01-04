@@ -21,6 +21,11 @@ public class VillageLogic implements VillageService {
     }
 
     @Override
+    public List<Village> create(List<Village> villages) {
+        return villageStore.saveAll(villages);
+    }
+
+    @Override
     public List<Village> getAllVillages() {
         return villageStore.retrieve();
     }

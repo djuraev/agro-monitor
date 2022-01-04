@@ -9,6 +9,7 @@ import uz.agromon.tenant.store.jpo.VillageNameJpo;
 import uz.agromon.tenant.store.repo.VillageNameRepository;
 import uz.agromon.tenant.store.repo.VillageRepository;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,10 +22,19 @@ public class VillageStoreLogic implements VillageStore {
     @Autowired
     VillageNameRepository villageNameRepository;
 
+
     @Override
     public Village create(Village village) {
         VillageJpo jpo = new VillageJpo(village);
         return repository.save(jpo).toDomain();
+    }
+
+    @Override
+    @Transactional
+    public List<Village> saveAll(List<Village> villages) {
+        List<VillageJpo> jpos = Village.toJpos(villages);
+        jpos = repository.saveAll(jpos);
+        return VillageJpo.toDomains(jpos);
     }
 
     @Override

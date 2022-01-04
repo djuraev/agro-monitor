@@ -16,7 +16,6 @@ public class Field {
     private String userArea;
     private String comment;
 
-
     public Field() {
         //
     }
@@ -132,4 +131,5 @@ public class Field {
     public void setCropName(String cropName) {
         this.cropName = cropName;
     }
+
 }

@@ -25,6 +25,12 @@ public class VillageResource {
         return villageService.create(village);
     }
 
+    @PostMapping("/villages")
+    ResponseEntity<APIResponse> createVillages(@RequestBody List<Village> villages) {
+        villages = villageService.create(villages);
+        return ResponseBuilder.buildOk(villages);
+    }
+
     @GetMapping("/villages/{districtId}/{langCode}")
     List<VillageCdo> getVillagesOfDistrict(@PathVariable String districtId, @PathVariable String langCode) {
         return villageService.getVillagesOfDistrict(districtId, langCode);

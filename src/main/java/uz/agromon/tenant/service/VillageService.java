@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface VillageService {
     Village create(Village village);
+    List<Village> create(List<Village> villages);
     List<Village> getAllVillages();
     List<Village> getVillagesOfDistrict(String districtSequence);
     List<VillageCdo> getVillagesOfDistrict(String districtSequence, String langCode);

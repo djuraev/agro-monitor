@@ -20,5 +20,4 @@ public class PurchaseResource {
         Purchase savedPurchase = purchaseService.save(purchase);
         return ResponseBuilder.buildOk(savedPurchase);
     }
-
 }

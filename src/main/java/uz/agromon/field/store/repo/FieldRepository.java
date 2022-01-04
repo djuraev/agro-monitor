@@ -10,4 +10,5 @@ public interface FieldRepository extends JpaRepository<FieldJpo, Integer> {
     List<FieldJpo> getAllByUsername(String username);
     FieldJpo getByUsernameAndSequence(String username, Integer sequence);
     boolean existsByUsernameAndSequence(String username, Integer sequence);
+    List<FieldJpo> getAllByVillageSequence(Integer villageSeq);
 }

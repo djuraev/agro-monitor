@@ -34,7 +34,9 @@ public class VillageJpo extends AgroMonEntity {
     public Village toDomain(){
         Village village = new Village();
         BeanUtils.copyProperties(this, village);
-        village.setNames(this.names.stream().map(VillageNameJpo::toDomain).collect(Collectors.toList()));
+        if (village.getNames() != null && !village.getNames().isEmpty()) {
+            village.setNames(this.names.stream().map(VillageNameJpo::toDomain).collect(Collectors.toList()));
+        }
         return village;
     }
     public static List<Village> toDomains(List<VillageJpo> jpos) {
