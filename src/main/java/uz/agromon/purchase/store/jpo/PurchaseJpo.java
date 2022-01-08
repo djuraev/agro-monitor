@@ -2,6 +2,7 @@ package uz.agromon.purchase.store.jpo;
 
 import org.springframework.beans.BeanUtils;
 import uz.agromon.purchase.domain.Purchase;
+import uz.agromon.tenant.store.jpo.AgroMonEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name="PURCHASE")
-public class PurchaseJpo {
+public class PurchaseJpo extends AgroMonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer sequence;

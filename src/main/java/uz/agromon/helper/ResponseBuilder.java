@@ -28,4 +28,11 @@ public class ResponseBuilder {
         apiResponse.setFailureMessage(message);
         return new ResponseEntity<>(apiResponse, httpStatus);
     }
+
+    public static ResponseEntity<APIPagesResponse> buildOk(List<Object> objects, long totalCount, int currentPage) {
+        APIPagesResponse apiPagesResponse = new APIPagesResponse(totalCount, currentPage);
+        apiPagesResponse.getEntities().addAll(objects);
+        apiPagesResponse.setRequestFailed(false);
+        return new ResponseEntity<>(apiPagesResponse, HttpStatus.OK);
+    }
 }

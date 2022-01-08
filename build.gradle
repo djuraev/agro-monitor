@@ -15,6 +15,8 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
     implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
@@ -24,7 +26,7 @@ dependencies {
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
     implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.3m'
     // https://mvnrepository.com/artifact/cz.jirutka.rsql/rsql-parser
-    implementation group: 'cz.jirutka.rsql', name: 'rsql-parser', version: '2.1.0'
+    // https://mvnrepository.com/artifact/cz.jirutka.rsql/rsql-parser
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

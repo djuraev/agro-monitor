@@ -2,6 +2,7 @@ package uz.agromon.claim.store.jpo;
 
 import org.springframework.beans.BeanUtils;
 import uz.agromon.claim.domain.Claim;
+import uz.agromon.tenant.store.jpo.AgroMonEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name="CLAIM")
-public class ClaimJpo {
+public class ClaimJpo extends AgroMonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sequence;
