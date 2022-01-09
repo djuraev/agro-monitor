@@ -33,6 +33,11 @@ public class DistrictMetricLogic implements DistrictMetricService {
     }
 
     @Override
+    public List<DistrictMetric> save(List<DistrictMetric> metrics) {
+        return districtMetricStore.save(metrics);
+    }
+
+    @Override
     public DistrictMetric getMetricById(Integer id) {
         return districtMetricStore.getById(id);
     }

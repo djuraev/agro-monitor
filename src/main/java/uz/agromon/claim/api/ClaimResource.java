@@ -7,6 +7,9 @@ import uz.agromon.claim.domain.Claim;
 import uz.agromon.claim.service.ClaimService;
 import uz.agromon.helper.APIResponse;
 import uz.agromon.helper.ResponseBuilder;
+import uz.agromon.mobile.dto.response.ClaimsResponse;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/claim")
@@ -18,5 +21,11 @@ public class ClaimResource {
     ResponseEntity<APIResponse> createClaim(@RequestBody Claim claim) {
         Claim savedClaim = claimService.createClaim(claim);
         return ResponseBuilder.buildOk(savedClaim);
+    }
+
+    @GetMapping(value = "/claims/{username}")
+    ResponseEntity<APIResponse> getUserClaims(@PathVariable String username) {
+        List<Claim> claims = claimService.getAllUserClaim(username);
+        return ResponseBuilder.buildOk(claims);
     }
 }

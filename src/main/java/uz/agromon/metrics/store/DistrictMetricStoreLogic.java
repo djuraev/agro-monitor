@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 import uz.agromon.metrics.domain.DistrictMetric;
 import uz.agromon.metrics.store.jpo.DistrictMetricJpo;
 import uz.agromon.metrics.store.repo.DistrictMetricRepository;
+import uz.agromon.tenant.domain.Village;
+import uz.agromon.tenant.store.jpo.VillageJpo;
 
 import java.util.List;
 
@@ -20,6 +22,13 @@ public class DistrictMetricStoreLogic implements DistrictMetricStore {
     public DistrictMetric save(DistrictMetric metric) {
         DistrictMetricJpo jpo = new DistrictMetricJpo(metric);
         return repository.save(jpo).toDomain();
+    }
+
+    @Override
+    public List<DistrictMetric> save(List<DistrictMetric> metrics) {
+        List<DistrictMetricJpo> jpos = DistrictMetric.toJpos(metrics);
+        jpos = repository.saveAll(jpos);
+        return DistrictMetricJpo.toDomains(jpos);
     }
 
     @Override

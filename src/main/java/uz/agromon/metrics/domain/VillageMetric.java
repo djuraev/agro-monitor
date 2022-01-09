@@ -1,5 +1,11 @@
 package uz.agromon.metrics.domain;
 
+import org.springframework.beans.BeanUtils;
+import uz.agromon.metrics.store.jpo.VillageMetricJpo;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class VillageMetric {
     //
     private Integer villageId;
@@ -10,17 +16,28 @@ public class VillageMetric {
     private String year;
     private String value;
 
-    public VillageMetric(Integer villageId, Integer metricId, Integer cropId, String year, String value) {
-        //
+    public VillageMetric(Integer villageId, Integer metricId, String metricName, Integer cropId, String cropName, String year, String value) {
         this.villageId = villageId;
         this.metricId = metricId;
+        this.metricName = metricName;
         this.cropId = cropId;
+        this.cropName = cropName;
         this.year = year;
         this.value = value;
     }
 
     public VillageMetric() {
         //
+    }
+
+    public VillageMetricJpo toJpo() {
+        VillageMetricJpo jpo = new VillageMetricJpo();
+        BeanUtils.copyProperties(this, jpo);
+        return jpo;
+    }
+
+    public static List<VillageMetricJpo> toJpos(List<VillageMetric> metrics) {
+        return metrics.stream().map(VillageMetric::toJpo).collect(Collectors.toList());
     }
 
     public Integer getVillageId() {

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface DistrictMetricStore {
     DistrictMetric save(DistrictMetric metric);
+    List<DistrictMetric> save(List<DistrictMetric> metrics);
     DistrictMetric getById(Integer id);
     List<DistrictMetric> retrieveAll();
     List<DistrictMetric> retrieveByDistrictId(Integer districtId);

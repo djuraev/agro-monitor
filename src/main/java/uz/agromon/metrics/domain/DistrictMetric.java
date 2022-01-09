@@ -1,5 +1,11 @@
 package uz.agromon.metrics.domain;
 
+import org.springframework.beans.BeanUtils;
+import uz.agromon.metrics.store.jpo.DistrictMetricJpo;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class DistrictMetric {
     //
     private Integer cropId;
@@ -10,17 +16,28 @@ public class DistrictMetric {
     private String year;
     private String value;
 
-    public DistrictMetric(Integer cropId, Integer districtId, Integer metricId, String year, String value) {
-        //
+    public DistrictMetric(Integer cropId, String cropName, Integer districtId, Integer metricId, String metricName, String year, String value) {
         this.cropId = cropId;
+        this.cropName = cropName;
         this.districtId = districtId;
         this.metricId = metricId;
+        this.metricName = metricName;
         this.year = year;
         this.value = value;
     }
 
     public DistrictMetric() {
         //
+    }
+
+    public DistrictMetricJpo toJpo() {
+        DistrictMetricJpo jpo = new DistrictMetricJpo();
+        BeanUtils.copyProperties(this, jpo);
+        return jpo;
+    }
+
+    public static List<DistrictMetricJpo> toJpos(List<DistrictMetric> districtMetrics) {
+        return districtMetrics.stream().map(DistrictMetric::toJpo).collect(Collectors.toList());
     }
 
     public Integer getCropId() {
@@ -78,4 +95,6 @@ public class DistrictMetric {
     public void setMetricName(String metricName) {
         this.metricName = metricName;
     }
+
+
 }

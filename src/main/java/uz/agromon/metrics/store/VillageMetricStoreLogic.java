@@ -20,6 +20,13 @@ public class VillageMetricStoreLogic implements VillageMetricStore {
     }
 
     @Override
+    public List<VillageMetric> saveAll(List<VillageMetric> metric) {
+        List<VillageMetricJpo> jpos = VillageMetric.toJpos(metric);
+        jpos = repository.saveAll(jpos);
+        return VillageMetricJpo.toDomains(jpos);
+    }
+
+    @Override
     public VillageMetric getById(Integer id) {
         return repository.getById(id).toDomain();
     }

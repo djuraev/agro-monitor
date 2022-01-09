@@ -7,6 +7,7 @@ import uz.agromon.helper.APIResponse;
 import uz.agromon.helper.ResponseBuilder;
 import uz.agromon.metrics.domain.DistrictMetric;
 import uz.agromon.metrics.service.DistrictMetricService;
+import uz.agromon.tenant.domain.Village;
 
 import java.util.List;
 
@@ -33,5 +34,11 @@ public class DistrictMetricResource {
     ResponseEntity<APIResponse> getMetricById(@PathVariable String id) {
         List<DistrictMetric> entity = districtMetricService.getDistrictMetrics(id);
         return ResponseBuilder.buildOk(entity);
+    }
+
+    @PostMapping("/metrics")
+    ResponseEntity<APIResponse> createMetrics(@RequestBody List<DistrictMetric> districtMetrics) {
+        districtMetrics = districtMetricService.save(districtMetrics);
+        return ResponseBuilder.buildOk(districtMetrics);
     }
 }

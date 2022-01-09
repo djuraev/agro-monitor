@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import uz.agromon.helper.APIPagesResponse;
 import uz.agromon.helper.APIResponse;
 import uz.agromon.helper.ResponseBuilder;
+import uz.agromon.mobile.dto.response.FarmerInsurancePurchases;
 import uz.agromon.purchase.domain.Purchase;
 import uz.agromon.purchase.service.PurchaseService;
 import uz.agromon.purchase.store.jpo.PurchaseJpo;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -33,5 +35,11 @@ public class PurchaseResource {
             @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
         Page<PurchaseJpo> purchases = purchaseService.findByPage(page, size);
         return ResponseBuilder.buildOk(Collections.singletonList(purchases.getContent()), purchases.getTotalElements(), purchases.getNumber());
+    }
+
+    @GetMapping(value = "/purchases/{username}")
+    ResponseEntity<APIResponse> getFarmerPurchases(@PathVariable String username) {
+        List<Purchase> purchases = purchaseService.getFarmerPurchases(username);
+        return ResponseBuilder.buildOk(purchases);
     }
 }

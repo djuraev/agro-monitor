@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface DistrictMetricService {
     DistrictMetric save(DistrictMetric metric);
+    List<DistrictMetric> save(List<DistrictMetric> metrics);
     DistrictMetric getMetricById(Integer id);
     List<DistrictMetric> getAllMetrics();
     List<DistrictMetric> getDistrictMetrics(String districtId);

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.agromon.helper.APIResponse;
 import uz.agromon.helper.ResponseBuilder;
+import uz.agromon.metrics.domain.DistrictMetric;
 import uz.agromon.metrics.domain.VillageMetric;
 import uz.agromon.metrics.service.VillageMetricService;
 
@@ -32,6 +33,12 @@ public class VillageMetricResource {
     @GetMapping("/village/{villageSequence}")
     ResponseEntity<APIResponse> getVillageMetrics(@PathVariable String villageSequence) {
         List<VillageMetric> villageMetrics = metricService.getVillageMetrics(villageSequence);
+        return ResponseBuilder.buildOk(villageMetrics);
+    }
+
+    @PostMapping("/metrics")
+    ResponseEntity<APIResponse> createMetrics(@RequestBody List<VillageMetric> villageMetrics) {
+        villageMetrics = metricService.save(villageMetrics);
         return ResponseBuilder.buildOk(villageMetrics);
     }
 }

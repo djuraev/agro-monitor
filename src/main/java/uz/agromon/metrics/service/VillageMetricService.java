@@ -6,7 +6,8 @@ import uz.agromon.mobile.dto.response.YearValue;
 import java.util.List;
 
 public interface VillageMetricService {
-    VillageMetric save(VillageMetric village);
+    VillageMetric save(VillageMetric villageMetric);
+    List<VillageMetric> save(List<VillageMetric> villageMetrics);
     VillageMetric getMetricById(Integer id);
     List<VillageMetric> getAllMetrics();
     List<VillageMetric> getVillageMetrics(String villageSequence);

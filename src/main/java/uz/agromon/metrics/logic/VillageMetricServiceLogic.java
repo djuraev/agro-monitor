@@ -31,6 +31,11 @@ public class VillageMetricServiceLogic implements VillageMetricService {
     }
 
     @Override
+    public List<VillageMetric> save(List<VillageMetric> villageMetrics) {
+        return villageMetricStore.saveAll(villageMetrics);
+    }
+
+    @Override
     public VillageMetric getMetricById(Integer id) {
         return villageMetricStore.getById(id);
     }
