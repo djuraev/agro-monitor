@@ -2,6 +2,7 @@ package uz.agromon.metrics.store.jpo;
 
 import org.springframework.beans.BeanUtils;
 import uz.agromon.metrics.domain.DistrictMetric;
+import uz.agromon.tenant.store.jpo.AgroMonEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name="DISTRICT_METRIC")
-public class DistrictMetricJpo {
+public class DistrictMetricJpo extends AgroMonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sequence;

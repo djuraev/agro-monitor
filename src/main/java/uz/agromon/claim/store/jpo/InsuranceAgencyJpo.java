@@ -1,8 +1,8 @@
 package uz.agromon.claim.store.jpo;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
 import uz.agromon.claim.domain.InsuranceAgency;
+import uz.agromon.tenant.store.jpo.AgroMonEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name="INSURANCE_AGENCY")
-public class InsuranceAgencyJpo {
+public class InsuranceAgencyJpo extends AgroMonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sequence;

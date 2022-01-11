@@ -2,6 +2,7 @@ package uz.agromon.cropyield.store.jpo;
 
 import org.springframework.beans.BeanUtils;
 import uz.agromon.cropyield.domain.CropYield;
+import uz.agromon.tenant.store.jpo.AgroMonEntity;
 
 import javax.persistence.*;
 import java.util.List;
