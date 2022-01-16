@@ -29,8 +29,8 @@ public class ResponseBuilder {
         return new ResponseEntity<>(apiResponse, httpStatus);
     }
 
-    public static ResponseEntity<APIPagesResponse> buildOk(List<Object> objects, long totalCount, int currentPage) {
-        APIPagesResponse apiPagesResponse = new APIPagesResponse(totalCount, currentPage);
+    public static ResponseEntity<APIPagesResponse> buildOk(List<Object> objects, long totalCount, int currentPage, int totalPages) {
+        APIPagesResponse apiPagesResponse = new APIPagesResponse(totalCount, currentPage, totalPages);
         apiPagesResponse.getEntities().addAll(objects);
         apiPagesResponse.setRequestFailed(false);
         return new ResponseEntity<>(apiPagesResponse, HttpStatus.OK);

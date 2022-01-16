@@ -2,8 +2,6 @@ package uz.agromon.purchase.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import uz.agromon.purchase.domain.Purchase;
 import uz.agromon.purchase.service.PurchaseService;
@@ -31,5 +29,4 @@ public class PurchaseLogic implements PurchaseService {
     public Page<PurchaseJpo> findByPage(int page, int pageSize) {
         return purchaseStore.findAll(page, pageSize);
     }
-
 }

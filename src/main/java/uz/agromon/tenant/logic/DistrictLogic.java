@@ -5,10 +5,13 @@ import org.springframework.stereotype.Service;
 import uz.agromon.tenant.domain.District;
 import uz.agromon.tenant.domain.DistrictName;
 import uz.agromon.tenant.domain.Region;
+import uz.agromon.tenant.domain.Tenant;
 import uz.agromon.tenant.domain.cdo.DistrictCdo;
 import uz.agromon.tenant.service.DistrictService;
 import uz.agromon.tenant.service.RegionService;
 import uz.agromon.tenant.store.DistrictStore;
+import uz.agromon.tenant.store.RegionStore;
+import uz.agromon.tenant.store.TenantStore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +22,10 @@ public class DistrictLogic implements DistrictService {
     DistrictStore districtStore;
 
     @Autowired
-    RegionService regionService;
+    RegionStore regionStore;
+
+    @Autowired
+    TenantStore tenantStore;
 
     @Override
     public District create(District district) {
@@ -41,7 +47,14 @@ public class DistrictLogic implements DistrictService {
     @Override
     public List<District> getDistrictsOfRegion(String regionSequence) {
         Integer rId = Integer.valueOf(regionSequence);
-        return districtStore.retrieveByRegion(rId);
+        Region region = regionStore.retrieve(rId);
+        Tenant tenant = tenantStore.retrieve(region.getTenantId());
+        List<District> districts = districtStore.retrieveByRegion(rId);
+        for (District district: districts) {
+            district.setCountry(tenant.getCountry());
+            district.setRegionName(region.getName());
+        }
+        return districts;
     }
 
     @Override

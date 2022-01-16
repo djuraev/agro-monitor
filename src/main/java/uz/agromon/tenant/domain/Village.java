@@ -14,7 +14,10 @@ import java.util.stream.Collectors;
 public class Village {
     Integer sequence;
     Integer tenantId;
+    String country;
     Integer districtSequence;
+    String regionName;
+    String districtName;
     String name;
     String coordinates;
     List<VillageName> names;
@@ -89,5 +92,29 @@ public class Village {
 
     public void setCoordinates(String coordinates) {
         this.coordinates = coordinates;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getRegionName() {
+        return regionName;
+    }
+
+    public void setRegionName(String regionName) {
+        this.regionName = regionName;
+    }
+
+    public String getDistrictName() {
+        return districtName;
+    }
+
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
     }
 }

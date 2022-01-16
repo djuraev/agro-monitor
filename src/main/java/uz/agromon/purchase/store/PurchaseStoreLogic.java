@@ -32,7 +32,6 @@ public class PurchaseStoreLogic implements PurchaseStore {
     public Page<PurchaseJpo> findAll(int page, int pageSize) {
         Pageable paging = PageRequest.of(page, pageSize);
         return repository.findAllBy(paging);
-
     }
 
 }

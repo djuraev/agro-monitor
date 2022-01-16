@@ -15,7 +15,9 @@ import java.util.Map;
 public class District  {
     Integer sequence;
     Integer tenantId;
+    String country;
     Integer regionSequence;
+    String regionName;
     String name;
     List<DistrictName> names;
 
@@ -86,5 +88,21 @@ public class District  {
 
     public void setNames(List<DistrictName> names) {
         this.names = names;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getRegionName() {
+        return regionName;
+    }
+
+    public void setRegionName(String regionName) {
+        this.regionName = regionName;
     }
 }

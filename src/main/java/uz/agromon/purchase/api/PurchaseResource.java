@@ -34,7 +34,12 @@ public class PurchaseResource {
     ResponseEntity<APIPagesResponse> getAllPurchases(
             @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
         Page<PurchaseJpo> purchases = purchaseService.findByPage(page, size);
-        return ResponseBuilder.buildOk(Collections.singletonList(purchases.getContent()), purchases.getTotalElements(), purchases.getNumber());
+        return ResponseBuilder.buildOk(Collections.singletonList(purchases.getContent()), purchases.getTotalElements(), purchases.getNumber(), purchases.getTotalPages());
+    }
+
+    @GetMapping("purchases/{tenantId}")
+    ResponseEntity<APIResponse> getTenantPurchases(@PathVariable String tenantId) {
+        return null;
     }
 
     @GetMapping(value = "/purchases/{username}")

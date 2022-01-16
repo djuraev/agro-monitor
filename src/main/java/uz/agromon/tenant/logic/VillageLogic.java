@@ -2,10 +2,12 @@ package uz.agromon.tenant.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uz.agromon.tenant.domain.Village;
-import uz.agromon.tenant.domain.VillageName;
+import uz.agromon.tenant.domain.*;
 import uz.agromon.tenant.domain.cdo.VillageCdo;
 import uz.agromon.tenant.service.VillageService;
+import uz.agromon.tenant.store.DistrictStore;
+import uz.agromon.tenant.store.RegionStore;
+import uz.agromon.tenant.store.TenantStore;
 import uz.agromon.tenant.store.VillageStore;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,15 @@ import java.util.List;
 public class VillageLogic implements VillageService {
     @Autowired
     VillageStore villageStore;
+
+    @Autowired
+    TenantStore tenantStore;
+
+    @Autowired
+    RegionStore regionStore;
+
+    @Autowired
+    DistrictStore districtStore;
 
     @Override
     public Village create(Village village) {
@@ -33,7 +44,16 @@ public class VillageLogic implements VillageService {
     @Override
     public List<Village> getVillagesOfDistrict(String districtSequence) {
         Integer dId = Integer.valueOf(districtSequence);
-        return villageStore.retrieveByDistrict(dId);
+        District district = districtStore.retrieve(dId);
+        Region region = regionStore.retrieve(district.getRegionSequence());
+        Tenant tenant = tenantStore.retrieve(region.getTenantId());
+        List<Village> villages = villageStore.retrieveByDistrict(dId);
+        for (Village village: villages) {
+            village.setCountry(tenant.getCountry());
+            village.setRegionName(region.getName());
+            village.setDistrictName(district.getName());
+        }
+        return villages;
     }
 
     @Override

@@ -2,6 +2,7 @@ package uz.agromon.user.store;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Repository;
 import uz.agromon.config.exception.klass.ResourceNotFoundException;
 import uz.agromon.user.domain.ERole;
@@ -94,5 +95,19 @@ public class UserStoreLogic implements UserStore{
             return User.getEmptyInstance();
         }
         return userJpo.toDomain();
+    }
+
+    @Override
+    public Page<User> getUserDynamicQuery(Integer tId, Integer rId, Integer dId, Integer vId, Pageable page) {
+        //
+        Page<UserJpo> userJpos = repository.getUsers(tId, rId, dId, vId, page);
+        return null;
+    }
+
+    @Override
+    public Page<UserJpo> getAll(User user, Pageable page) {
+        UserJpo jpo = new UserJpo(user);
+        Example<UserJpo> example = Example.of(jpo);
+        return repository.findAll(example, page);
     }
 }

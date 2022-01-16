@@ -3,11 +3,12 @@ package uz.agromon.helper;
 public class APIPagesResponse extends APIResponse {
     private long totalCount;
     private int currentPage;
+    private int totalPages;
 
-
-    public APIPagesResponse(long totalCount, int currentPage) {
+    public APIPagesResponse(long totalCount, int currentPage, int totalPages) {
         this.totalCount = totalCount;
         this.currentPage = currentPage;
+        this.totalPages = totalPages;
     }
 
     public long getTotalCount() {
@@ -24,5 +25,13 @@ public class APIPagesResponse extends APIResponse {
 
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
+    }
+
+    public int getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
     }
 }

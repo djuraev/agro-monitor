@@ -1,14 +1,19 @@
 package uz.agromon.user.api.rest;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.agromon.config.exception.klass.AlreadyExistsException;
+import uz.agromon.helper.APIPagesResponse;
 import uz.agromon.helper.APIResponse;
 import uz.agromon.helper.ResponseBuilder;
 import uz.agromon.user.domain.User;
 import uz.agromon.user.service.UserService;
+import uz.agromon.user.store.jpo.UserJpo;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -40,5 +45,12 @@ public class UserResource {
     ResponseEntity<APIResponse> getUserInfo(@PathVariable String insuNumber) {
         User user = userService.getByInsuranceNumber(insuNumber);
         return ResponseBuilder.buildOk(user);
+    }
+
+    @PostMapping("/user/dynamic/{page}/{count}")
+    ResponseEntity<APIPagesResponse> dynamicUserRequest(@RequestBody User user, @PathVariable Integer page, @PathVariable Integer count) {
+        Page<UserJpo> users = userService.findAll(user, page, count);
+        users.getTotalPages();
+        return ResponseBuilder.buildOk(Collections.singletonList(users.getContent()), users.getTotalElements(), users.getNumber(), users.getTotalPages());
     }
 }

@@ -1,6 +1,9 @@
 package uz.agromon.user.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.config.exception.klass.InvalidParameterException;
@@ -13,9 +16,11 @@ import uz.agromon.tenant.store.DistrictStore;
 import uz.agromon.tenant.store.RegionStore;
 import uz.agromon.tenant.store.TenantStore;
 import uz.agromon.tenant.store.VillageStore;
+import uz.agromon.user.domain.ERole;
 import uz.agromon.user.domain.User;
 import uz.agromon.user.service.UserService;
 import uz.agromon.user.store.UserStore;
+import uz.agromon.user.store.jpo.UserJpo;
 import uz.agromon.user.store.repo.RoleRepository;
 import uz.agromon.util.PasswordUtil;
 
@@ -70,6 +75,9 @@ public class UserLogic implements UserService {
         if (!PasswordUtil.isValidPassword(password, user.getPassword())) {
             throw new InvalidParameterException("Invalid password");
         }
+        if (!user.getRoles().contains("ADMIN")) {
+            throw new ResourceNotFoundException(ERole.class, "Admin not found");
+        }
         return user;
     }
 
@@ -98,5 +106,11 @@ public class UserLogic implements UserService {
     @Override
     public User getByInsuranceNumber(String insuranceNumber) {
         return userStore.retrieve(insuranceNumber);
+    }
+
+    @Override
+    public Page<UserJpo> findAll(User user, int pageNumber, int pageSize) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return userStore.getAll(user, page);
     }
 }
