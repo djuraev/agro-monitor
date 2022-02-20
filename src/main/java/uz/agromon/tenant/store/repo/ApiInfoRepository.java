@@ -8,4 +8,5 @@ import java.util.List;
 public interface ApiInfoRepository extends JpaRepository<ApiInfoJpo, Integer> {
     List<ApiInfoJpo> getAllBy();
     ApiInfoJpo getByApiName(String name);
+    List<ApiInfoJpo> getAllByApiKey(String key);
 }

@@ -28,4 +28,10 @@ public class ClaimResource {
         List<Claim> claims = claimService.getAllUserClaim(username);
         return ResponseBuilder.buildOk(claims);
     }
+
+    @GetMapping(value = "/claims/{tenant}/{status}")
+    ResponseEntity<APIResponse> getClaimsByStatus(@PathVariable String tenant, @PathVariable String status) {
+        List<Claim> claims = claimService.getClaimsByStatus(tenant, status);
+        return ResponseBuilder.buildOk(claims);
+    }
 }

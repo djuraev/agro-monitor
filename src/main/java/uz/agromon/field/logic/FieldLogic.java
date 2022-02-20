@@ -40,6 +40,7 @@ public class FieldLogic implements FieldService {
             throw new ResourceNotFoundException(User.class, "Username not found: "+field.getUsername());
         }
         field = agroMonitoringCaller.createField(field);
+
         Village village = villageStore.retrieve(field.getVillageSequence());
         field.setVillageName(village.getName());
         Crop crop = cropService.getCropById(field.getCropId());

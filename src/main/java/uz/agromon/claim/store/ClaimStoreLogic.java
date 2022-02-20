@@ -30,4 +30,13 @@ public class ClaimStoreLogic implements ClaimStore {
         }
         return ClaimJpo.toDomain(jpos);
     }
+
+    @Override
+    public List<Claim> retrieveByStatus(Integer tenant, String status) {
+        List<ClaimJpo> claimJpos = claimRepository.getAllByTenantIdAndStatus(tenant, status);
+        if (claimJpos == null || claimJpos.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return ClaimJpo.toDomain(claimJpos);
+    }
 }

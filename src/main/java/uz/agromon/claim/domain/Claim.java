@@ -3,6 +3,7 @@ package uz.agromon.claim.domain;
 public class Claim {
     //
     private Integer sequence;
+    private Integer tenantId;
     private String username;
     private Integer fieldId;
     private String fieldName;
@@ -104,5 +105,13 @@ public class Claim {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public Integer getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(Integer tenantId) {
+        this.tenantId = tenantId;
     }
 }
