@@ -1,16 +1,19 @@
 package uz.agromon.field.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.agromon.field.domain.Field;
 import uz.agromon.field.service.FieldService;
+import uz.agromon.field.store.jpo.FieldJpo;
+import uz.agromon.helper.APIPagesResponse;
 import uz.agromon.helper.APIResponse;
 import uz.agromon.helper.ResponseBuilder;
+import uz.agromon.user.domain.User;
+import uz.agromon.user.store.jpo.UserJpo;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/field")
@@ -50,5 +53,12 @@ public class FieldController {
         Integer vid = Integer.valueOf(villageId);
         List<Field> allFields = fieldService.getFieldOfVillage(vid);
         return ResponseBuilder.buildOk(allFields);
+    }
+
+    @PostMapping("/fields/dynamic")
+    ResponseEntity<APIResponse> dynamicFieldRequest(@RequestBody Field field) {
+        List<FieldJpo> fields = fieldService.findAll(field);
+        Collections.reverse(fields);
+        return ResponseBuilder.buildOk(fields);
     }
 }

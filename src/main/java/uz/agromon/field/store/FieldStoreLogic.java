@@ -2,11 +2,15 @@ package uz.agromon.field.store;
 
 import  org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import uz.agromon.config.exception.klass.ResourceNotFoundException;
 import uz.agromon.field.domain.Field;
 import uz.agromon.field.store.jpo.FieldJpo;
 import uz.agromon.field.store.repo.FieldRepository;
+import uz.agromon.user.store.jpo.UserJpo;
 
 import java.util.Collections;
 import java.util.List;
@@ -74,6 +78,13 @@ public class FieldStoreLogic implements FieldStore {
     public List<Field> getVillageFields(Integer vid) {
         List<FieldJpo> fieldJpos = repository.getAllByVillageSequence(vid);
         return FieldJpo.toDomains(fieldJpos);
+    }
+
+    @Override
+    public List<FieldJpo> findAll(Field field) {
+        FieldJpo fieldJpo = new FieldJpo(field);
+        Example<FieldJpo> example = Example.of(fieldJpo);
+        return repository.findAll(example);
     }
 }
 

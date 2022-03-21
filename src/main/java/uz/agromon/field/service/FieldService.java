@@ -1,6 +1,7 @@
 package uz.agromon.field.service;
 
 import uz.agromon.field.domain.Field;
+import uz.agromon.field.store.jpo.FieldJpo;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface FieldService {
     List<Field> getFieldsOfUser(String username);
     void deleteField(Integer fieldId);
     boolean isUserFieldOwner(String username, Integer fieldId);
+    List<FieldJpo> findAll(Field field);
 }

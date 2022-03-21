@@ -1,6 +1,5 @@
 package uz.agromon.user.store;
 
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import uz.agromon.user.domain.User;
@@ -19,4 +18,6 @@ public interface UserStore {
     User retrieve(String birthday, String phone, String insuNumber, Integer districtId);
     Page<User> getUserDynamicQuery(Integer tId, Integer rId, Integer dId, Integer vId, Pageable page);
     Page<UserJpo> getAll(User user, Pageable page);
+    Page<UserJpo> getAll(User user);
+    void deleteUser(Integer userSequence);
 }

@@ -17,4 +17,6 @@ public interface UserService {
     boolean userExists(String username);
     User getByInsuranceNumber(String insuranceNumber);
     Page<UserJpo> findAll(User user, int pageNumber, int pageSize);
+    Page<UserJpo> findAll(User user);
+    void removeUser(String userSequence);
 }

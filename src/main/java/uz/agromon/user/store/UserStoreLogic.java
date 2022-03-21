@@ -110,4 +110,19 @@ public class UserStoreLogic implements UserStore{
         Example<UserJpo> example = Example.of(jpo);
         return repository.findAll(example, page);
     }
+
+    @Override
+    public Page<UserJpo> getAll(User user) {
+        Pageable page = PageRequest.of(0, Integer.MAX_VALUE);
+        return this.getAll(user, page);
+    }
+
+    @Override
+    public void deleteUser(Integer userSequence) {
+        Optional<UserJpo> jpo = repository.findById(userSequence);
+        if (jpo.isPresent()) {
+            jpo.get().setRoles(null);
+            repository.delete(jpo.get());
+        }
+    }
 }

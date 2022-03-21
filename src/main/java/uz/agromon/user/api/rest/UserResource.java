@@ -13,6 +13,7 @@ import uz.agromon.user.domain.User;
 import uz.agromon.user.service.UserService;
 import uz.agromon.user.store.jpo.UserJpo;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,6 +52,21 @@ public class UserResource {
     ResponseEntity<APIPagesResponse> dynamicUserRequest(@RequestBody User user, @PathVariable Integer page, @PathVariable Integer count) {
         Page<UserJpo> users = userService.findAll(user, page, count);
         users.getTotalPages();
-        return ResponseBuilder.buildOk(Collections.singletonList(users.getContent()), users.getTotalElements(), users.getNumber(), users.getTotalPages());
+        return ResponseBuilder.buildOk(users.getContent(), users.getTotalElements(), users.getNumber(), users.getTotalPages());
+    }
+
+    @PostMapping("/user/dynamic")
+    ResponseEntity<APIPagesResponse> dynamicUserRequest(@RequestBody User user) {
+        Page<UserJpo> users = userService.findAll(user);
+        users.getTotalPages();
+        List<UserJpo> jpos = new ArrayList<>(users.getContent());
+        Collections.reverse(jpos);
+        return ResponseBuilder.buildOk(jpos, users.getTotalElements(), users.getNumber(), users.getTotalPages());
+    }
+
+    @DeleteMapping("/user/{userId}")
+    ResponseEntity<APIResponse> deleteUser(@PathVariable String userId) {
+        userService.removeUser(userId);
+        return ResponseBuilder.buildOk("User deleted Successfully");
     }
 }

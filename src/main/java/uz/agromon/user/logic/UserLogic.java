@@ -113,4 +113,15 @@ public class UserLogic implements UserService {
         Pageable page = PageRequest.of(pageNumber, pageSize);
         return userStore.getAll(user, page);
     }
+
+    @Override
+    public Page<UserJpo> findAll(User user) {
+        return userStore.getAll(user);
+    }
+
+    @Override
+    public void removeUser(String userSequence) {
+        Integer userId = Integer.valueOf(userSequence);
+        userStore.deleteUser(userId);
+    }
 }

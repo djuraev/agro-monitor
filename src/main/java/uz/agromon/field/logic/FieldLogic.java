@@ -6,6 +6,7 @@ import uz.agromon.config.exception.klass.ResourceNotFoundException;
 import uz.agromon.field.domain.Field;
 import uz.agromon.field.service.FieldService;
 import uz.agromon.field.store.FieldStore;
+import uz.agromon.field.store.jpo.FieldJpo;
 import uz.agromon.metrics.domain.Crop;
 import uz.agromon.metrics.service.CropService;
 import uz.agromon.remote.AgroMonitoringCaller;
@@ -88,5 +89,10 @@ public class FieldLogic implements FieldService {
     @Override
     public boolean isUserFieldOwner(String username, Integer fieldId) {
         return fieldStore.existsByUsernameAndId(username, fieldId);
+    }
+
+    @Override
+    public List<FieldJpo> findAll(Field field) {
+        return fieldStore.findAll(field);
     }
 }

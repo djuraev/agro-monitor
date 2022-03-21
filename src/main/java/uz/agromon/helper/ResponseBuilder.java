@@ -4,6 +4,7 @@ package uz.agromon.helper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ResponseBuilder {
@@ -29,8 +30,9 @@ public class ResponseBuilder {
         return new ResponseEntity<>(apiResponse, httpStatus);
     }
 
-    public static ResponseEntity<APIPagesResponse> buildOk(List<Object> objects, long totalCount, int currentPage, int totalPages) {
+    public static ResponseEntity<APIPagesResponse> buildOk(List<?> objects, long totalCount, int currentPage, int totalPages) {
         APIPagesResponse apiPagesResponse = new APIPagesResponse(totalCount, currentPage, totalPages);
+
         apiPagesResponse.getEntities().addAll(objects);
         apiPagesResponse.setRequestFailed(false);
         return new ResponseEntity<>(apiPagesResponse, HttpStatus.OK);
