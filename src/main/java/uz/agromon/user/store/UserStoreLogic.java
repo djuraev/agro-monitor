@@ -12,8 +12,6 @@ import uz.agromon.user.store.jpo.UserJpo;
 import uz.agromon.user.store.repo.RoleRepository;
 import uz.agromon.user.store.repo.UserRepository;
 import uz.agromon.util.PasswordUtil;
-
-import javax.swing.text.html.Option;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;

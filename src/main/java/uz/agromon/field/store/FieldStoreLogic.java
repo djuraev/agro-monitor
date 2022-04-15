@@ -30,10 +30,10 @@ public class FieldStoreLogic implements FieldStore {
     @Override
     public Field retrieve(Integer sequence) {
         Optional<FieldJpo> jpo = repository.findById(sequence);
-        if (jpo.isEmpty()) {
-            throw new ResourceNotFoundException(Field.class, "Field not found");
+        if (jpo.isPresent()) {
+            return jpo.get().toDomain();
         }
-        return jpo.get().toDomain();
+        throw new ResourceNotFoundException(Field.class, "Field not found");
     }
 
     @Override
