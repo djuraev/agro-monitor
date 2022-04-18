@@ -26,6 +26,7 @@ public class ClaimResource {
     @GetMapping(value = "/claims/{username}")
     ResponseEntity<APIResponse> getUserClaims(@PathVariable String username) {
         List<Claim> claims = claimService.getAllUserClaim(username);
+
         return ResponseBuilder.buildOk(claims);
     }
 

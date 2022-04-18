@@ -13,6 +13,8 @@ import uz.agromon.metrics.store.MetricStore;
 import uz.agromon.mobile.dto.response.YearValue;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -51,18 +53,30 @@ public class DistrictMetricLogic implements DistrictMetricService {
     public List<DistrictMetric> getDistrictMetrics(String districtId) {
         Integer did = Integer.parseInt(districtId);
         List<DistrictMetric> metrics = districtMetricStore.retrieveByDistrictId(did);
+        updateMetricsInfo(metrics);
+        return metrics;
+    }
+
+    @Override
+    public List<DistrictMetric> getDistrictMetrics(Integer districtId, String metricId) {
+        List<DistrictMetric> metrics = districtMetricStore.retrieveByDistrictAndMetric(districtId, Integer.parseInt(metricId));
+        this.updateMetricsInfo(metrics);
+        return metrics;
+    }
+
+    private void updateMetricsInfo(List<DistrictMetric> metrics) {
         for (DistrictMetric dm: metrics) {
             Crop crop = cropStore.retrieve(dm.getCropId());
             Metric metric = metricStore.getById(dm.getMetricId());
             dm.setCropName(crop.getName());
             dm.setMetricName(metric.getName());
         }
-        return metrics;
-    }
-
-    @Override
-    public List<DistrictMetric> getDistrictMetrics(Integer districtId, String metricId) {
-        return districtMetricStore.retrieveByDistrictAndMetric(districtId, Integer.parseInt(metricId));
+        Collections.sort(metrics, new Comparator<DistrictMetric>() {
+            @Override
+            public int compare(DistrictMetric o1, DistrictMetric o2) {
+                return o1.getCropName().compareTo(o2.getCropName());
+            }
+        });
     }
 
     @Override

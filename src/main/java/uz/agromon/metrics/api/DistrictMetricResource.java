@@ -41,4 +41,10 @@ public class DistrictMetricResource {
         districtMetrics = districtMetricService.save(districtMetrics);
         return ResponseBuilder.buildOk(districtMetrics);
     }
+
+    @GetMapping("/metric/{districtId}/{metricId}")
+    ResponseEntity<APIResponse> getMetricByIdAndMetricId(@PathVariable String districtId, @PathVariable String metricId) {
+        List<DistrictMetric> metrics = districtMetricService.getDistrictMetrics(Integer.valueOf(districtId), metricId);
+        return ResponseBuilder.buildOk(metrics);
+    }
 }
