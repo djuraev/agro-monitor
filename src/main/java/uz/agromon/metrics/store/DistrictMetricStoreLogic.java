@@ -1,12 +1,13 @@
 package uz.agromon.metrics.store;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
+import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.metrics.domain.DistrictMetric;
 import uz.agromon.metrics.store.jpo.DistrictMetricJpo;
 import uz.agromon.metrics.store.repo.DistrictMetricRepository;
-import uz.agromon.tenant.domain.Village;
-import uz.agromon.tenant.store.jpo.VillageJpo;
+
 
 import java.util.List;
 
@@ -19,9 +20,15 @@ public class DistrictMetricStoreLogic implements DistrictMetricStore {
 
 
     @Override
-    public DistrictMetric save(DistrictMetric metric) {
+    public DistrictMetric save(DistrictMetric metric) throws AlreadyExistsException {
         DistrictMetricJpo jpo = new DistrictMetricJpo(metric);
-        return repository.save(jpo).toDomain();
+        try {
+            repository.save(jpo);
+        }
+        catch (DataIntegrityViolationException exception) {
+            throw new AlreadyExistsException("Data is already exists with these values");
+        }
+        return jpo.toDomain();
     }
 
     @Override

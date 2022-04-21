@@ -17,7 +17,9 @@ public class DistrictMetricJpo extends AgroMonEntity {
     private Integer cropId;
     private Integer districtId;
     private Integer metricId;
+    @Column(unique = true, length = 10)
     private String year;
+    @Column(length = 10)
     private String value;
 
     public DistrictMetricJpo(Integer sequence, Integer cropId, Integer districtId, Integer metricId, String year, String value) {

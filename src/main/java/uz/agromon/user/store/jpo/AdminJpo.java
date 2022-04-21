@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 import uz.agromon.tenant.store.jpo.AgroMonEntity;
 import uz.agromon.user.domain.Admin;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.List;
@@ -18,9 +20,13 @@ import java.util.stream.Collectors;
 public class AdminJpo extends AgroMonEntity {
     String name;
     String surname;
+    @Column(unique = true)
     String username;
     String password;
     AdminType adminType;
+
+    @Column(length = 120)
+    String extraInfo;
 
     public AdminJpo() {
     }
@@ -87,5 +93,13 @@ public class AdminJpo extends AgroMonEntity {
 
     public void setAdminType(AdminType adminType) {
         this.adminType = adminType;
+    }
+
+    public String getExtraInfo() {
+        return extraInfo;
+    }
+
+    public void setExtraInfo(String extraInfo) {
+        this.extraInfo = extraInfo;
     }
 }

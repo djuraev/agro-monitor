@@ -5,4 +5,5 @@ import uz.agromon.user.store.jpo.AdminJpo;
 
 public interface AdminRepository extends JpaRepository<AdminJpo, Integer> {
     AdminJpo getByUsernameAndPassword(String username, String password);
+    void deleteByUsername(String username);
 }

@@ -34,4 +34,10 @@ public class PurchaseStoreLogic implements PurchaseStore {
         return repository.findAllBy(paging);
     }
 
+    @Override
+    public List<Purchase> getTenantPurchases(Integer tenantId) {
+        List<PurchaseJpo> jpos = repository.findAllByTenantId(tenantId);
+        return PurchaseJpo.toDomains(jpos);
+    }
+
 }

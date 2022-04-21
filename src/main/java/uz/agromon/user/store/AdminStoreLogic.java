@@ -2,11 +2,15 @@ package uz.agromon.user.store;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
+import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.config.exception.klass.ResourceNotFoundException;
 import uz.agromon.user.domain.Admin;
 import uz.agromon.user.store.jpo.AdminJpo;
 import uz.agromon.user.store.repo.AdminRepository;
+
+import java.util.List;
 
 @Repository
 public class AdminStoreLogic implements AdminStore{
@@ -21,5 +25,33 @@ public class AdminStoreLogic implements AdminStore{
             throw new ResourceNotFoundException(Admin.class, "Admin not found. Username/password error.");
         }
         return adminJpo.toDomain();
+    }
+
+    @Override
+    public Admin save(Admin admin) throws AlreadyExistsException {
+        AdminJpo jpo = new AdminJpo(admin);
+        try {
+            jpo = adminRepository.save(jpo);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new AlreadyExistsException("Admin with username already exists");
+        }
+         return jpo.toDomain();
+    }
+
+    @Override
+    public void delete(String username) {
+        try {
+            adminRepository.deleteByUsername(username);
+        }
+        catch (Exception e) {
+            throw new DataIntegrityViolationException("Cannot delete manager");
+        }
+
+    }
+
+    @Override
+    public List<Admin> getAll() {
+        return AdminJpo.toDomains(adminRepository.findAll());
     }
 }

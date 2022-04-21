@@ -3,13 +3,15 @@ package uz.agromon.user.domain;
 import uz.agromon.user.store.jpo.AdminType;
 
 public class Admin {
+    Integer sequence;
     Integer tenantId;
     String name;
     String surname;
     String username;
     String password;
     AdminType adminType;
-
+    String extraInfo;
+    String country;
 
     public Integer getTenantId() {
         return tenantId;
@@ -57,5 +59,29 @@ public class Admin {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Integer getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(Integer sequence) {
+        this.sequence = sequence;
+    }
+
+    public String getExtraInfo() {
+        return extraInfo;
+    }
+
+    public void setExtraInfo(String extraInfo) {
+        this.extraInfo = extraInfo;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

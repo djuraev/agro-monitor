@@ -2,6 +2,7 @@ package uz.agromon.metrics.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.metrics.domain.Crop;
 import uz.agromon.metrics.domain.DistrictMetric;
 import uz.agromon.metrics.domain.Metric;
@@ -30,7 +31,7 @@ public class DistrictMetricLogic implements DistrictMetricService {
 
 
     @Override
-    public DistrictMetric save(DistrictMetric metric) {
+    public DistrictMetric save(DistrictMetric metric) throws AlreadyExistsException {
         return districtMetricStore.save(metric);
     }
 

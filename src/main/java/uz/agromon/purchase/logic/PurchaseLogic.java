@@ -29,4 +29,9 @@ public class PurchaseLogic implements PurchaseService {
     public Page<PurchaseJpo> findByPage(int page, int pageSize) {
         return purchaseStore.findAll(page, pageSize);
     }
+
+    @Override
+    public List<Purchase> getTenantPurchases(String tenantId) {
+        return purchaseStore.getTenantPurchases(Integer.valueOf(tenantId));
+    }
 }

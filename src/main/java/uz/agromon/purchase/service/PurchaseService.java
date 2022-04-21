@@ -11,4 +11,5 @@ public interface PurchaseService {
     Purchase save(Purchase purchase);
     List<Purchase> getFarmerPurchases(String username);
     Page<PurchaseJpo> findByPage(int page, int pageSize);
+    List<Purchase> getTenantPurchases(String tenantId);
 }

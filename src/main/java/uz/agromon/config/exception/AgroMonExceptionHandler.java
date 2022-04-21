@@ -1,6 +1,5 @@
 package uz.agromon.config.exception;
 
-import io.swagger.models.auth.In;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;

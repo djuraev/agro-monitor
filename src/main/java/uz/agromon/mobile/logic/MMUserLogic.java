@@ -20,18 +20,14 @@ public class MMUserLogic implements MUserService {
     //
     @Autowired
     UserRepository userStore;
-
     @Autowired
     RegionStore regionStore;
-
     @Autowired
     DistrictStore districtStore;
 
-
     @Override
     public User login(String username, String password) {
-        UserJpo jpo = userStore.findByInsuranceNumber(username)
-                .orElse(null);
+        UserJpo jpo = userStore.findByInsuranceNumber(username).orElse(null);
         if (jpo == null) {
             throw new InvalidUserParameterException("Invalid Username.");
         }

@@ -37,9 +37,10 @@ public class PurchaseResource {
         return ResponseBuilder.buildOk(Collections.singletonList(purchases.getContent()), purchases.getTotalElements(), purchases.getNumber(), purchases.getTotalPages());
     }
 
-    @GetMapping("purchases/{tenantId}")
+    @GetMapping("purchases/tenant/{tenantId}")
     ResponseEntity<APIResponse> getTenantPurchases(@PathVariable String tenantId) {
-        return null;
+        List<Purchase> purchases = purchaseService.getTenantPurchases(tenantId);
+        return ResponseBuilder.buildOk(purchases);
     }
 
     @GetMapping(value = "/purchases/{username}")

@@ -2,6 +2,7 @@ package uz.agromon.metrics.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.metrics.domain.Crop;
 import uz.agromon.metrics.domain.Metric;
 import uz.agromon.metrics.domain.VillageMetric;
@@ -26,7 +27,7 @@ public class VillageMetricServiceLogic implements VillageMetricService {
     MetricStore metricStore;
 
     @Override
-    public VillageMetric save(VillageMetric village) {
+    public VillageMetric save(VillageMetric village) throws AlreadyExistsException {
         return villageMetricStore.save(village);
     }
 
@@ -49,12 +50,7 @@ public class VillageMetricServiceLogic implements VillageMetricService {
     public List<VillageMetric> getVillageMetrics(String villageSequence) {
         Integer sequence = Integer.parseInt(villageSequence);
         List<VillageMetric> villageMetrics = villageMetricStore.getVillageMetrics(sequence);
-        for (VillageMetric vm: villageMetrics) {
-            Crop crop = cropStore.retrieve(vm.getCropId());
-            Metric metric = metricStore.getById(vm.getMetricId());
-            vm.setMetricName(metric.getName());
-            vm.setCropName(crop.getName());
-        }
+        this.updateMetricAndCropDate(villageMetrics);
         return villageMetrics;
     }
 
@@ -86,5 +82,21 @@ public class VillageMetricServiceLogic implements VillageMetricService {
             yearValues.add(new YearValue(vm.getYear(), vm.getValue()));
         }
         return yearValues;
+    }
+
+    @Override
+    public List<VillageMetric> getAllBy(VillageMetric villageMetric) {
+        List<VillageMetric> villageMetrics = villageMetricStore.getAllBy(villageMetric);
+        this.updateMetricAndCropDate(villageMetrics);
+        return villageMetrics;
+    }
+
+    private void updateMetricAndCropDate(List<VillageMetric> metrics) {
+        for (VillageMetric vm: metrics) {
+            Crop crop = cropStore.retrieve(vm.getCropId());
+            Metric metric = metricStore.getById(vm.getMetricId());
+            vm.setMetricName(metric.getName());
+            vm.setCropName(crop.getName());
+        }
     }
 }

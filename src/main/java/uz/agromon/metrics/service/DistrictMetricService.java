@@ -1,5 +1,6 @@
 package uz.agromon.metrics.service;
 
+import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.metrics.domain.DistrictMetric;
 import uz.agromon.mobile.dto.response.YearValue;
 
@@ -7,7 +8,7 @@ import java.time.Year;
 import java.util.List;
 
 public interface DistrictMetricService {
-    DistrictMetric save(DistrictMetric metric);
+    DistrictMetric save(DistrictMetric metric) throws AlreadyExistsException;
     List<DistrictMetric> save(List<DistrictMetric> metrics);
     DistrictMetric getMetricById(Integer id);
     List<DistrictMetric> getAllMetrics();

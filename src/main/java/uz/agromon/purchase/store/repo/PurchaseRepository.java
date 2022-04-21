@@ -11,4 +11,5 @@ public interface PurchaseRepository extends JpaRepository<PurchaseJpo, Integer> 
     List<PurchaseJpo> getAllByFarmerName(String farmerName);
     List<PurchaseJpo> getAllByUsername(String username);
     Page<PurchaseJpo> findAllBy(Pageable pageable);
+    List<PurchaseJpo> findAllByTenantId(Integer tenantId);
 }

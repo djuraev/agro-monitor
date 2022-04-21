@@ -3,6 +3,7 @@ package uz.agromon.metrics.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.helper.APIResponse;
 import uz.agromon.helper.ResponseBuilder;
 import uz.agromon.metrics.domain.DistrictMetric;
@@ -19,7 +20,7 @@ public class DistrictMetricResource {
     DistrictMetricService districtMetricService;
 
     @PostMapping("/metric")
-    ResponseEntity<APIResponse> createDistrictMetric(@RequestBody DistrictMetric metric) {
+    ResponseEntity<APIResponse> createDistrictMetric(@RequestBody DistrictMetric metric) throws AlreadyExistsException {
         DistrictMetric entity = districtMetricService.save(metric);
         return ResponseBuilder.buildOk(entity);
     }
