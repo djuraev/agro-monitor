@@ -40,8 +40,8 @@ public class AuthController {
         return ResponseBuilder.buildOk(admins);
     }
 
-    @DeleteMapping(value = "/manager")
-    ResponseEntity<APIResponse> deleteManager(@RequestBody String username) {
+    @DeleteMapping(value = "/manager/{username}")
+    ResponseEntity<APIResponse> deleteManager(@PathVariable String username) {
         adminService.delete(username);
         return ResponseBuilder.buildOk("Removed successfully");
     }
