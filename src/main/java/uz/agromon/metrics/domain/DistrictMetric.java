@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class DistrictMetric {
     //
+    private Integer tenantId;
     private Integer cropId;
     private String cropName;
     private Integer districtId;
@@ -96,5 +97,11 @@ public class DistrictMetric {
         this.metricName = metricName;
     }
 
+    public Integer getTenantId() {
+        return tenantId;
+    }
 
+    public void setTenantId(Integer tenantId) {
+        this.tenantId = tenantId;
+    }
 }

@@ -7,6 +7,10 @@ import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.metrics.domain.DistrictMetric;
 import uz.agromon.metrics.store.jpo.DistrictMetricJpo;
 import uz.agromon.metrics.store.repo.DistrictMetricRepository;
+import uz.agromon.tenant.domain.District;
+import uz.agromon.tenant.store.DistrictStore;
+import uz.agromon.tenant.store.jpo.DistrictJpo;
+import uz.agromon.tenant.store.repo.DistrictRepository;
 
 
 import java.util.List;
@@ -18,11 +22,21 @@ public class DistrictMetricStoreLogic implements DistrictMetricStore {
     @Autowired
     DistrictMetricRepository repository;
 
+    @Autowired
+    DistrictRepository districtRepository;
 
     @Override
     public DistrictMetric save(DistrictMetric metric) throws AlreadyExistsException {
+        DistrictJpo districtJpo = districtRepository.getById(metric.getDistrictId());
+        metric.setTenantId(districtJpo.getTenantId());
         DistrictMetricJpo jpo = new DistrictMetricJpo(metric);
+
         try {
+            List<DistrictMetricJpo> jpoInDb = repository.getByDistrictIdAndMetricIdAndCropIdAndYear(metric.getDistrictId(), jpo.getMetricId(), jpo.getCropId(), jpo.getYear());
+            if (!jpoInDb.isEmpty()) {
+                jpo.setSequence(jpoInDb.get(0).getSequence());
+            }
+
             repository.save(jpo);
         }
         catch (DataIntegrityViolationException exception) {
@@ -55,7 +69,7 @@ public class DistrictMetricStoreLogic implements DistrictMetricStore {
 
     @Override
     public List<DistrictMetric> retrieveByDistrictAndMetric(Integer districtId, Integer metricId) {
-        return DistrictMetricJpo.toDomains(repository.getAllByDistrictIdAndMetricId(districtId, metricId));
+        return DistrictMetricJpo.toDomains(repository.findByDistrictIdAndMetricId(districtId, metricId));
     }
 
     @Override

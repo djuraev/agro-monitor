@@ -14,6 +14,7 @@ public interface DistrictMetricService {
     List<DistrictMetric> getAllMetrics();
     List<DistrictMetric> getDistrictMetrics(String districtId);
     List<DistrictMetric> getDistrictMetrics(Integer districtId, String metricId);
+    List<DistrictMetric> getDistrictMetrics(String districtId, String metricId, String cropId);
     List<YearValue> getDistrictMetricYearValues(Integer districtId, Integer metricId);
     List<YearValue> getDistrictMetricYearValues(Integer districtId, Integer metricId, Integer cropId);
 

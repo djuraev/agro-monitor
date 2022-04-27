@@ -17,4 +17,5 @@ public interface VillageMetricService {
     List<YearValue> getVillageMetricsYearValues(Integer villageId, Integer metricId);
     List<YearValue> getVillageMetricsYearValues(Integer villageId, Integer metricId, Integer cropId);
     List<VillageMetric> getAllBy(VillageMetric villageMetric);
+    List<VillageMetric> getAllBy(String villageId, String metricId, String cropId);
 }

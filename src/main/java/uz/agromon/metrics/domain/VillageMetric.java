@@ -1,11 +1,15 @@
 package uz.agromon.metrics.domain;
 
+import lombok.Builder;
+import lombok.Getter;
 import org.springframework.beans.BeanUtils;
 import uz.agromon.metrics.store.jpo.VillageMetricJpo;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Builder
+@Getter
 public class VillageMetric {
     //
     private Integer villageId;

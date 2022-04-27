@@ -43,9 +43,9 @@ public class DistrictMetricResource {
         return ResponseBuilder.buildOk(districtMetrics);
     }
 
-    @GetMapping("/metric/{districtId}/{metricId}")
-    ResponseEntity<APIResponse> getMetricByIdAndMetricId(@PathVariable String districtId, @PathVariable String metricId) {
-        List<DistrictMetric> metrics = districtMetricService.getDistrictMetrics(Integer.valueOf(districtId), metricId);
+    @GetMapping("/metric/{districtId}/{metricId}/{cropId}")
+    ResponseEntity<APIResponse> getMetricByIdAndMetricId(@PathVariable String districtId, @PathVariable String metricId, @PathVariable String cropId) {
+        List<DistrictMetric> metrics = districtMetricService.getDistrictMetrics(districtId, metricId, cropId);
         return ResponseBuilder.buildOk(metrics);
     }
 }

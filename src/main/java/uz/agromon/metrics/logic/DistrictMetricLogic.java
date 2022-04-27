@@ -65,6 +65,14 @@ public class DistrictMetricLogic implements DistrictMetricService {
         return metrics;
     }
 
+    @Override
+    public List<DistrictMetric> getDistrictMetrics(String districtId, String metricId, String cropId) {
+        Integer did = Integer.valueOf(districtId), mid = Integer.valueOf(metricId), cid = Integer.valueOf(cropId);
+        List<DistrictMetric> metrics = districtMetricStore.retrieveByDistrictAndMetricAndCrop(did, mid, cid);
+        this.updateMetricsInfo(metrics);
+        return metrics;
+    }
+
     private void updateMetricsInfo(List<DistrictMetric> metrics) {
         for (DistrictMetric dm: metrics) {
             Crop crop = cropStore.retrieve(dm.getCropId());
@@ -72,12 +80,7 @@ public class DistrictMetricLogic implements DistrictMetricService {
             dm.setCropName(crop.getName());
             dm.setMetricName(metric.getName());
         }
-        Collections.sort(metrics, new Comparator<DistrictMetric>() {
-            @Override
-            public int compare(DistrictMetric o1, DistrictMetric o2) {
-                return o1.getCropName().compareTo(o2.getCropName());
-            }
-        });
+        Collections.sort(metrics, Comparator.comparing(DistrictMetric::getYear));
     }
 
     @Override
@@ -99,4 +102,5 @@ public class DistrictMetricLogic implements DistrictMetricService {
         }
         return dmValues;
     }
+
 }

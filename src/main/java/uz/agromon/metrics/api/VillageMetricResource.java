@@ -31,9 +31,9 @@ public class VillageMetricResource {
         return ResponseBuilder.buildOk(metrics);
     }
 
-    @GetMapping("/village/{villageSequence}")
-    ResponseEntity<APIResponse> getVillageMetrics(@PathVariable String villageSequence) {
-        List<VillageMetric> villageMetrics = metricService.getVillageMetrics(villageSequence);
+    @GetMapping("/village/{villageSequence}/{metricId}/{cropId}")
+    ResponseEntity<APIResponse> getVillageMetrics(@PathVariable String villageSequence, @PathVariable String metricId, @PathVariable String cropId) {
+        List<VillageMetric> villageMetrics = metricService.getAllBy(villageSequence, metricId, cropId);
         return ResponseBuilder.buildOk(villageMetrics);
     }
 

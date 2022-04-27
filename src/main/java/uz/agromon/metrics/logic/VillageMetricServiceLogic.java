@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.agromon.config.exception.klass.AlreadyExistsException;
 import uz.agromon.metrics.domain.Crop;
+import uz.agromon.metrics.domain.DistrictMetric;
 import uz.agromon.metrics.domain.Metric;
 import uz.agromon.metrics.domain.VillageMetric;
 import uz.agromon.metrics.service.VillageMetricService;
@@ -13,6 +14,8 @@ import uz.agromon.metrics.store.VillageMetricStore;
 import uz.agromon.mobile.dto.response.YearValue;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -50,7 +53,7 @@ public class VillageMetricServiceLogic implements VillageMetricService {
     public List<VillageMetric> getVillageMetrics(String villageSequence) {
         Integer sequence = Integer.parseInt(villageSequence);
         List<VillageMetric> villageMetrics = villageMetricStore.getVillageMetrics(sequence);
-        this.updateMetricAndCropDate(villageMetrics);
+        this.updateMetricAndCropData(villageMetrics);
         return villageMetrics;
     }
 
@@ -87,16 +90,28 @@ public class VillageMetricServiceLogic implements VillageMetricService {
     @Override
     public List<VillageMetric> getAllBy(VillageMetric villageMetric) {
         List<VillageMetric> villageMetrics = villageMetricStore.getAllBy(villageMetric);
-        this.updateMetricAndCropDate(villageMetrics);
+        this.updateMetricAndCropData(villageMetrics);
         return villageMetrics;
     }
 
-    private void updateMetricAndCropDate(List<VillageMetric> metrics) {
+    @Override
+    public List<VillageMetric> getAllBy(String villageId, String metricId, String cropId) {
+        VillageMetric villageMetric = new VillageMetric();
+        villageMetric.setVillageId(Integer.valueOf(villageId));
+        villageMetric.setMetricId(Integer.valueOf(metricId));
+        villageMetric.setCropId(Integer.valueOf(cropId));
+        List<VillageMetric> metrics = villageMetricStore.getAllBy(villageMetric);
+        this.updateMetricAndCropData(metrics);
+        return metrics;
+    }
+
+    private void updateMetricAndCropData(List<VillageMetric> metrics) {
         for (VillageMetric vm: metrics) {
             Crop crop = cropStore.retrieve(vm.getCropId());
             Metric metric = metricStore.getById(vm.getMetricId());
             vm.setMetricName(metric.getName());
             vm.setCropName(crop.getName());
         }
+        Collections.sort(metrics, Comparator.comparing(VillageMetric::getYear));
     }
 }
