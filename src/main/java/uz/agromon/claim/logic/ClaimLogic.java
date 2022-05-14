@@ -39,4 +39,10 @@ public class ClaimLogic implements ClaimService {
         Integer tId = Integer.valueOf(tenant);
         return claimStore.retrieveByStatus(tId, status);
     }
+
+    @Override
+    public Claim updateClaimStatus(String claimSequence, String status) {
+        Integer cid = Integer.valueOf(claimSequence);
+        return claimStore.updateClaimStatus(cid, status);
+    }
 }

@@ -31,12 +31,16 @@ public class DistrictMetricStoreLogic implements DistrictMetricStore {
         metric.setTenantId(districtJpo.getTenantId());
         DistrictMetricJpo jpo = new DistrictMetricJpo(metric);
 
+        List<DistrictMetricJpo> savedMetric = repository.getByDistrictIdAndMetricIdAndCropIdAndYear(metric.getDistrictId(), jpo.getMetricId(), jpo.getCropId(), jpo.getYear());
+        if (!savedMetric.isEmpty()) {
+            repository.deleteAll(savedMetric);
+        }
+
         try {
-            List<DistrictMetricJpo> jpoInDb = repository.getByDistrictIdAndMetricIdAndCropIdAndYear(metric.getDistrictId(), jpo.getMetricId(), jpo.getCropId(), jpo.getYear());
+           /* List<DistrictMetricJpo> jpoInDb = repository.getByDistrictIdAndMetricIdAndCropIdAndYear(metric.getDistrictId(), jpo.getMetricId(), jpo.getCropId(), jpo.getYear());
             if (!jpoInDb.isEmpty()) {
                 jpo.setSequence(jpoInDb.get(0).getSequence());
-            }
-
+            }*/
             repository.save(jpo);
         }
         catch (DataIntegrityViolationException exception) {

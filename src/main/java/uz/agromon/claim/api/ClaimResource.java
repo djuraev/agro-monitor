@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.agromon.claim.domain.Claim;
+import uz.agromon.claim.domain.dto.ClaimStatusDto;
 import uz.agromon.claim.service.ClaimService;
 import uz.agromon.helper.APIResponse;
 import uz.agromon.helper.ResponseBuilder;
@@ -34,5 +35,11 @@ public class ClaimResource {
     ResponseEntity<APIResponse> getClaimsByStatus(@PathVariable String tenant, @PathVariable String status) {
         List<Claim> claims = claimService.getClaimsByStatus(tenant, status);
         return ResponseBuilder.buildOk(claims);
+    }
+
+    @PutMapping(value = "/claims/{claimId}")
+    ResponseEntity<APIResponse> updateClaimStatus(@PathVariable String claimId, @RequestBody ClaimStatusDto status) {
+        Claim claim = claimService.updateClaimStatus(claimId, status.getStatus());
+        return ResponseBuilder.buildOk(claim);
     }
 }

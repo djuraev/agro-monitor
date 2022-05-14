@@ -6,8 +6,7 @@ import java.util.List;
 
 public interface ClaimStore {
     Claim create(Claim claim);
-
     List<Claim> getByUsername(String username);
-
     List<Claim> retrieveByStatus(Integer tenant, String status);
+    Claim updateClaimStatus(Integer claimSequence, String status);
 }

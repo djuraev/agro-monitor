@@ -9,4 +9,5 @@ public interface ClaimService {
     List<Claim> getAllUserClaim(String username);
     List<Claim> getClaimsByStatus(String tenant, String status);
 
+    Claim updateClaimStatus(String claimSequence, String status);
 }

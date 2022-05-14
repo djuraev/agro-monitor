@@ -39,4 +39,15 @@ public class ClaimStoreLogic implements ClaimStore {
         }
         return ClaimJpo.toDomain(claimJpos);
     }
+
+    @Override
+    public Claim updateClaimStatus(Integer claimSequence, String status) {
+        ClaimJpo jpo = claimRepository.getById(claimSequence);
+        if (jpo.getSequence() != null) {
+            jpo.setStatus(status);
+            jpo = claimRepository.save(jpo);
+            return jpo.toDomain();
+        }
+        throw new ResourceNotFoundException("Cannot find claim info.");
+    }
 }

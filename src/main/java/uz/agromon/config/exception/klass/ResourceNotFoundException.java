@@ -12,4 +12,7 @@ public class ResourceNotFoundException extends RuntimeException {
         this.klass = klass;
     }
 
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
 }
