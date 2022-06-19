@@ -9,4 +9,6 @@ public interface ApiInfoStore {
     ApiInfo save(ApiInfo info);
     List<ApiInfo> retrieveAll();
     ApiInfo retrieve(String name);
+    ApiInfo retrieveByKey(String key);
+    ApiInfo update(ApiInfo apiInfo);
 }

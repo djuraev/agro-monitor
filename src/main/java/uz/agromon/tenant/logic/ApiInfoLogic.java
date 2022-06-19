@@ -27,4 +27,10 @@ public class ApiInfoLogic implements ApiInfoService {
     public List<ApiInfo> retrieveAll() {
         return apiInfoStore.retrieveAll();
     }
+
+    @Override
+    public ApiInfo update(ApiInfo info) {
+        //
+        return apiInfoStore.update(info);
+    }
 }

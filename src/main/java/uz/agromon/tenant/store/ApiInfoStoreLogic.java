@@ -34,4 +34,29 @@ public class ApiInfoStoreLogic implements ApiInfoStore{
         }
         return jpo.toDomain();
     }
+
+    @Override
+    public ApiInfo retrieveByKey(String key) {
+        //
+        ApiInfoJpo jpo = apiInfoRepository.getByApiKey(key);
+        if (jpo == null) {
+            throw new ResourceNotFoundException(ApiInfo.class, key.concat(": ApiInfo cannot be found."));
+        }
+        return jpo.toDomain();
+    }
+
+    @Override
+    public ApiInfo update(ApiInfo apiInfo) {
+        //
+        ApiInfoJpo jpo = apiInfoRepository.getByApiKey(apiInfo.getApiKey());
+        if (jpo == null) {
+            throw new ResourceNotFoundException(ApiInfo.class, apiInfo.getApiKey().concat(": ApiInfo cannot be found."));
+        }
+        jpo.setApiName(apiInfo.getApiName());
+        jpo.setExpired(apiInfo.isExpired());
+        jpo = apiInfoRepository.save(jpo);
+        return jpo.toDomain();
+    }
+
+
 }

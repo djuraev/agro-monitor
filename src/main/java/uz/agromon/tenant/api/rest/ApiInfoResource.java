@@ -29,4 +29,11 @@ public class ApiInfoResource {
         List<ApiInfo> apiInfoList = apiInfoService.retrieveAll();
         return ResponseBuilder.buildOk(apiInfoList);
     }
+
+    @PutMapping("/api-info")
+    ResponseEntity<APIResponse> updateApiInfo(@RequestBody ApiInfo apiInfo) {
+        //
+        ApiInfo info = apiInfoService.update(apiInfo);
+        return ResponseBuilder.buildOk(info);
+    }
 }
