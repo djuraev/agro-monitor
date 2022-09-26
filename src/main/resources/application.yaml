@@ -27,7 +27,7 @@ server:
 
 agromonitoring:
   api-url: "http://api.agromonitoring.com/agro/1.0/polygons"
-  api-key: "b5efce714742cc3aba8062b29f8c86f1"
+  api-key: "0432cb7f5c2b8f2724c5ea2d4be58862"
 
 logging:
   file:

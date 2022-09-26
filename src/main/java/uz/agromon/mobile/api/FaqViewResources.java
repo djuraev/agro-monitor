@@ -33,4 +33,6 @@ public class FaqViewResources {
         //String fileName = pageName + ".html";
         return resourceFolder +"Faq_uz.html";
     }
+
+
 }
